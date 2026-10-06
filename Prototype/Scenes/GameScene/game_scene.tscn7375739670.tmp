@@ -303,10 +303,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ay4j"]
-size = Vector2(21, 8)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_knnbg"]
-size = Vector2(20, 40)
+size = Vector2(14, 39)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mo3n2"]
 atlas = ExtResource("8_55qdq")
@@ -427,10 +424,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_55qdq"]
-size = Vector2(14, 4)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n08ax"]
-size = Vector2(16, 46)
+size = Vector2(14, 36)
 
 [node name="GameScene" type="Node2D" unique_id=1246608110]
 script = ExtResource("1_t643o")
@@ -672,7 +666,6 @@ polygon = PackedVector2Array(-3, -67, 4, -97, 27, -103, 44, -103, 66, -96, 74, -
 
 [node name="LevelStartTrigger" type="Area2D" parent="EntryDoor" unique_id=1938226157]
 position = Vector2(24, -312)
-collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EntryDoor/LevelStartTrigger" unique_id=905323829]
 position = Vector2(1.5, 163.5)
@@ -688,7 +681,6 @@ polygon = PackedVector2Array(0, 0, 1600, 0, 1600, 150, 0, 150)
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=791812582]
 position = Vector2(-80, -29)
-collision_layer = 0
 script = ExtResource("1_ca4o6")
 metadata/_edit_group_ = true
 
@@ -699,7 +691,7 @@ animation = &"attack"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1114051930]
-position = Vector2(-0.5, 24)
+position = Vector2(-0.5, 8.5)
 shape = SubResource("RectangleShape2D_1ay4j")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1142016342]
@@ -709,22 +701,8 @@ limit_left = -220
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 
-[node name="DamageArea" type="Area2D" parent="Player" unique_id=1924509230]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/DamageArea" unique_id=1774682979]
-position = Vector2(-2, 8)
-shape = SubResource("RectangleShape2D_knnbg")
-debug_color = Color(0.7, 0, 0.3733333, 0.41960785)
-
-[node name="RightCast" type="Node2D" parent="Player" unique_id=981506438]
-position = Vector2(16, 5)
-
-[node name="LeftCast" type="Node2D" parent="Player" unique_id=1478581834]
-position = Vector2(-16, 5)
-
 [node name="Enemy" type="CharacterBody2D" parent="." unique_id=255696300]
-position = Vector2(584, -26)
-collision_layer = 0
+position = Vector2(304, -26)
 script = ExtResource("8_n08ax")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy" unique_id=997817063]
@@ -735,16 +713,7 @@ frame = 3
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy" unique_id=1925411541]
-position = Vector2(1, 24)
+position = Vector2(1, 8)
 shape = SubResource("RectangleShape2D_55qdq")
 
-[node name="AttackArea" type="Area2D" parent="Enemy" unique_id=2031201384]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/AttackArea" unique_id=299664567]
-position = Vector2(0, 3)
-shape = SubResource("RectangleShape2D_n08ax")
-debug_color = Color(0.7, 0, 0.3733333, 0.41960785)
-
-[connection signal="area_entered" from="EntryDoor/LevelStartTrigger" to="." method="_on_level_start_trigger_area_entered"]
-[connection signal="area_entered" from="Enemy/AttackArea" to="Enemy" method="_on_attack_area_area_entered"]
-[connection signal="body_entered" from="Enemy/AttackArea" to="Enemy" method="_on_attack_area_body_entered"]
+[connection signal="body_entered" from="EntryDoor/LevelStartTrigger" to="." method="level_start_triggered"]

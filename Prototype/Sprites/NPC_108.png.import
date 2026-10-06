@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4mjt6ndwrlky"
-path="res://.godot/imported/DisplaySlots_0.png-df47aa5b7cb3cf7573eea157965729bb.ctex"
+uid="uid://fl5wp5hr6jme"
+path="res://.godot/imported/NPC_108.png-265db666e10488b23fcf83919e533ba7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Prototype/DisplaySlots_0.png"
-dest_files=["res://.godot/imported/DisplaySlots_0.png-df47aa5b7cb3cf7573eea157965729bb.ctex"]
+source_file="res://Prototype/Sprites/NPC_108.png"
+dest_files=["res://.godot/imported/NPC_108.png-265db666e10488b23fcf83919e533ba7.ctex"]
 
 [params]
 
