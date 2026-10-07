@@ -29,22 +29,17 @@ var WeaponPrimaryData = {
 	"Shock": {
 		"Description": "Chains to an additional enemy.\nReduced damage.",
 		"Color": Color("d18100ff"),
-		"Cost": 100
+		"Cost": 85
 	}, 
 	"Venom": {
 		"Description": "Inflicts a damage-over-time debuff to enemies.\nMana usage doubled.",
 		"Color": Color("14a330ff"),
-		"Cost": 100
+		"Cost": 85
 	},
-	"Abyss": {
-		"Description": "Passes through enemies.\nSpeed decreased.",
-		"Color": Color("27418cff"),
-		"Cost": 100
-	}, 
 	"Vampire": {
-		"Description": "Has a 1 in 4 chance to lifesteal.",
+		"Description": "Has a 1 in 5 chance to lifesteal.",
 		"Color": Color("b31e66ff"),
-		"Cost": 100
+		"Cost": 85
 	}
 }
 
@@ -52,22 +47,17 @@ var WeaponEngravingData = {
 	"Echoing": {
 		"Description": "Fires an additional projectile.",
 		"Color": Color("00ccffff"),
-		"Cost": 45
+		"Cost": 35
 	},
 	"Rebounding": {
 		"Description": "Riochets off whatever it hits once.",
 		"Color": Color("2efff5ff"),
-		"Cost": 45
-	},
-	"Seeking": {
-		"Description": "Curves towards enemies.",
-		"Color": Color("00ff90ff"),
-		"Cost": 45
+		"Cost": 35
 	},
 	"Overcharged": {
 		"Description": "Uses double MP for double damage.",
 		"Color": Color("6600ffff"),
-		"Cost": 45
+		"Cost": 35
 	}
 }
 

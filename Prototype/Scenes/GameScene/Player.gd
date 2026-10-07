@@ -6,6 +6,7 @@ var HP = 80
 var hp_max = 80
 var MP: float = 150
 var mp_max: float = 150
+var alive: bool = true
 
 var max_speed = 80
 var accel_speed = 500
@@ -32,10 +33,12 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
-	if Input.is_action_just_pressed("jump_action") and is_on_floor():
+	if Input.is_action_just_pressed("jump_action") and is_on_floor() and alive:
 		velocity.y = -jump_power
 	
 	var direction := Input.get_axis("left_movement", "right_movement")
+	if not alive:
+		direction = 0
 	if direction != 0:
 		velocity.x = move_toward(velocity.x, direction * max_speed, accel_speed * delta)
 		previous_direction = sign(velocity.x)
@@ -48,6 +51,9 @@ func _physics_process(delta: float) -> void:
 	mana_regeneration(direction)
 
 func _input(event: InputEvent) -> void:
+	if not alive:
+		return
+	
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if MP >= GlobalGame.Weapon["ManaUsage"]:
@@ -69,6 +75,7 @@ func use_weapon() -> void:
 	var pos_name = "RightCast" if face_right else "LeftCast"
 	var proj = weapon_projectile.instantiate()
 	get_tree().current_scene.add_child(proj)
+	proj.game_player = self
 	proj.position = get_node(pos_name).global_position
 	proj.start_projectile()
 	
@@ -84,6 +91,7 @@ func use_weapon() -> void:
 		await get_tree().create_timer(0.2).timeout
 		proj = weapon_projectile.instantiate()
 		get_tree().current_scene.add_child(proj)
+		proj.game_player = self
 		proj.position = get_node(pos_name).global_position
 		proj.start_projectile()
 
@@ -113,10 +121,15 @@ func mana_regeneration(direction) -> void:
 		var mp_regen_base: float = ((mp_max / 3) + 1 + mp_bonus_regen)
 		var mp_regen: float = (mp_regen_base * stationary_bonus * mp_regen_factor * item_usage_factor)
 		
-		MP += (mp_regen / 60) * 0.4
+		MP += (mp_regen / 60) * 0.8
 		if MP > mp_max:
 			MP = mp_max
 		GameRef.player_values_changed()
+
+func recieve_health(hp_income: float) -> void:
+	HP += hp_income
+	if HP > hp_max: HP = hp_max
+	GameRef.player_values_changed()
 
 func recieve_damage(dmg: float, knockback_force: float, src_position: Vector2) -> void:#
 	if damage_area.monitoring == false:
@@ -129,11 +142,24 @@ func recieve_damage(dmg: float, knockback_force: float, src_position: Vector2) -
 	velocity.x = sign(knockback_direction.x) * knockback_force
 	velocity.y = -knockback_force * 0.5
 	
-	damage_area.set_deferred("monitoring", false)
-	animsprite.self_modulate = Color("ffffff87")
-	await get_tree().create_timer(1.5).timeout
-	animsprite.self_modulate = Color("ffffffff")
-	damage_area.set_deferred("monitoring", true)
+	if HP <= 0:
+		player_death()
+	else:
+		damage_area.set_deferred("monitoring", false)
+		animsprite.self_modulate = Color("ffffff87")
+		await get_tree().create_timer(1.5).timeout
+		animsprite.self_modulate = Color("ffffffff")
+		damage_area.set_deferred("monitoring", true)
+
+func player_death() -> void:
+	if not alive: 
+		return
+	alive = false
+	$DamageArea.set_deferred("monitoring", false)
+	
+	animsprite.material = animsprite.material.duplicate(true)
+	await get_tree().create_tween().tween_method(func(v: float): 
+		animsprite.material.set_shader_parameter("progress", v), 0.2, 1.0, 0.8).finished
 
 func move_camera_offset(offset_direction: float):
 	if player_camera.offset.x != offset_direction:

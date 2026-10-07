@@ -5,8 +5,8 @@ var level_length = -1
 var game_active = false
 
 var enemy_count = 0
-var enemy_cd_min = 1
-var enemy_cd_max = 3.5
+var enemy_cd_min = 2.0
+var enemy_cd_max = 5.0
 
 @onready var game_player: Player = $Player
 @onready var player_camera: Camera2D = $Player/Camera2D
@@ -75,7 +75,8 @@ func enemy_spawn_loop():
 
 func spawn_enemy() -> void:
 	var en = enemy_scene.instantiate()
-	get_tree().current_scene.add_child(en)
+	
+	get_tree().current_scene.call_deferred("add_child", en)
 	enemy_count += 1
 	
 	if game_player.position.x > 200:
@@ -114,4 +115,4 @@ func _on_level_start_trigger_area_entered(area: Area2D) -> void:
 
 func _on_level_end_trigger_area_entered(area: Area2D) -> void:
 	if area.get_parent() is Player:
-		get_tree().change_scene_to_file("res://Prototype/Scenes/Intermediate/intermediate.tscn")
+		get_tree().call_deferred("change_scene_to_file", "res://Prototype/Scenes/Intermediate/intermediate.tscn")

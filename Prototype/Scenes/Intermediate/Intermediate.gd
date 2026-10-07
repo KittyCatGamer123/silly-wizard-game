@@ -87,7 +87,8 @@ func spell_buy() -> void:
 			"Venom": GlobalGame.Weapon["ManaUsage"] = 30.0
 			"Abyss": GlobalGame.Weapon["Speed"] = 150.0
 	
-	
+	GlobalGame.Essence -= GlobalGame.WeaponEngravingData[engrave_id]["Cost"]
+	player_values_changed()
 	major_player_values_changed()
 
 func engrave_buy() -> void:
@@ -98,6 +99,8 @@ func engrave_buy() -> void:
 	if GlobalGame.Weapon["Engraving"]["Id"] == "None":
 		GlobalGame.Weapon["Engraving"]["Id"] = engrave_id
 	
+	GlobalGame.Essence -= GlobalGame.WeaponEngravingData[engrave_id]["Cost"]
+	player_values_changed()
 	major_player_values_changed()
 
 func menu_close() -> void:

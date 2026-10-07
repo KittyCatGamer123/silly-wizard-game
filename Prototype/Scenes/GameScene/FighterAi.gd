@@ -5,6 +5,7 @@ var target: Player = null
 var health: float = 15
 var contact_damage: int = 14
 var knockback_force: int = 450
+var is_dead = false
 
 @onready var anin_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $AttackArea
@@ -27,11 +28,14 @@ func recieve_damage(dmg: float, incoming_knockback: float, src_position: Vector2
 		enemy_death()
 
 func enemy_death():
-	get_tree().current_scene.enemy_count -= 1
+	if is_dead: return
+	
 	attack_area.set_deferred("monitoring", false)
+	get_tree().current_scene.enemy_count -= 1
+	is_dead = true
 	
 	var es = essence_scene.instantiate()
-	get_tree().current_scene.add_child(es)
+	get_tree().current_scene.call_deferred("add_child", es)
 	es.position = global_position
 	get_tree().create_tween().tween_property(es, "position", Vector2(global_position.x, global_position.y - 15), 0.5)
 	
@@ -83,3 +87,7 @@ func update_animation(direction: float) -> void:
 func _on_attack_area_area_entered(area: Area2D) -> void:
 	if area.get_parent() is Player:
 		area.get_parent().recieve_damage(contact_damage, knockback_force, global_position)
+
+func recieve_venom() -> void:
+	await get_tree().create_timer(1).timeout
+	recieve_damage(1, 20, global_position)

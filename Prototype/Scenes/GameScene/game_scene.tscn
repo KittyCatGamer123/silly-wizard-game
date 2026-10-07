@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cjn57spuyyui5" path="res://Prototype/Sprites/Tome.png" id="4_qq3re"]
 [ext_resource type="Texture2D" uid="uid://bbow7q8vh1vad" path="res://Prototype/Sprites/Cursor_5.png" id="5_55qdq"]
 [ext_resource type="Texture2D" uid="uid://c4mjt6ndwrlky" path="res://Prototype/Sprites/DisplaySlots_0.png" id="5_irwq3"]
+[ext_resource type="Shader" uid="uid://cradsv22svkdj" path="res://Prototype/Scenes/GameScene/death_fire.gdshader" id="8_n08ax"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_irwq3"]
 font = ExtResource("3_op0w6")
@@ -158,6 +159,24 @@ shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_am13a"]
 size = Vector2(3, 347)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_n08ax"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1v711"]
+noise = SubResource("FastNoiseLite_n08ax")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lq10r"]
+shader = ExtResource("8_n08ax")
+shader_parameter/progress = 0.0
+shader_parameter/sprite_size = Vector2(24, 24)
+shader_parameter/origin = Vector2(0, 0)
+shader_parameter/borderWidth = 6.0
+shader_parameter/burnMult = 13.215
+shader_parameter/pixel_size = 0.001
+shader_parameter/blend_steps = 4.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_1v711")
+shader_parameter/burnColor = Color(1, 0.4, 0.05, 1)
+shader_parameter/charColor = Color(1, 0.050980393, 0.050980393, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hn2f7"]
 atlas = ExtResource("1_l8ac1")
@@ -610,6 +629,7 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=825816892]
 texture_repeat = 1
+material = SubResource("ShaderMaterial_lq10r")
 sprite_frames = SubResource("SpriteFrames_1ay4j")
 animation = &"attack"
 flip_h = true

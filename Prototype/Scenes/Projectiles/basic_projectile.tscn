@@ -2,11 +2,23 @@
 
 [ext_resource type="Script" uid="uid://cg72awsvsrwmt" path="res://Prototype/Scenes/Projectiles/proj_basic.gd" id="1_alngs"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ay4j"]
+radius = 1.0
+
 [sub_resource type="Gradient" id="Gradient_1ay4j"]
 colors = PackedColorArray(1, 1, 1, 0.47058824, 1, 1, 1, 0)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1ay4j"]
-radius = 1.0
+[sub_resource type="Gradient" id="Gradient_vboyt"]
+offsets = PackedFloat32Array(0, 0.115763545, 0.70197046, 1)
+colors = PackedColorArray(0.83, 0, 0.67783326, 1, 0.95000005, 1, 0, 0.9254902, 0.9490196, 1, 0, 0.9254902, 0.61600006, 0, 0.66, 0)
+
+[sub_resource type="Gradient" id="Gradient_f1ke0"]
+offsets = PackedFloat32Array(0, 0.5640394, 1)
+colors = PackedColorArray(0, 0.69, 0, 1, 0.416, 0.48, 0, 1, 0.052000005, 0, 0.24, 0.09803922)
+
+[sub_resource type="Gradient" id="Gradient_alngs"]
+offsets = PackedFloat32Array(0, 0.3226601, 0.5640394, 0.8448276, 1)
+colors = PackedColorArray(0.69, 0, 0, 1, 0.54, 0, 0.1800001, 1, 0.38, 0, 0.0063332366, 1, 0.24, 0, 0.12, 0.46666667, 0.24, 0, 0.0039999387, 0)
 
 [node name="BasicProjectile" type="Area2D" unique_id=1629677628]
 script = ExtResource("1_alngs")
@@ -15,7 +27,13 @@ script = ExtResource("1_alngs")
 color = Color(0.9999998, 0.9872832, 0.8938952, 1)
 polygon = PackedVector2Array(-3, 0, 0, 3, 3, 0, 0, -3)
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1960581705]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1146126624]
+shape = SubResource("CircleShape2D_1ay4j")
+
+[node name="Particles" type="Node2D" parent="." unique_id=1741497243]
+
+[node name="None" type="CPUParticles2D" parent="Particles" unique_id=1960581705]
+emitting = false
 amount = 60
 emission_shape = 1
 emission_sphere_radius = 5.0
@@ -29,8 +47,48 @@ scale_amount_max = 7.0
 color = Color(1, 0.97466666, 0.81, 1)
 color_ramp = SubResource("Gradient_1ay4j")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1146126624]
-shape = SubResource("CircleShape2D_1ay4j")
+[node name="Shock" type="CPUParticles2D" parent="Particles" unique_id=284072329]
+emitting = false
+amount = 55
+emission_shape = 1
+emission_sphere_radius = 5.0
+particle_flag_align_y = true
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+damping_min = 1.0
+damping_max = 15.0
+scale_amount_max = 5.0
+color_ramp = SubResource("Gradient_vboyt")
+
+[node name="Venom" type="CPUParticles2D" parent="Particles" unique_id=509577490]
+emitting = false
+amount = 35
+emission_shape = 1
+emission_sphere_radius = 2.0
+particle_flag_align_y = true
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 5.0
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+damping_min = 1.0
+damping_max = 15.0
+scale_amount_max = 6.0
+color_ramp = SubResource("Gradient_f1ke0")
+
+[node name="Vampire" type="CPUParticles2D" parent="Particles" unique_id=223830044]
+emitting = false
+amount = 80
+emission_shape = 1
+emission_sphere_radius = 2.0
+particle_flag_align_y = true
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+scale_amount_min = 0.1
+scale_amount_max = 10.0
+color_ramp = SubResource("Gradient_alngs")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
