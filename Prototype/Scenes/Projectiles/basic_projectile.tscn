@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://ccmgvr14ihlys"]
+
+[ext_resource type="Script" uid="uid://cg72awsvsrwmt" path="res://Prototype/Scenes/Projectiles/proj_basic.gd" id="1_alngs"]
+
+[sub_resource type="Gradient" id="Gradient_1ay4j"]
+colors = PackedColorArray(1, 1, 1, 0.47058824, 1, 1, 1, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ay4j"]
+radius = 1.0
+
+[node name="BasicProjectile" type="Area2D" unique_id=1629677628]
+script = ExtResource("1_alngs")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1837787975]
+color = Color(0.9999998, 0.9872832, 0.8938952, 1)
+polygon = PackedVector2Array(-3, 0, 0, 3, 3, 0, 0, -3)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1960581705]
+amount = 60
+emission_shape = 1
+emission_sphere_radius = 5.0
+particle_flag_align_y = true
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 15.0
+scale_amount_min = 2.0
+scale_amount_max = 7.0
+color = Color(1, 0.97466666, 0.81, 1)
+color_ramp = SubResource("Gradient_1ay4j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1146126624]
+shape = SubResource("CircleShape2D_1ay4j")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

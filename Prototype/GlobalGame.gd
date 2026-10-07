@@ -1,5 +1,76 @@
 extends Node
 
+var LEVEL = 1
+var Essence = 0
+
+var Weapon = {
+	"Primary": {
+		"Id": "None",
+		"Level": 1
+	},
+	"Engraving": {
+		"Id": "None",
+		"Level": 1
+	},
+	"Damage": 5.0,
+	"Knockback": 200.0,
+	"UseTime": 0.7,
+	"ManaUsage": 15.0,
+	"Lifetime": 3.0,
+	"Speed": 400.0
+}
+var Accessories = []
+
+var WeaponPrimaryData = {
+	"None": {
+		"Description": "",
+		"Color": Color("ffffcf")
+	},
+	"Shock": {
+		"Description": "Chains to an additional enemy.\nReduced damage.",
+		"Color": Color("d18100ff"),
+		"Cost": 100
+	}, 
+	"Venom": {
+		"Description": "Inflicts a damage-over-time debuff to enemies.\nMana usage doubled.",
+		"Color": Color("14a330ff"),
+		"Cost": 100
+	},
+	"Abyss": {
+		"Description": "Passes through enemies.\nSpeed decreased.",
+		"Color": Color("27418cff"),
+		"Cost": 100
+	}, 
+	"Vampire": {
+		"Description": "Has a 1 in 4 chance to lifesteal.",
+		"Color": Color("b31e66ff"),
+		"Cost": 100
+	}
+}
+
+var WeaponEngravingData = {
+	"Echoing": {
+		"Description": "Fires an additional projectile.",
+		"Color": Color("00ccffff"),
+		"Cost": 45
+	},
+	"Rebounding": {
+		"Description": "Riochets off whatever it hits once.",
+		"Color": Color("2efff5ff"),
+		"Cost": 45
+	},
+	"Seeking": {
+		"Description": "Curves towards enemies.",
+		"Color": Color("00ff90ff"),
+		"Cost": 45
+	},
+	"Overcharged": {
+		"Description": "Uses double MP for double damage.",
+		"Color": Color("6600ffff"),
+		"Cost": 45
+	}
+}
+
 func value_commas(value: int) -> String:
 	var num_str: String = str(abs(value))
 	var result: String = ""

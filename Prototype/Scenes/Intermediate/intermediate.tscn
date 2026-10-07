@@ -1,0 +1,937 @@
+[gd_scene format=3 uid="uid://0ud47wn5ie5f"]
+
+[ext_resource type="FontFile" uid="uid://bcrta3hfgkhp2" path="res://Prototype/YoungSerif-Regular.ttf" id="1_epbjf"]
+[ext_resource type="Script" uid="uid://bkjxsqong4udv" path="res://Prototype/Scenes/Intermediate/Intermediate.gd" id="1_txl46"]
+[ext_resource type="Texture2D" uid="uid://bp8nmnfe54d7b" path="res://Prototype/Sprites/Essence.png" id="2_txl46"]
+[ext_resource type="Texture2D" uid="uid://cjn57spuyyui5" path="res://Prototype/Sprites/Tome.png" id="3_1lwt8"]
+[ext_resource type="Texture2D" uid="uid://c4mjt6ndwrlky" path="res://Prototype/Sprites/DisplaySlots_0.png" id="4_k7jbg"]
+[ext_resource type="Texture2D" uid="uid://bbow7q8vh1vad" path="res://Prototype/Sprites/Cursor_5.png" id="5_k7jbg"]
+[ext_resource type="Script" uid="uid://yrliv4kqpqdq" path="res://Prototype/Scenes/GameScene/Player.gd" id="5_mp5ad"]
+[ext_resource type="Texture2D" uid="uid://fl5wp5hr6jme" path="res://Prototype/Sprites/NPC_108.png" id="6_cp5xm"]
+[ext_resource type="Texture2D" uid="uid://ce0s8pf6cqaxq" path="res://Prototype/Sprites/Item_345.png" id="8_1lwt8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vuu62"]
+font = ExtResource("1_epbjf")
+font_size = 23
+font_color = Color(1, 0.8425, 0.37, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nh8ph"]
+font = ExtResource("1_epbjf")
+font_size = 20
+font_color = Color(1, 0, 0.34117648, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.6627451)
+shadow_offset = Vector2(1, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxvku"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.2892788, 0, 0.07451814, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jgkdc"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.9390705, 0, 0.31827563, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_1fk21"]
+font = ExtResource("1_epbjf")
+font_size = 20
+font_color = Color(0.7366669, 0.20999998, 1, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.6627451)
+shadow_offset = Vector2(1, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6wchd"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.20983714, 0.00025891938, 0.30340794, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dw537"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.7366669, 0.20999998, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_r63bx"]
+font = ExtResource("1_epbjf")
+font_size = 18
+font_color = Color(0.37, 0.7899999, 1, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnaqb"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.59720004, 0.6, 0.57600003, 0.80784315)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9953333, 1, 0.96, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_vc34s"]
+font = ExtResource("1_epbjf")
+font_size = 11
+shadow_color = Color(0, 0, 0, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bl3hf"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.19036666, 0.19239381, 0.18008116, 0.80784315)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.15847227, 0.15847233, 0.15847221, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_uvf7m"]
+font = ExtResource("1_epbjf")
+font_size = 17
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lwt8"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.44625, 0.45, 0.42749998, 0.80784315)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9953333, 1, 0.96, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k7jbg"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.5641835, 0.5681112, 0.5445631, 0.80784315)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9953333, 1, 0.96, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mp5ad"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.2879787, 0.29072487, 0.27409884, 0.80784315)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.69135714, 0.69135666, 0.69135696, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_1lwt8"]
+font = ExtResource("1_epbjf")
+font_size = 28
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k7jbg"]
+line_spacing = -7.0
+font = ExtResource("1_epbjf")
+font_size = 18
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_txl46"]
+size = Vector2(3, 347)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ay4j"]
+size = Vector2(178, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hn2f7"]
+atlas = ExtResource("6_cp5xm")
+region = Rect2(0, 1088, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8ac1"]
+atlas = ExtResource("6_cp5xm")
+region = Rect2(0, 0, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i30nl"]
+atlas = ExtResource("6_cp5xm")
+region = Rect2(0, 64, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ca4o6"]
+atlas = ExtResource("6_cp5xm")
+region = Rect2(0, 128, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_op0w6"]
+atlas = ExtResource("6_cp5xm")
+region = Rect2(0, 192, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qq3re"]
+atlas = ExtResource("6_cp5xm")
+region = Rect2(0, 256, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irwq3"]
+atlas = ExtResource("6_cp5xm")
+region = Rect2(0, 320, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljq3q"]
+atlas = ExtResource("6_cp5xm")
+region = Rect2(0, 384, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t643o"]
+atlas = ExtResource("6_cp5xm")
+region = Rect2(0, 448, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55qdq"]
+atlas = ExtResource("6_cp5xm")
+region = Rect2(0, 512, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n08ax"]
+atlas = ExtResource("6_cp5xm")
+region = Rect2(0, 576, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1v711"]
+atlas = ExtResource("6_cp5xm")
+region = Rect2(0, 640, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lq10r"]
+atlas = ExtResource("6_cp5xm")
+region = Rect2(0, 704, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4wao"]
+atlas = ExtResource("6_cp5xm")
+region = Rect2(0, 768, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6g0w"]
+atlas = ExtResource("6_cp5xm")
+region = Rect2(0, 832, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bl2jn"]
+atlas = ExtResource("6_cp5xm")
+region = Rect2(0, 896, 40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4j12"]
+atlas = ExtResource("6_cp5xm")
+region = Rect2(0, 960, 40, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gvqaq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hn2f7")
+}],
+"loop": 0,
+"name": &"attack",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8ac1")
+}],
+"loop": 0,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i30nl")
+}],
+"loop": 0,
+"name": &"midair",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ca4o6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_op0w6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qq3re")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irwq3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljq3q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t643o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55qdq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n08ax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1v711")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lq10r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4wao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6g0w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bl2jn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4j12")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_odlrs"]
+size = Vector2(21, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kyibg"]
+size = Vector2(20, 40)
+
+[node name="Intermediate" type="Node2D" unique_id=463829465]
+script = ExtResource("1_txl46")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1540468329]
+
+[node name="StatusUi" type="VBoxContainer" parent="CanvasLayer" unique_id=1786359391]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 496.0
+offset_bottom = 163.0
+
+[node name="Level" type="Label" parent="CanvasLayer/StatusUi" unique_id=1761506077]
+layout_mode = 2
+text = "Floor I"
+label_settings = SubResource("LabelSettings_vuu62")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/StatusUi" unique_id=1565882635]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Control" type="Control" parent="CanvasLayer/StatusUi/HBoxContainer" unique_id=258485955]
+custom_minimum_size = Vector2(38, 0)
+layout_mode = 2
+
+[node name="Hp" type="Label" parent="CanvasLayer/StatusUi/HBoxContainer/Control" unique_id=1422307981]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "HP"
+label_settings = SubResource("LabelSettings_nh8ph")
+
+[node name="HpBar" type="ProgressBar" parent="CanvasLayer/StatusUi/HBoxContainer" unique_id=963372324]
+custom_minimum_size = Vector2(440, 30)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_mxvku")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jgkdc")
+max_value = 150.0
+value = 125.0
+show_percentage = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/StatusUi" unique_id=1812920271]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Control" type="Control" parent="CanvasLayer/StatusUi/HBoxContainer2" unique_id=1915445475]
+custom_minimum_size = Vector2(38, 0)
+layout_mode = 2
+
+[node name="Mp" type="Label" parent="CanvasLayer/StatusUi/HBoxContainer2/Control" unique_id=789793304]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "MP"
+label_settings = SubResource("LabelSettings_1fk21")
+
+[node name="MpBar" type="ProgressBar" parent="CanvasLayer/StatusUi/HBoxContainer2" unique_id=1052148943]
+custom_minimum_size = Vector2(440, 30)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_6wchd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dw537")
+max_value = 250.0
+value = 200.0
+show_percentage = false
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/StatusUi" unique_id=367192270]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/StatusUi/HBoxContainer3" unique_id=351656330]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("2_txl46")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/StatusUi/HBoxContainer3" unique_id=1466921397]
+layout_mode = 2
+text = "0 Essence"
+label_settings = SubResource("LabelSettings_r63bx")
+
+[node name="SlotsUi" type="HBoxContainer" parent="CanvasLayer" unique_id=426367370]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -595.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 88.0
+grow_horizontal = 0
+alignment = 2
+
+[node name="WeaponSlot" type="Panel" parent="CanvasLayer/SlotsUi" unique_id=1948658766]
+self_modulate = Color(1, 1, 0.8117647, 1)
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lnaqb")
+
+[node name="WeaponIcon" type="TextureRect" parent="CanvasLayer/SlotsUi/WeaponSlot" unique_id=1912286985]
+self_modulate = Color(1, 1, 0.7137255, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_1lwt8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="EngravingIcon" type="TextureRect" parent="CanvasLayer/SlotsUi/WeaponSlot/WeaponIcon" unique_id=1375151970]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 14.999998
+offset_right = 22.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("5_k7jbg")
+expand_mode = 1
+
+[node name="ButtonToPress" type="Label" parent="CanvasLayer/SlotsUi/WeaponSlot" unique_id=1195750457]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -44.0
+offset_top = -24.0
+offset_right = -4.0
+offset_bottom = -1.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "LMB"
+label_settings = SubResource("LabelSettings_vc34s")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/SlotsUi" unique_id=892492209]
+layout_mode = 2
+text = "|"
+
+[node name="AccSlot" type="Panel" parent="CanvasLayer/SlotsUi" unique_id=1454130926]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bl3hf")
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/SlotsUi/AccSlot" unique_id=792884507]
+self_modulate = Color(1, 1, 1, 0.5176471)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 19.0
+offset_right = -19.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_k7jbg")
+
+[node name="AccSlot2" type="Panel" parent="CanvasLayer/SlotsUi" unique_id=2017534927]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bl3hf")
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/SlotsUi/AccSlot2" unique_id=1075652103]
+self_modulate = Color(1, 1, 1, 0.5176471)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 19.0
+offset_right = -19.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_k7jbg")
+
+[node name="AccSlot3" type="Panel" parent="CanvasLayer/SlotsUi" unique_id=1148513495]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bl3hf")
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/SlotsUi/AccSlot3" unique_id=1246114365]
+self_modulate = Color(1, 1, 1, 0.5176471)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 19.0
+offset_right = -19.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_k7jbg")
+
+[node name="WeaponName" type="Label" parent="CanvasLayer" unique_id=1830555295]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -352.0
+offset_top = 96.0
+offset_right = -8.0
+offset_bottom = 119.0
+grow_horizontal = 0
+text = "Basic Tome"
+label_settings = SubResource("LabelSettings_uvf7m")
+vertical_alignment = 1
+
+[node name="Instruct" type="Label" parent="CanvasLayer" unique_id=1147301226]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -172.0
+offset_top = -601.0
+offset_right = 172.0
+offset_bottom = -576.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Press E to use the Cauldron"
+label_settings = SubResource("LabelSettings_uvf7m")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BuyMenu" type="ColorRect" parent="CanvasLayer" unique_id=763895784]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7058824)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/BuyMenu" unique_id=103917432]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 244.79999
+offset_top = 193.0
+offset_right = -244.79999
+offset_bottom = -113.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Button1" type="Button" parent="CanvasLayer/BuyMenu/VBoxContainer" unique_id=1897616890]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_lnaqb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1lwt8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_k7jbg")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_mp5ad")
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/BuyMenu/VBoxContainer/Button1" unique_id=939497296]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 18.0
+offset_right = 94.20001
+offset_bottom = 102.20001
+texture = ExtResource("3_1lwt8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="CanvasLayer/BuyMenu/VBoxContainer/Button1" unique_id=2060403271]
+layout_mode = 0
+offset_left = 106.20001
+offset_top = 15.0
+offset_right = 273.2
+offset_bottom = 58.0
+text = "Spell Tome"
+label_settings = SubResource("LabelSettings_1lwt8")
+
+[node name="Desc" type="Label" parent="CanvasLayer/BuyMenu/VBoxContainer/Button1" unique_id=1321864347]
+layout_mode = 0
+offset_left = 106.20001
+offset_top = 55.0
+offset_right = 674.2
+offset_bottom = 105.0
+text = "Inflicts a damage-over-time debuff to enemies.
+Mana usage doubled."
+label_settings = SubResource("LabelSettings_k7jbg")
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/BuyMenu/VBoxContainer/Button1" unique_id=837036854]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -603.8
+offset_top = 16.0
+offset_right = -16.799988
+offset_bottom = 56.0
+grow_horizontal = 0
+theme_override_constants/separation = 6
+alignment = 2
+
+[node name="Cost" type="Label" parent="CanvasLayer/BuyMenu/VBoxContainer/Button1/HBoxContainer" unique_id=2021657893]
+layout_mode = 2
+text = "4,000"
+label_settings = SubResource("LabelSettings_r63bx")
+
+[node name="Essence" type="TextureRect" parent="CanvasLayer/BuyMenu/VBoxContainer/Button1/HBoxContainer" unique_id=2067327052]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+texture = ExtResource("2_txl46")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Button2" type="Button" parent="CanvasLayer/BuyMenu/VBoxContainer" unique_id=1559521843]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_lnaqb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1lwt8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_k7jbg")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_mp5ad")
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/BuyMenu/VBoxContainer/Button2" unique_id=754659736]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 18.0
+offset_right = 94.20001
+offset_bottom = 102.20001
+scale = Vector2(0.6, 0.6)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("5_k7jbg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="CanvasLayer/BuyMenu/VBoxContainer/Button2" unique_id=104515773]
+layout_mode = 0
+offset_left = 106.20001
+offset_top = 15.0
+offset_right = 273.2
+offset_bottom = 58.0
+text = "Spell Tome"
+label_settings = SubResource("LabelSettings_1lwt8")
+
+[node name="Desc" type="Label" parent="CanvasLayer/BuyMenu/VBoxContainer/Button2" unique_id=808731062]
+layout_mode = 0
+offset_left = 106.20001
+offset_top = 55.0
+offset_right = 674.2
+offset_bottom = 105.0
+text = "Inflicts a damage-over-time debuff to enemies.
+Mana usage doubled."
+label_settings = SubResource("LabelSettings_k7jbg")
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/BuyMenu/VBoxContainer/Button2" unique_id=860645363]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -603.8
+offset_top = 16.0
+offset_right = -16.799988
+offset_bottom = 56.0
+grow_horizontal = 0
+theme_override_constants/separation = 6
+alignment = 2
+
+[node name="Cost" type="Label" parent="CanvasLayer/BuyMenu/VBoxContainer/Button2/HBoxContainer" unique_id=733767095]
+layout_mode = 2
+text = "4,000"
+label_settings = SubResource("LabelSettings_r63bx")
+
+[node name="Essence" type="TextureRect" parent="CanvasLayer/BuyMenu/VBoxContainer/Button2/HBoxContainer" unique_id=2073271012]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+texture = ExtResource("2_txl46")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Button3" type="Button" parent="CanvasLayer/BuyMenu/VBoxContainer" unique_id=592095970]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_lnaqb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1lwt8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_k7jbg")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_mp5ad")
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/BuyMenu/VBoxContainer/Button3" unique_id=2146356965]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 18.0
+offset_right = 94.20001
+offset_bottom = 102.20001
+scale = Vector2(0.6, 0.6)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("4_k7jbg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="CanvasLayer/BuyMenu/VBoxContainer/Button3" unique_id=782559187]
+layout_mode = 0
+offset_left = 106.20001
+offset_top = 15.0
+offset_right = 273.2
+offset_bottom = 58.0
+text = "Spell Tome"
+label_settings = SubResource("LabelSettings_1lwt8")
+
+[node name="Desc" type="Label" parent="CanvasLayer/BuyMenu/VBoxContainer/Button3" unique_id=1070053731]
+layout_mode = 0
+offset_left = 106.20001
+offset_top = 55.0
+offset_right = 674.2
+offset_bottom = 105.0
+text = "Inflicts a damage-over-time debuff to enemies.
+Mana usage doubled."
+label_settings = SubResource("LabelSettings_k7jbg")
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/BuyMenu/VBoxContainer/Button3" unique_id=274089657]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -603.8
+offset_top = 16.0
+offset_right = -16.799988
+offset_bottom = 56.0
+grow_horizontal = 0
+theme_override_constants/separation = 6
+alignment = 2
+
+[node name="Cost" type="Label" parent="CanvasLayer/BuyMenu/VBoxContainer/Button3/HBoxContainer" unique_id=1247157549]
+layout_mode = 2
+text = "35"
+label_settings = SubResource("LabelSettings_r63bx")
+
+[node name="Essence" type="TextureRect" parent="CanvasLayer/BuyMenu/VBoxContainer/Button3/HBoxContainer" unique_id=657504561]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+texture = ExtResource("2_txl46")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="CanvasLayer/BuyMenu" unique_id=455865404]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -183.0
+offset_top = -85.0
+offset_right = 183.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_epbjf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lnaqb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1lwt8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_k7jbg")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_mp5ad")
+text = "Done"
+
+[node name="EntryDoor" type="StaticBody2D" parent="." unique_id=606369809]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EntryDoor" unique_id=1562407871]
+polygon = PackedVector2Array(0, 0, -170, 0, -170, -400, -400, -400, -400, 170, 0, 170)
+
+[node name="Polygon2D" type="Polygon2D" parent="EntryDoor" unique_id=1562784651]
+color = Color(0.6946746, 0.6946731, 0.6946734, 1)
+polygon = PackedVector2Array(0, 0, -170, 0, -170, -400, -400, -400, -400, 170, 0, 170)
+
+[node name="Polygon2D2" type="Polygon2D" parent="EntryDoor" unique_id=1697170964]
+position = Vector2(-120, 0)
+color = Color(0.24985075, 0.24985075, 0.24985069, 1)
+polygon = PackedVector2Array(-3, -67, 4, -97, 27, -103, 44, -103, 66, -96, 74, -67, 77, 0, -4, 0)
+
+[node name="ExitDoor" type="StaticBody2D" parent="." unique_id=978204154]
+position = Vector2(300, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ExitDoor" unique_id=261947033]
+polygon = PackedVector2Array(0, 0, 170, 0, 170, -400, 400, -400, 400, 170, 0, 170)
+
+[node name="Polygon2D" type="Polygon2D" parent="ExitDoor" unique_id=380093442]
+color = Color(0.6946746, 0.6946731, 0.6946734, 1)
+polygon = PackedVector2Array(0, 0, 170, 0, 170, -400, 400, -400, 400, 170, 0, 170)
+
+[node name="Polygon2D2" type="Polygon2D" parent="ExitDoor" unique_id=1511480645]
+position = Vector2(64, 0)
+color = Color(0.24985075, 0.24985075, 0.24985069, 1)
+polygon = PackedVector2Array(-3, -67, 4, -97, 27, -103, 44, -103, 66, -96, 74, -67, 77, 0, -4, 0)
+
+[node name="LevelEndTrigger" type="Area2D" parent="ExitDoor" unique_id=293487377]
+position = Vector2(130, -336)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitDoor/LevelEndTrigger" unique_id=356160795]
+position = Vector2(1.5, 163.5)
+shape = SubResource("RectangleShape2D_txl46")
+
+[node name="GroundPiece" type="StaticBody2D" parent="." unique_id=1574926905]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GroundPiece" unique_id=1600007021]
+position = Vector2(1, 0)
+polygon = PackedVector2Array(0, 0, 1600, 0, 1600, 150, 0, 150)
+
+[node name="Polygon2D" type="Polygon2D" parent="GroundPiece" unique_id=96827797]
+polygon = PackedVector2Array(0, 0, 300, 0, 300, 150, 0, 150)
+
+[node name="Cauldron" type="Area2D" parent="." unique_id=585124695]
+position = Vector2(150, -28)
+
+[node name="Sprite2D" type="Sprite2D" parent="Cauldron" unique_id=1755166931]
+position = Vector2(-2, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("8_1lwt8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cauldron" unique_id=1666440215]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_1ay4j")
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=951659688]
+position = Vector2(-80, -29)
+collision_layer = 0
+script = ExtResource("5_mp5ad")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=71691517]
+texture_repeat = 1
+sprite_frames = SubResource("SpriteFrames_gvqaq")
+animation = &"attack"
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1889894684]
+position = Vector2(-0.5, 24)
+shape = SubResource("RectangleShape2D_odlrs")
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1340906179]
+offset = Vector2(0, -80)
+zoom = Vector2(2, 2)
+limit_left = -220
+limit_right = 520
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+
+[node name="SpawnPointLeft" type="Node2D" parent="Player/Camera2D" unique_id=1545951159]
+position = Vector2(-476, 0)
+
+[node name="SpawnPointRight" type="Node2D" parent="Player/Camera2D" unique_id=568135171]
+position = Vector2(540, 0)
+
+[node name="DamageArea" type="Area2D" parent="Player" unique_id=1571357756]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/DamageArea" unique_id=867233614]
+position = Vector2(-2, 8)
+shape = SubResource("RectangleShape2D_kyibg")
+debug_color = Color(0.7, 0, 0.3733333, 0.41960785)
+
+[node name="RightCast" type="Node2D" parent="Player" unique_id=1980634357]
+position = Vector2(16, 5)
+
+[node name="LeftCast" type="Node2D" parent="Player" unique_id=940215001]
+position = Vector2(-16, 5)
+
+[connection signal="pressed" from="CanvasLayer/BuyMenu/VBoxContainer/Button1" to="." method="spell_buy"]
+[connection signal="pressed" from="CanvasLayer/BuyMenu/VBoxContainer/Button2" to="." method="engrave_buy"]
+[connection signal="pressed" from="CanvasLayer/BuyMenu/Button" to="." method="menu_close"]
+[connection signal="area_entered" from="ExitDoor/LevelEndTrigger" to="." method="end_trigger"]

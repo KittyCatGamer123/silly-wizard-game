@@ -6,8 +6,10 @@
 [ext_resource type="FontFile" uid="uid://bcrta3hfgkhp2" path="res://Prototype/YoungSerif-Regular.ttf" id="3_op0w6"]
 [ext_resource type="Texture2D" uid="uid://bp8nmnfe54d7b" path="res://Prototype/Sprites/Essence.png" id="4_ljq3q"]
 [ext_resource type="Texture2D" uid="uid://cjn57spuyyui5" path="res://Prototype/Sprites/Tome.png" id="4_qq3re"]
-[ext_resource type="Texture2D" uid="uid://bbow7q8vh1vad" path="res://Prototype/Sprites/Cursor_5.png" id="5_55qdq"]
 [ext_resource type="Texture2D" uid="uid://c4mjt6ndwrlky" path="res://Prototype/Sprites/DisplaySlots_0.png" id="5_irwq3"]
+[ext_resource type="Texture2D" uid="uid://dl2y52qb0dtk" path="res://Prototype/Sprites/NPC_21.png" id="8_55qdq"]
+[ext_resource type="Script" uid="uid://o4e1p4hu18oq" path="res://Prototype/Scenes/GameScene/FighterAi.gd" id="8_n08ax"]
+[ext_resource type="Shader" uid="uid://cradsv22svkdj" path="res://Prototype/Scenes/GameScene/death_fire.gdshader" id="9_1v711"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_irwq3"]
 font = ExtResource("3_op0w6")
@@ -104,7 +106,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[sub_resource type="LabelSettings" id="LabelSettings_n08ax"]
+[sub_resource type="LabelSettings" id="LabelSettings_0qf0p"]
 font = ExtResource("3_op0w6")
 font_size = 11
 shadow_color = Color(0, 0, 0, 0.6)
@@ -307,6 +309,143 @@ size = Vector2(21, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_knnbg"]
 size = Vector2(20, 40)
 
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lq10r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n08ax"]
+shader = ExtResource("9_1v711")
+shader_parameter/position = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.0
+shader_parameter/borderWidth = 0.2
+shader_parameter/burnMult = 0.34
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_lq10r")
+shader_parameter/burnColor = Color(0, 0, 0, 1)
+shader_parameter/pixel_size = 0.004
+shader_parameter/blend_steps = 8.5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mo3n2"]
+atlas = ExtResource("8_55qdq")
+region = Rect2(0, 0, 40, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifcv0"]
+atlas = ExtResource("8_55qdq")
+region = Rect2(0, 56, 40, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhla1"]
+atlas = ExtResource("8_55qdq")
+region = Rect2(0, 112, 40, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqn8d"]
+atlas = ExtResource("8_55qdq")
+region = Rect2(0, 168, 40, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olu2o"]
+atlas = ExtResource("8_55qdq")
+region = Rect2(0, 224, 40, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jeea5"]
+atlas = ExtResource("8_55qdq")
+region = Rect2(0, 280, 40, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6oa88"]
+atlas = ExtResource("8_55qdq")
+region = Rect2(0, 336, 40, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_062rh"]
+atlas = ExtResource("8_55qdq")
+region = Rect2(0, 392, 40, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_piktg"]
+atlas = ExtResource("8_55qdq")
+region = Rect2(0, 448, 40, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfcxj"]
+atlas = ExtResource("8_55qdq")
+region = Rect2(0, 504, 40, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eon1y"]
+atlas = ExtResource("8_55qdq")
+region = Rect2(0, 560, 40, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixdu4"]
+atlas = ExtResource("8_55qdq")
+region = Rect2(0, 616, 40, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0qyh"]
+atlas = ExtResource("8_55qdq")
+region = Rect2(0, 672, 40, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfw4v"]
+atlas = ExtResource("8_55qdq")
+region = Rect2(0, 728, 40, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_be6kj"]
+atlas = ExtResource("8_55qdq")
+region = Rect2(0, 784, 40, 56)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_am13a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mo3n2")
+}],
+"loop": 0,
+"name": &"midair",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifcv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhla1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqn8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olu2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jeea5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6oa88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_062rh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_piktg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfcxj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eon1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixdu4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0qyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfw4v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_be6kj")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_55qdq"]
+size = Vector2(14, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n08ax"]
+size = Vector2(16, 46)
+
 [node name="GameScene" type="Node2D" unique_id=1246608110]
 script = ExtResource("1_t643o")
 
@@ -404,14 +543,12 @@ offset_bottom = 88.0
 grow_horizontal = 0
 alignment = 2
 
-[node name="WeaponSlot" type="Panel" parent="CanvasLayer/SlotsUi" unique_id=1893362116]
-self_modulate = Color(1, 1, 0.8117647, 1)
+[node name="WeaponSlot" type="Panel" parent="CanvasLayer/SlotsUi" unique_id=228311014]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_55qdq")
 
-[node name="WeaponIcon" type="TextureRect" parent="CanvasLayer/SlotsUi/WeaponSlot" unique_id=109819061]
-self_modulate = Color(1, 1, 0.7137255, 1)
+[node name="WeaponIcon" type="TextureRect" parent="CanvasLayer/SlotsUi/WeaponSlot" unique_id=1341033610]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -426,23 +563,7 @@ texture = ExtResource("4_qq3re")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="EngravingIcon" type="TextureRect" parent="CanvasLayer/SlotsUi/WeaponSlot/WeaponIcon" unique_id=1430912628]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 22.0
-offset_top = 14.999998
-offset_right = 22.0
-offset_bottom = 15.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.35, 0.35)
-texture = ExtResource("5_55qdq")
-expand_mode = 1
-
-[node name="ButtonToPress" type="Label" parent="CanvasLayer/SlotsUi/WeaponSlot" unique_id=665441571]
+[node name="ButtonToPress" type="Label" parent="CanvasLayer/SlotsUi/WeaponSlot" unique_id=1462265149]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -455,8 +576,8 @@ offset_right = -4.0
 offset_bottom = -1.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "LMB"
-label_settings = SubResource("LabelSettings_n08ax")
+text = "RMB"
+label_settings = SubResource("LabelSettings_0qf0p")
 horizontal_alignment = 2
 vertical_alignment = 2
 
@@ -536,7 +657,7 @@ grow_vertical = 0
 theme_override_styles/background = SubResource("StyleBoxFlat_ca4o6")
 theme_override_styles/fill = SubResource("StyleBoxFlat_op0w6")
 
-[node name="WeaponName" type="Label" parent="CanvasLayer" unique_id=1732445176]
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1732445176]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -571,29 +692,6 @@ collision_layer = 0
 position = Vector2(1.5, 163.5)
 shape = SubResource("RectangleShape2D_am13a")
 
-[node name="ExitDoor" type="StaticBody2D" parent="." unique_id=1418123458]
-position = Vector2(1600, 0)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ExitDoor" unique_id=1598095853]
-polygon = PackedVector2Array(0, 0, 170, 0, 170, -400, 400, -400, 400, 170, 0, 170)
-
-[node name="Polygon2D" type="Polygon2D" parent="ExitDoor" unique_id=471423436]
-color = Color(0.6946746, 0.6946731, 0.6946734, 1)
-polygon = PackedVector2Array(0, 0, 170, 0, 170, -400, 400, -400, 400, 170, 0, 170)
-
-[node name="Polygon2D2" type="Polygon2D" parent="ExitDoor" unique_id=1181188771]
-position = Vector2(64, 0)
-color = Color(0.24985075, 0.24985075, 0.24985069, 1)
-polygon = PackedVector2Array(-3, -67, 4, -97, 27, -103, 44, -103, 66, -96, 74, -67, 77, 0, -4, 0)
-
-[node name="LevelEndTrigger" type="Area2D" parent="ExitDoor" unique_id=1431452243]
-position = Vector2(144, -336)
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitDoor/LevelEndTrigger" unique_id=689776657]
-position = Vector2(1.5, 163.5)
-shape = SubResource("RectangleShape2D_am13a")
-
 [node name="GroundPiece" type="StaticBody2D" parent="." unique_id=1006686228]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GroundPiece" unique_id=1807000127]
@@ -625,12 +723,6 @@ limit_left = -220
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 
-[node name="SpawnPointLeft" type="Node2D" parent="Player/Camera2D" unique_id=493215375]
-position = Vector2(-476, 0)
-
-[node name="SpawnPointRight" type="Node2D" parent="Player/Camera2D" unique_id=1480667655]
-position = Vector2(540, 0)
-
 [node name="DamageArea" type="Area2D" parent="Player" unique_id=1924509230]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/DamageArea" unique_id=1774682979]
@@ -644,5 +736,29 @@ position = Vector2(16, 5)
 [node name="LeftCast" type="Node2D" parent="Player" unique_id=1478581834]
 position = Vector2(-16, 5)
 
+[node name="Enemy" type="CharacterBody2D" parent="." unique_id=255696300]
+position = Vector2(584, -26)
+collision_layer = 0
+script = ExtResource("8_n08ax")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy" unique_id=997817063]
+material = SubResource("ShaderMaterial_n08ax")
+sprite_frames = SubResource("SpriteFrames_am13a")
+animation = &"walk"
+frame = 3
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy" unique_id=1925411541]
+position = Vector2(1, 24)
+shape = SubResource("RectangleShape2D_55qdq")
+
+[node name="AttackArea" type="Area2D" parent="Enemy" unique_id=2031201384]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/AttackArea" unique_id=299664567]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_n08ax")
+debug_color = Color(0.7, 0, 0.3733333, 0.41960785)
+
 [connection signal="area_entered" from="EntryDoor/LevelStartTrigger" to="." method="_on_level_start_trigger_area_entered"]
-[connection signal="area_entered" from="ExitDoor/LevelEndTrigger" to="." method="_on_level_end_trigger_area_entered"]
+[connection signal="area_entered" from="Enemy/AttackArea" to="Enemy" method="_on_attack_area_area_entered"]
+[connection signal="body_entered" from="Enemy/AttackArea" to="Enemy" method="_on_attack_area_body_entered"]

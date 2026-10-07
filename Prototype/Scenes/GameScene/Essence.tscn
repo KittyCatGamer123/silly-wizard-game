@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bxlmse2bv48mm"]
+
+[ext_resource type="Script" uid="uid://yjsfuubvtx64" path="res://Prototype/Scenes/GameScene/Essence.gd" id="1_14hag"]
+[ext_resource type="Texture2D" uid="uid://bp8nmnfe54d7b" path="res://Prototype/Sprites/Essence.png" id="2_t1fi4"]
+
+[sub_resource type="Gradient" id="Gradient_n08ax"]
+offsets = PackedFloat32Array(0, 0.11728395, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.5137255, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_55qdq"]
+colors = PackedColorArray(0, 1, 1, 1, 0, 0.4, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ay4j"]
+radius = 138.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0qf0p"]
+
+[node name="Essence" type="Area2D" unique_id=67818332]
+script = ExtResource("1_14hag")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1936133323]
+position = Vector2(0, -2)
+amount = 50
+randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(6, 8)
+gravity = Vector2(0, -15)
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_n08ax")
+color_initial_ramp = SubResource("Gradient_55qdq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1074519224]
+scale = Vector2(0.54545456, 0.54545456)
+texture = ExtResource("2_t1fi4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=27671281]
+shape = SubResource("CircleShape2D_1ay4j")
+
+[node name="Pickup" type="Area2D" parent="." unique_id=1160234162]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickup" unique_id=2058601419]
+shape = SubResource("CircleShape2D_0qf0p")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_entered" from="Pickup" to="." method="_on_pickup_area_entered"]

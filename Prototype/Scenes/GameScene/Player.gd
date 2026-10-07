@@ -4,9 +4,8 @@ class_name Player
 @onready var GameRef = $".."
 var HP = 80
 var hp_max = 80
-var MP: float = 100
+var MP: float = 150
 var mp_max: float = 150
-var essence = 0
 
 var max_speed = 80
 var accel_speed = 500
@@ -19,11 +18,9 @@ var previous_direction: int = 0
 @onready var damage_area: Area2D = $DamageArea
 const camera_x_offset: float = 50
 
-var weapon_damage: float = 4
-var weapon_use_time: float = 0.7
+var weapon_projectile = load("res://Prototype/Scenes/Projectiles/basic_projectile.tscn")
 var weapon_use_timer: float = 0.0
 var weapon_is_using: bool = false
-var weapon_mana_usage: float = 4.5
 
 func _physics_process(delta: float) -> void:
 	if weapon_use_timer > 0:
@@ -53,7 +50,7 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			if MP >= weapon_mana_usage:
+			if MP >= GlobalGame.Weapon["ManaUsage"]:
 				use_weapon()
 
 func use_weapon() -> void:
@@ -61,15 +58,34 @@ func use_weapon() -> void:
 		return
 	
 	weapon_is_using = true
-	weapon_use_timer = weapon_use_time
+	weapon_use_timer = GlobalGame.Weapon["UseTime"]
 	animsprite.play("attack")
 	
 	var mouse_position := get_global_mouse_position()
-	animsprite.flip_h = mouse_position.x > global_position.x
+	var face_right: bool = mouse_position.x > global_position.x
+	animsprite.flip_h = face_right
 	previous_direction = sign((global_position.x - mouse_position.x) * -1)
 	
-	MP -= weapon_mana_usage
+	var pos_name = "RightCast" if face_right else "LeftCast"
+	var proj = weapon_projectile.instantiate()
+	get_tree().current_scene.add_child(proj)
+	proj.position = get_node(pos_name).global_position
+	proj.start_projectile()
+	
+	MP -= GlobalGame.Weapon["ManaUsage"]
+	
+	# Double MP
+	if GlobalGame.Weapon["Engraving"]["Id"] == "Overcharged":
+		MP -= GlobalGame.Weapon["ManaUsage"]
+	
 	GameRef.player_values_changed()
+	
+	if GlobalGame.Weapon["Engraving"]["Id"] == "Echoing":
+		await get_tree().create_timer(0.2).timeout
+		proj = weapon_projectile.instantiate()
+		get_tree().current_scene.add_child(proj)
+		proj.position = get_node(pos_name).global_position
+		proj.start_projectile()
 
 func update_animation(direction: float) -> void:
 	if weapon_is_using:
@@ -89,15 +105,17 @@ func update_animation(direction: float) -> void:
 		animsprite.play("idle")
 
 func mana_regeneration(direction) -> void:
-	if GameRef.game_active:
-		var stationary_bonus: float = 1.5 if (direction == 0) else 0.5
+	if (GameRef.game_active):
+		var stationary_bonus: float = 2 if (direction == 0) else 1
 		var item_usage_factor: float = 0.05 if (weapon_is_using) else 1.0
 		var mp_regen_factor: float = (MP / mp_max) * 0.5 + 0.5
 		var mp_bonus_regen = 0 # For accessories
 		var mp_regen_base: float = ((mp_max / 3) + 1 + mp_bonus_regen)
 		var mp_regen: float = (mp_regen_base * stationary_bonus * mp_regen_factor * item_usage_factor)
 		
-		MP += (mp_regen / 60) * 0.1
+		MP += (mp_regen / 60) * 0.4
+		if MP > mp_max:
+			MP = mp_max
 		GameRef.player_values_changed()
 
 func recieve_damage(dmg: float, knockback_force: float, src_position: Vector2) -> void:#
@@ -107,8 +125,8 @@ func recieve_damage(dmg: float, knockback_force: float, src_position: Vector2) -
 	HP -= dmg
 	GameRef.player_values_changed()
 	
-	var knockback_direction = (global_position - src_position).normalized()
-	velocity.x = knockback_direction.x * knockback_force
+	var knockback_direction = (global_position - src_position)
+	velocity.x = sign(knockback_direction.x) * knockback_force
 	velocity.y = -knockback_force * 0.5
 	
 	damage_area.set_deferred("monitoring", false)
