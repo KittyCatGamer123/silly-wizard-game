@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="silly-wizard-game"
-run/main_scene="uid://d24xpsn7diak5"
+run/main_scene="uid://dpic5mn8gtkor"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 

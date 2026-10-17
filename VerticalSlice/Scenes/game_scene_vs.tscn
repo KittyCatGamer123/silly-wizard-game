@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dpic5mn8gtkor"]
+
+[node name="GameScene-VS" type="Node2D" unique_id=1014558566]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1437843374]
