@@ -1,7 +1,7 @@
 extends Node
 
-var LEVEL = 1
-var Essence = 0
+var LEVEL = 14
+var Essence = 247
 
 var Weapon = {
 	"Primary": {

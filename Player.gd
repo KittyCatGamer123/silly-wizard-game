@@ -1,23 +1,25 @@
 extends CharacterBody2D
 class_name Player
 
+var Active: bool = true
 @onready var GameRef = $".."
-var HP = 80
-var hp_max = 80
+
+var HP: float = 80
+var hp_max: float = 80
 var MP: float = 150
 var mp_max: float = 150
 var alive: bool = true
 
-var max_speed = 80
+var max_speed = 100
 var accel_speed = 500
-var jump_power = 225
+var jump_power = 250
 
 var previous_direction: int = 0
 
 @onready var animsprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var player_camera: Camera2D = $Camera2D
 @onready var damage_area: Area2D = $DamageArea
-const camera_x_offset: float = 50
+const camera_offset: Vector2 = Vector2(70, -75)
 
 var weapon_projectile = load("res://Prototype/Scenes/Projectiles/basic_projectile.tscn")
 var weapon_use_timer: float = 0.0
@@ -33,25 +35,29 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
-	if Input.is_action_just_pressed("jump_action") and is_on_floor() and alive:
+	if Input.is_action_just_pressed("jump_action") and is_on_floor() and alive and Active:
 		velocity.y = -jump_power
 	
-	var direction := Input.get_axis("left_movement", "right_movement")
-	if not alive:
-		direction = 0
-	if direction != 0:
-		velocity.x = move_toward(velocity.x, direction * max_speed, accel_speed * delta)
-		previous_direction = sign(velocity.x)
+	var direction: float = 0
+	if Active:
+		direction = Input.get_axis("left_movement", "right_movement")
+		if not alive:
+			direction = 0
+		if direction != 0:
+			velocity.x = move_toward(velocity.x, direction * max_speed, accel_speed * delta)
+			previous_direction = sign(velocity.x)
+		else:
+			velocity.x = move_toward(velocity.x, 0, accel_speed * delta)
 	else:
-		velocity.x = move_toward(velocity.x, 0, accel_speed * delta)
+		velocity.x = 0
 	
 	move_and_slide()
 	update_animation(direction)
-	move_camera_offset(previous_direction * camera_x_offset)
+	move_camera_offset(previous_direction)
 	mana_regeneration(direction)
 
 func _input(event: InputEvent) -> void:
-	if not alive:
+	if (not alive) or (not Active):
 		return
 	
 	if event is InputEventMouseButton:
@@ -69,43 +75,39 @@ func use_weapon() -> void:
 	
 	var mouse_position := get_global_mouse_position()
 	var face_right: bool = mouse_position.x > global_position.x
-	animsprite.flip_h = face_right
+	animsprite.flip_h = (not face_right)
 	previous_direction = sign((global_position.x - mouse_position.x) * -1)
 	
-	var pos_name = "RightCast" if face_right else "LeftCast"
-	var proj = weapon_projectile.instantiate()
-	get_tree().current_scene.add_child(proj)
-	proj.game_player = self
-	proj.position = get_node(pos_name).global_position
-	proj.start_projectile()
+	#var pos_name = "RightCast" if face_right else "LeftCast"
+	#var proj = weapon_projectile.instantiate()
+	#get_tree().current_scene.add_child(proj)
+	#proj.game_player = self
+	#proj.position = get_node(pos_name).global_position
+	#proj.start_projectile()
 	
 	MP -= GlobalGame.Weapon["ManaUsage"]
 	
-	# Double MP
-	if GlobalGame.Weapon["Engraving"]["Id"] == "Overcharged":
-		MP -= GlobalGame.Weapon["ManaUsage"]
-	
 	GameRef.player_values_changed()
 	
-	if GlobalGame.Weapon["Engraving"]["Id"] == "Echoing":
-		await get_tree().create_timer(0.2).timeout
-		proj = weapon_projectile.instantiate()
-		get_tree().current_scene.add_child(proj)
-		proj.game_player = self
-		proj.position = get_node(pos_name).global_position
-		proj.start_projectile()
+	#if GlobalGame.Weapon["Engraving"]["Id"] == "Echoing":
+		#await get_tree().create_timer(0.2).timeout
+		#proj = weapon_projectile.instantiate()
+		#get_tree().current_scene.add_child(proj)
+		#proj.game_player = self
+		#proj.position = get_node(pos_name).global_position
+		#proj.start_projectile()
 
 func update_animation(direction: float) -> void:
 	if weapon_is_using:
 		return
 	
 	if not is_on_floor():
-		if animsprite.animation != "midair":
-			animsprite.play("midair")
+		if animsprite.animation != "jump":
+			animsprite.play("jump")
 		return
 	
 	if direction != 0:
-		animsprite.flip_h = direction > 0
+		animsprite.flip_h = direction <= 0
 	
 	if abs(velocity.x) > 1:
 		animsprite.play("walk")
@@ -161,6 +163,11 @@ func player_death() -> void:
 	await get_tree().create_tween().tween_method(func(v: float): 
 		animsprite.material.set_shader_parameter("progress", v), 0.2, 1.0, 0.8).finished
 
-func move_camera_offset(offset_direction: float):
+func move_camera_offset(offset_direction: int):
+	if player_camera == null:
+		return
+	var fixed_offset = camera_offset
+	fixed_offset.x *= offset_direction
+	
 	if player_camera.offset.x != offset_direction:
-			create_tween().tween_property(player_camera, "offset", Vector2(offset_direction, -80), 0.3)
+			create_tween().tween_property(player_camera, "offset", fixed_offset, 0.5)

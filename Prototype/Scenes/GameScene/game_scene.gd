@@ -1,5 +1,5 @@
 extends Node2D
-class_name MainGame
+#class_name MainGame
 
 var level_length = -1
 var game_active = false

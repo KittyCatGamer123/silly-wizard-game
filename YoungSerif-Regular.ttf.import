@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bcrta3hfgkhp2"
-path="res://.godot/imported/YoungSerif-Regular.ttf-08e7d278b41df7b693742007c7331a42.fontdata"
+path="res://.godot/imported/YoungSerif-Regular.ttf-09a1c62fabc8383e4af147418c07eb92.fontdata"
 
 [deps]
 
-source_file="res://Prototype/YoungSerif-Regular.ttf"
-dest_files=["res://.godot/imported/YoungSerif-Regular.ttf-08e7d278b41df7b693742007c7331a42.fontdata"]
+source_file="res://YoungSerif-Regular.ttf"
+dest_files=["res://.godot/imported/YoungSerif-Regular.ttf-09a1c62fabc8383e4af147418c07eb92.fontdata"]
 
 [params]
 

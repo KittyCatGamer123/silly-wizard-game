@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://0ud47wn5ie5f"]
 
-[ext_resource type="FontFile" uid="uid://bcrta3hfgkhp2" path="res://Prototype/YoungSerif-Regular.ttf" id="1_epbjf"]
+[ext_resource type="FontFile" uid="uid://bcrta3hfgkhp2" path="res://YoungSerif-Regular.ttf" id="1_epbjf"]
 [ext_resource type="Script" uid="uid://bkjxsqong4udv" path="res://Prototype/Scenes/Intermediate/Intermediate.gd" id="1_txl46"]
 [ext_resource type="Texture2D" uid="uid://bp8nmnfe54d7b" path="res://Prototype/Sprites/Essence.png" id="2_txl46"]
 [ext_resource type="Texture2D" uid="uid://cjn57spuyyui5" path="res://Prototype/Sprites/Tome.png" id="3_1lwt8"]
 [ext_resource type="Texture2D" uid="uid://c4mjt6ndwrlky" path="res://Prototype/Sprites/DisplaySlots_0.png" id="4_k7jbg"]
 [ext_resource type="Texture2D" uid="uid://bbow7q8vh1vad" path="res://Prototype/Sprites/Cursor_5.png" id="5_k7jbg"]
-[ext_resource type="Script" uid="uid://yrliv4kqpqdq" path="res://Prototype/Scenes/GameScene/Player.gd" id="5_mp5ad"]
+[ext_resource type="Script" uid="uid://yrliv4kqpqdq" path="res://Player.gd" id="5_mp5ad"]
 [ext_resource type="Texture2D" uid="uid://fl5wp5hr6jme" path="res://Prototype/Sprites/NPC_108.png" id="6_cp5xm"]
 [ext_resource type="Texture2D" uid="uid://ce0s8pf6cqaxq" path="res://Prototype/Sprites/Item_345.png" id="8_1lwt8"]
 
