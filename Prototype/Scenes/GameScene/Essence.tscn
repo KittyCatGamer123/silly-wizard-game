@@ -3,6 +3,15 @@
 [ext_resource type="Script" uid="uid://yjsfuubvtx64" path="res://Prototype/Scenes/GameScene/Essence.gd" id="1_14hag"]
 [ext_resource type="Texture2D" uid="uid://bp8nmnfe54d7b" path="res://Prototype/Sprites/Essence.png" id="2_t1fi4"]
 
+[sub_resource type="Gradient" id="Gradient_ui2tw"]
+offsets = PackedFloat32Array(0, 0.73493975)
+colors = PackedColorArray(0, 0.69066656, 0.74, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_14hag"]
+gradient = SubResource("Gradient_ui2tw")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="Gradient" id="Gradient_n08ax"]
 offsets = PackedFloat32Array(0, 0.11728395, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.5137255, 1, 1, 1, 0)
@@ -17,6 +26,10 @@ radius = 138.0
 
 [node name="Essence" type="Area2D" unique_id=67818332]
 script = ExtResource("1_14hag")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1958778032]
+scale = Vector2(2.4583335, 2.4583335)
+texture = SubResource("GradientTexture2D_14hag")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1936133323]
 position = Vector2(0, -2)

@@ -85,7 +85,7 @@ func major_player_values_changed() -> void:
 		engrave_icon.self_modulate = GlobalGame.WeaponEngravingData[engrave]["Color"]
 		engrave_icon.visible = true
 	
-	weapon_title.text = "{0} {1} Tome".format([engrave.replace("None",""), primary.replace("None","Basic")]).lstrip(" ")
+	#weapon_title.text = "{0} {1} Tome".format([engrave.replace("None",""), primary.replace("None","Basic")]).lstrip(" ")
 
 func text_glint_init() -> void:
 	(level_display_start.material as ShaderMaterial).set_shader_parameter("text_size", level_display_start.size)

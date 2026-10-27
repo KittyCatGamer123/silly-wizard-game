@@ -1,0 +1,262 @@
+[gd_scene format=3 uid="uid://cp042sgt5gi7h"]
+
+[ext_resource type="Script" uid="uid://cv7od8yl4x5if" path="res://VerticalSlice/Scenes/Enemies/EnemyCaster.gd" id="1_y7lv6"]
+[ext_resource type="Shader" uid="uid://cradsv22svkdj" path="res://death_fire.gdshader" id="2_l2ra7"]
+[ext_resource type="Texture2D" uid="uid://bnss2k21gbexf" path="res://VerticalSlice/Assets/casting enemy spritesheet.png" id="3_7e8u4"]
+[ext_resource type="Texture2D" uid="uid://bb4pxdmcc20jf" path="res://VerticalSlice/Assets/particle.png" id="4_l2ra7"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rdsyl"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1v711"]
+noise = SubResource("FastNoiseLite_rdsyl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2nsy1"]
+shader = ExtResource("2_l2ra7")
+shader_parameter/progress = 0.0
+shader_parameter/sprite_size = Vector2(24, 24)
+shader_parameter/origin = Vector2(0, 0)
+shader_parameter/borderWidth = 6.0
+shader_parameter/burnMult = 13.215
+shader_parameter/pixel_size = 0.001
+shader_parameter/blend_steps = 4.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_1v711")
+shader_parameter/burnColor = Color(1, 0.4, 0.05, 1)
+shader_parameter/charColor = Color(1, 0.050980393, 0.050980393, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0ele"]
+atlas = ExtResource("3_7e8u4")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klym3"]
+atlas = ExtResource("3_7e8u4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8emxc"]
+atlas = ExtResource("3_7e8u4")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rq3xi"]
+atlas = ExtResource("3_7e8u4")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aodss"]
+atlas = ExtResource("3_7e8u4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmtys"]
+atlas = ExtResource("3_7e8u4")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yqar"]
+atlas = ExtResource("3_7e8u4")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljbl7"]
+atlas = ExtResource("3_7e8u4")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hqir"]
+atlas = ExtResource("3_7e8u4")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8xun"]
+atlas = ExtResource("3_7e8u4")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nqai"]
+atlas = ExtResource("3_7e8u4")
+region = Rect2(224, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qn05f"]
+atlas = ExtResource("3_7e8u4")
+region = Rect2(288, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62a6i"]
+atlas = ExtResource("3_7e8u4")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6qh4"]
+atlas = ExtResource("3_7e8u4")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ay4j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0ele")
+}],
+"loop": 0,
+"name": &"RESET",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klym3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8emxc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rq3xi")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aodss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmtys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yqar")
+}],
+"loop": 0,
+"name": &"raise",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klym3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljbl7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hqir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8xun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0nqai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qn05f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0ele")
+}],
+"loop": 0,
+"name": &"respawn",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62a6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6qh4")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1dd3k"]
+size = Vector2(14.000002, 3)
+
+[sub_resource type="Gradient" id="Gradient_vkh1j"]
+offsets = PackedFloat32Array(0, 0.5180723, 0.71686745)
+colors = PackedColorArray(1.8247963, 0.9160796, 0.22117865, 1, 0.0744, 0.10251999, 0.12, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y7lv6"]
+gradient = SubResource("Gradient_vkh1j")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4wkkv"]
+size = Vector2(6.666667, 24)
+
+[sub_resource type="Gradient" id="Gradient_7e8u4"]
+offsets = PackedFloat32Array(0, 0.7704918, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vkh1j"]
+gradient = SubResource("Gradient_7e8u4")
+
+[sub_resource type="Curve" id="Curve_rdsyl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.24324325, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_vkh1j"]
+curve = SubResource("Curve_rdsyl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2nsy1"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(20, 24, 1)
+angle_min = -360.0
+angle_max = 360.00003
+direction = Vector3(0, -1, 0)
+spread = 15.0
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, -1, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_vkh1j")
+color = Color(1, 0.7833333, 0, 0.84313726)
+color_ramp = SubResource("GradientTexture1D_vkh1j")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = -2.2351742e-08
+
+[node name="EnemyCaster" type="CharacterBody2D" unique_id=310718420]
+scale = Vector2(1.5, 1.5)
+collision_layer = 0
+script = ExtResource("1_y7lv6")
+health = 25.0
+contact_damage = 7
+knockback_resist = 200
+knockback_friction = 250.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1659632237]
+texture_repeat = 1
+material = SubResource("ShaderMaterial_2nsy1")
+position = Vector2(-1.2397766e-05, 0)
+sprite_frames = SubResource("SpriteFrames_1ay4j")
+animation = &"respawn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=845032694]
+position = Vector2(1.0000916, 14.500003)
+shape = SubResource("RectangleShape2D_1dd3k")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=895237538]
+position = Vector2(0, -2.7500033)
+scale = Vector2(1.4375, 1.4947454)
+energy = 1.2
+texture = SubResource("GradientTexture2D_y7lv6")
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=829777815]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=515982688]
+position = Vector2(0.6666667, 4)
+shape = SubResource("RectangleShape2D_4wkkv")
+debug_color = Color(0.7, 0, 0.3733333, 0.41960785)
+
+[node name="SpawnEffect" type="GPUParticles2D" parent="." unique_id=167013318]
+position = Vector2(0.6666667, 1.6111058)
+emitting = false
+amount = 20
+texture = ExtResource("4_l2ra7")
+lifetime = 2.0
+one_shot = true
+preprocess = 0.5
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_2nsy1")
+
+[node name="RightCast" type="Node2D" parent="." unique_id=479202395]
+position = Vector2(7.66667, -11.999998)
+
+[node name="LeftCast" type="Node2D" parent="." unique_id=1066443895]
+position = Vector2(-7.666667, -12)
+
+[node name="LeftCheck" type="RayCast2D" parent="." unique_id=243354042]
+target_position = Vector2(-8, 0)
+
+[node name="RightCheck" type="RayCast2D" parent="." unique_id=437670566]
+target_position = Vector2(8, 0)
+
+[node name="DownCheck" type="RayCast2D" parent="." unique_id=1344168444]
+target_position = Vector2(0, 16.666668)

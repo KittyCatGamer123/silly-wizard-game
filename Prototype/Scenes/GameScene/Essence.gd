@@ -1,10 +1,18 @@
 extends Area2D
 
+@onready var light: PointLight2D = $PointLight2D
+
 var essence_drop: int = 1
 var target = null
 
 func _ready() -> void:
 	essence_drop = randi_range(1, 15)
+	loop()
+
+func loop() -> void:
+	await create_tween().tween_property(light, "energy", 1.5, 1.5).finished
+	await create_tween().tween_property(light, "energy", 1, 1.5).finished
+	loop()
 
 func _physics_process(delta: float) -> void:
 	if target == null:

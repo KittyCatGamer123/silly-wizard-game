@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://dwud6xywslgmg"]
+
+[ext_resource type="Script" uid="uid://cn2tysyp40fos" path="res://VerticalSlice/Projectiles/Enemy/casted_fireball.gd" id="1_23hxp"]
+[ext_resource type="Shader" uid="uid://cradsv22svkdj" path="res://death_fire.gdshader" id="1_q2sbk"]
+[ext_resource type="Texture2D" uid="uid://g2cky8u2hkfw" path="res://VerticalSlice/Assets/fire projectile sprite.png" id="2_23hxp"]
+[ext_resource type="Texture2D" uid="uid://bb4pxdmcc20jf" path="res://VerticalSlice/Assets/particle.png" id="3_6m62f"]
+
+[sub_resource type="Gradient" id="Gradient_rdsyl"]
+offsets = PackedFloat32Array(0, 0.33734939, 0.67469877)
+colors = PackedColorArray(1, 0.3, 0.3, 1, 1, 0.71000004, 0.42000002, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rdsyl"]
+gradient = SubResource("Gradient_rdsyl")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2nsy1"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2nsy1"]
+noise = SubResource("FastNoiseLite_2nsy1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_klym3"]
+shader = ExtResource("1_q2sbk")
+shader_parameter/progress = 0.0
+shader_parameter/sprite_size = Vector2(20, 20)
+shader_parameter/origin = Vector2(0.5, 0.5)
+shader_parameter/borderWidth = 2.0
+shader_parameter/burnMult = 12.0
+shader_parameter/pixel_size = 0.001
+shader_parameter/blend_steps = 4.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_2nsy1")
+shader_parameter/burnColor = Color(1, 0.4, 0.05, 1)
+shader_parameter/charColor = Color(1, 0.050980393, 0.050980393, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8emxc"]
+radius = 5.7057476
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kwqgo"]
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_2nsy1"]
+offsets = PackedFloat32Array(0, 0.08196721, 0.7704918, 1)
+colors = PackedColorArray(0.71, 0.71, 0.71, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_klym3"]
+gradient = SubResource("Gradient_2nsy1")
+
+[sub_resource type="Curve" id="Curve_8emxc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.24324325, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_rq3xi"]
+curve = SubResource("Curve_8emxc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ljbl7"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+angle_min = -360.0
+angle_max = 360.00003
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, -1, 0)
+scale_min = 0.29999998
+scale_curve = SubResource("CurveTexture_rq3xi")
+color = Color(1, 0.7833333, 0, 0.84313726)
+color_ramp = SubResource("GradientTexture1D_klym3")
+hue_variation_min = -0.100000024
+hue_variation_max = 0.09999997
+
+[node name="EnemyFireball" type="Area2D" unique_id=113019910]
+scale = Vector2(1.5, 1.5)
+collision_layer = 2
+script = ExtResource("1_23hxp")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1496827157]
+scale = Vector2(0.87499994, 0.87499994)
+energy = 1.5
+texture = SubResource("GradientTexture2D_rdsyl")
+
+[node name="Fireball" type="Sprite2D" parent="." unique_id=572838964]
+material = SubResource("ShaderMaterial_klym3")
+scale = Vector2(0.5185187, 0.51851857)
+texture = ExtResource("2_23hxp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2015313673]
+shape = SubResource("CircleShape2D_8emxc")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1812772599]
+material = SubResource("CanvasItemMaterial_kwqgo")
+position = Vector2(2, 0)
+amount = 45
+texture = ExtResource("3_6m62f")
+lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_ljbl7")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

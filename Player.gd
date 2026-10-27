@@ -3,6 +3,7 @@ class_name Player
 
 var Active: bool = true
 @onready var GameRef = $".."
+@export var HurtOverlay: TextureRect
 
 var HP: float = 80
 var hp_max: float = 80
@@ -10,9 +11,9 @@ var MP: float = 150
 var mp_max: float = 150
 var alive: bool = true
 
-var max_speed = 100
+var max_speed = 150
 var accel_speed = 500
-var jump_power = 250
+var jump_power = 350
 
 var previous_direction: int = 0
 
@@ -21,9 +22,12 @@ var previous_direction: int = 0
 @onready var damage_area: Area2D = $DamageArea
 const camera_offset: Vector2 = Vector2(70, -75)
 
-var weapon_projectile = load("res://Prototype/Scenes/Projectiles/basic_projectile.tscn")
+var weapon_projectile = load("res://VerticalSlice/Projectiles/Friendly/SkullProjectile.tscn")
 var weapon_use_timer: float = 0.0
 var weapon_is_using: bool = false
+
+func _ready() -> void:
+	if HurtOverlay: HurtOverlay.self_modulate = Color("FFF0")
 
 func _physics_process(delta: float) -> void:
 	if weapon_use_timer > 0:
@@ -78,24 +82,15 @@ func use_weapon() -> void:
 	animsprite.flip_h = (not face_right)
 	previous_direction = sign((global_position.x - mouse_position.x) * -1)
 	
-	#var pos_name = "RightCast" if face_right else "LeftCast"
-	#var proj = weapon_projectile.instantiate()
-	#get_tree().current_scene.add_child(proj)
-	#proj.game_player = self
-	#proj.position = get_node(pos_name).global_position
-	#proj.start_projectile()
+	var pos_name = "RightCast" if face_right else "LeftCast"
+	var proj = weapon_projectile.instantiate()
+	get_tree().current_scene.add_child(proj)
+	proj.game_player = self
+	proj.position = get_node(pos_name).global_position
+	proj.start_projectile()
 	
 	MP -= GlobalGame.Weapon["ManaUsage"]
-	
 	GameRef.player_values_changed()
-	
-	#if GlobalGame.Weapon["Engraving"]["Id"] == "Echoing":
-		#await get_tree().create_timer(0.2).timeout
-		#proj = weapon_projectile.instantiate()
-		#get_tree().current_scene.add_child(proj)
-		#proj.game_player = self
-		#proj.position = get_node(pos_name).global_position
-		#proj.start_projectile()
 
 func update_animation(direction: float) -> void:
 	if weapon_is_using:
@@ -138,6 +133,10 @@ func recieve_damage(dmg: float, knockback_force: float, src_position: Vector2) -
 		return
 	
 	HP -= dmg
+	if HurtOverlay:
+		HurtOverlay.self_modulate = Color("FFFF")
+		create_tween().tween_property(HurtOverlay, "self_modulate", Color("FFF0"), 2)
+	
 	GameRef.player_values_changed()
 	
 	var knockback_direction = (global_position - src_position)
@@ -170,4 +169,4 @@ func move_camera_offset(offset_direction: int):
 	fixed_offset.x *= offset_direction
 	
 	if player_camera.offset.x != offset_direction:
-			create_tween().tween_property(player_camera, "offset", fixed_offset, 0.5)
+		create_tween().tween_property(player_camera, "offset", fixed_offset, 0.5)

@@ -1,6 +1,6 @@
 extends Node
 
-var LEVEL = 14
+var LEVEL = 4
 var Essence = 247
 
 var Weapon = {
@@ -15,7 +15,7 @@ var Weapon = {
 	"Damage": 5.0,
 	"Knockback": 200.0,
 	"UseTime": 0.7,
-	"ManaUsage": 15.0,
+	"ManaUsage": 25.0,
 	"Lifetime": 3.0,
 	"Speed": 400.0
 }

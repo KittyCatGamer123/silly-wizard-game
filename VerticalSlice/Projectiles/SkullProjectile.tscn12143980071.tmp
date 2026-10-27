@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://bnhavuv2hggim"]
+
+[ext_resource type="Script" uid="uid://ctc5rqitl6u30" path="res://VerticalSlice/Projectiles/SkullProjectile.gd" id="1_3rtmb"]
+[ext_resource type="Texture2D" uid="uid://b1gafjq1l8g4" path="res://VerticalSlice/Assets/skull_projectile.png" id="1_lub0m"]
+[ext_resource type="Texture2D" uid="uid://bb4pxdmcc20jf" path="res://VerticalSlice/Assets/particle.png" id="2_gaxej"]
+
+[sub_resource type="Gradient" id="Gradient_uw3m0"]
+offsets = PackedFloat32Array(0, 0.33734939, 0.67469877)
+colors = PackedColorArray(0.60333335, 0.3, 1, 1, 1, 0.42000002, 0.76800025, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lub0m"]
+gradient = SubResource("Gradient_uw3m0")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ay4j"]
+
+[sub_resource type="Curve" id="Curve_6udl5"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.08108109, 1), 0.0, 0.0, 0, 0, Vector2(0.8513514, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_3rtmb"]
+curve = SubResource("Curve_6udl5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6udl5"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 19.0
+emission_ring_inner_radius = 10.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+tangential_accel_min = -50.0
+tangential_accel_max = 49.999996
+scale_min = 0.099999994
+scale_max = 0.5
+alpha_curve = SubResource("CurveTexture_3rtmb")
+
+[node name="Projectile" type="Area2D" unique_id=1805361654]
+scale = Vector2(1.2, 1.2)
+script = ExtResource("1_3rtmb")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1528541655]
+scale = Vector2(1.09375, 1.09375)
+energy = 1.5
+texture = SubResource("GradientTexture2D_lub0m")
+
+[node name="Skull" type="Sprite2D" parent="." unique_id=1476525823]
+texture = ExtResource("1_lub0m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=859376323]
+shape = SubResource("CircleShape2D_1ay4j")
+
+[node name="Surrounding" type="GPUParticles2D" parent="." unique_id=1174731280]
+self_modulate = Color(0.8144998, 0.47000003, 1, 1)
+amount = 15
+texture = ExtResource("2_gaxej")
+process_material = SubResource("ParticleProcessMaterial_6udl5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
