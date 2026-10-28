@@ -7,7 +7,7 @@ func _on_area_entered(area: Area2D) -> void:
 		summon_all()
 
 func summon_all() -> void:
-	monitoring = false
+	set_deferred("monitoring", false)
 	for n in spawn_list:
 		n.summon_enemy()
 	queue_free()

@@ -253,10 +253,15 @@ position = Vector2(7.66667, -11.999998)
 position = Vector2(-7.666667, -12)
 
 [node name="LeftCheck" type="RayCast2D" parent="." unique_id=243354042]
-target_position = Vector2(-8, 0)
+position = Vector2(0, 10.666668)
+target_position = Vector2(-15, 0)
 
 [node name="RightCheck" type="RayCast2D" parent="." unique_id=437670566]
-target_position = Vector2(8, 0)
+position = Vector2(0, 10.666668)
+target_position = Vector2(15, 0)
+
+[node name="UpCheck" type="RayCast2D" parent="." unique_id=1218170945]
+target_position = Vector2(0, -16.667)
 
 [node name="DownCheck" type="RayCast2D" parent="." unique_id=1344168444]
 target_position = Vector2(0, 16.666668)

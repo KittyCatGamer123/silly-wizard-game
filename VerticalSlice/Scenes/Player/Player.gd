@@ -5,8 +5,8 @@ var Active: bool = true
 @onready var GameRef = $".."
 @export var HurtOverlay: TextureRect
 
-var HP: float = 80
-var hp_max: float = 80
+var HP: float = 100
+var hp_max: float = 100
 var MP: float = 150
 var mp_max: float = 150
 var alive: bool = true
@@ -16,6 +16,17 @@ var accel_speed = 500
 var jump_power = 350
 
 var previous_direction: int = 0
+
+var AltCharging: bool = false
+var alt_charge_time: float = 0.0
+var alt_charge_limit: float = 1.75
+
+@onready var altcast_tome: Sprite2D = $Tome
+@onready var altcast_engraving: Sprite2D = $Tome/Engraving
+@onready var alt_cast_position: Node2D = $AltCastPosition
+@onready var alt_animator: AnimationPlayer = $Tome/AnimationPlayer
+@onready var alt_effect: GPUParticles2D = $Tome/Charging
+@onready var alt_activate_effect: GPUParticles2D = $AltCastPosition/AltRelease
 
 @onready var animsprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var player_camera: Camera2D = $Camera2D
@@ -27,7 +38,9 @@ var weapon_use_timer: float = 0.0
 var weapon_is_using: bool = false
 
 func _ready() -> void:
-	if HurtOverlay: HurtOverlay.self_modulate = Color("FFF0")
+	if HurtOverlay: 
+		HurtOverlay.visible = true
+		HurtOverlay.self_modulate = Color("FFF0")
 
 func _physics_process(delta: float) -> void:
 	if weapon_use_timer > 0:
@@ -43,7 +56,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = -jump_power
 	
 	var direction: float = 0
-	if Active:
+	if Active and (not AltCharging):
 		direction = Input.get_axis("left_movement", "right_movement")
 		if not alive:
 			direction = 0
@@ -55,6 +68,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = 0
 	
+	if AltCharging:
+		alt_charge_time = min(alt_charge_time + delta, alt_charge_limit)
+	
 	move_and_slide()
 	update_animation(direction)
 	move_camera_offset(previous_direction)
@@ -65,7 +81,11 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if (event.button_index == MOUSE_BUTTON_RIGHT) and MP > 10:
+			AltCharging = event.pressed
+			alt_effect.emitting = event.pressed
+		
+		elif event.button_index == MOUSE_BUTTON_LEFT and event.pressed and (not AltCharging):
 			if MP >= GlobalGame.Weapon["ManaUsage"]:
 				use_weapon()
 
@@ -87,14 +107,71 @@ func use_weapon() -> void:
 	get_tree().current_scene.add_child(proj)
 	proj.game_player = self
 	proj.position = get_node(pos_name).global_position
-	proj.start_projectile()
+	proj.start_projectile(get_global_mouse_position())
 	
 	MP -= GlobalGame.Weapon["ManaUsage"]
 	GameRef.player_values_changed()
 
+func use_weapon_alt_cast() -> void:
+	alt_activate_effect.emitting = true
+	weapon_is_using = true
+	
+	var projectile_directions: Array[Vector2] = [
+		global_position + Vector2(1,0), # R
+		global_position + Vector2(1,1), # RD
+		global_position + Vector2(0,1), # D
+		global_position + Vector2(-1,1), # LD
+		global_position + Vector2(-1,0), # L
+		global_position + Vector2(-1,-1), # LU
+		global_position + Vector2(0,-1), # U
+		global_position + Vector2(1,-1) # RU
+	]
+	
+	for pnt in projectile_directions:
+		var proj = weapon_projectile.instantiate()
+		get_tree().current_scene.add_child(proj)
+		proj.game_player = self
+		proj.global_position = alt_cast_position.global_position
+		proj.projectile_damage *= 2
+		proj.projectile_lifetime *= 2
+		proj.start_projectile(pnt)
+	
+	MP = 0
+	GameRef.player_values_changed()
+	
+	await get_tree().create_timer(2).timeout
+	weapon_is_using = false
+
 func update_animation(direction: float) -> void:
 	if weapon_is_using:
 		return
+	
+	if AltCharging:
+		var prog: float = (alt_charge_time) / (alt_charge_limit)
+		
+		if animsprite.animation != "raise":
+			animsprite.play("raise")
+			alt_animator.play("altcast")
+			
+		if alt_animator.current_animation_position == alt_animator.current_animation_length:
+			var shake_range = lerpf(0, 1, prog)
+			var shake_origin = Vector2(-5.35, -30.0)
+			var shake_position = Vector2(randf_range(-shake_range, shake_range), randf_range(-shake_range, shake_range))
+			altcast_tome.position = shake_origin + shake_position
+			
+		var effect_speed = lerpf(1, 7, prog)
+		alt_effect.speed_scale = effect_speed
+		
+		if alt_charge_time == alt_charge_limit:
+			altcast_tome.modulate = Color(12,12,12,1)
+		return
+	
+	elif alt_charge_time > 0.0:
+		if alt_charge_time == alt_charge_limit:
+			use_weapon_alt_cast()
+		
+		alt_animator.play_backwards("altcast")
+		alt_charge_time = 0
 	
 	if not is_on_floor():
 		if animsprite.animation != "jump":
@@ -136,6 +213,11 @@ func recieve_damage(dmg: float, knockback_force: float, src_position: Vector2) -
 	if HurtOverlay:
 		HurtOverlay.self_modulate = Color("FFFF")
 		create_tween().tween_property(HurtOverlay, "self_modulate", Color("FFF0"), 2)
+	
+	if AltCharging:
+		AltCharging = false
+		alt_animator.play_backwards("altcast")
+		alt_charge_time = 0
 	
 	GameRef.player_values_changed()
 	

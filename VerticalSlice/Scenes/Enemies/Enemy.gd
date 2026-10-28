@@ -14,7 +14,7 @@ var is_dead = false
 
 @onready var anin_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $AttackArea
-var essence_scene = load("res://Prototype/Scenes/GameScene/Essence.tscn")
+var essence_scene = load("res://VerticalSlice/Scenes/Essence/Essence.tscn")
 
 @export var accel_speed = 500
 @export var max_speed = 80
@@ -34,11 +34,12 @@ func recieve_damage(dmg: float, incoming_knockback: float, src_position: Vector2
 		enemy_death()
 
 func enemy_death():
-	if is_dead: return
+	if is_dead: 
+		return
+	is_dead = true
 	
 	attack_area.set_deferred("monitoring", false)
 	get_tree().current_scene.enemy_count -= 1
-	is_dead = true
 	
 	var es = essence_scene.instantiate()
 	get_tree().current_scene.call_deferred("add_child", es)
@@ -60,7 +61,7 @@ func movement_handling(delta: float) -> void
 func summon_enemy() -> void
 
 func _physics_process(delta: float) -> void:
-	if target == null:
+	if target == null and not is_dead:
 		locate_target()
 		return
 	

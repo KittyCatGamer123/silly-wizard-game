@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d24xpsn7diak5"]
 
-[ext_resource type="Script" uid="uid://yrliv4kqpqdq" path="res://Player.gd" id="1_ca4o6"]
+[ext_resource type="Script" uid="uid://yrliv4kqpqdq" path="res://VerticalSlice/Scenes/Player/Player.gd" id="1_ca4o6"]
 [ext_resource type="Texture2D" uid="uid://fl5wp5hr6jme" path="res://Prototype/Sprites/NPC_108.png" id="1_l8ac1"]
 [ext_resource type="Script" uid="uid://be2kiq2so7lwd" path="res://Prototype/Scenes/GameScene/game_scene.gd" id="1_t643o"]
 [ext_resource type="FontFile" uid="uid://bcrta3hfgkhp2" path="res://YoungSerif-Regular.ttf" id="3_op0w6"]

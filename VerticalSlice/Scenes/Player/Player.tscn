@@ -1,0 +1,468 @@
+[gd_scene format=3 uid="uid://cfvp07vqc4iru"]
+
+[ext_resource type="Script" uid="uid://yrliv4kqpqdq" path="res://VerticalSlice/Scenes/Player/Player.gd" id="1_d5aap"]
+[ext_resource type="Shader" uid="uid://cradsv22svkdj" path="res://death_fire.gdshader" id="2_75afd"]
+[ext_resource type="Texture2D" uid="uid://bnnpqguywg1ev" path="res://VerticalSlice/Assets/wizard_spritesheet.png" id="3_y61of"]
+[ext_resource type="Texture2D" uid="uid://r6i4yykhi7wr" path="res://VerticalSlice/Assets/wizard_spritesheet_new.png" id="4_yfigq"]
+[ext_resource type="Texture2D" uid="uid://ckaj667aib3sd" path="res://VerticalSlice/Assets/drowned_tome.png" id="5_y61of"]
+[ext_resource type="Texture2D" uid="uid://cvo45swx86f6x" path="res://VerticalSlice/Assets/foresight_engraving.png" id="6_yfigq"]
+[ext_resource type="Texture2D" uid="uid://bb4pxdmcc20jf" path="res://VerticalSlice/Assets/particle.png" id="7_yfigq"]
+
+[sub_resource type="Gradient" id="Gradient_ml8y5"]
+offsets = PackedFloat32Array(0, 0.73493975)
+colors = PackedColorArray(0.39959997, 0.43931338, 0.74, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ev10k"]
+gradient = SubResource("Gradient_ml8y5")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yeiox"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uw3m0"]
+noise = SubResource("FastNoiseLite_yeiox")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wo8mc"]
+shader = ExtResource("2_75afd")
+shader_parameter/progress = 0.0
+shader_parameter/sprite_size = Vector2(24, 24)
+shader_parameter/origin = Vector2(0, 0)
+shader_parameter/borderWidth = 6.0
+shader_parameter/burnMult = 13.215
+shader_parameter/pixel_size = 0.001
+shader_parameter/blend_steps = 4.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_uw3m0")
+shader_parameter/burnColor = Color(1, 0.4, 0.05, 1)
+shader_parameter/charColor = Color(1, 0.050980393, 0.050980393, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0axsw"]
+atlas = ExtResource("3_y61of")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkh1j"]
+atlas = ExtResource("3_y61of")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbj8u"]
+atlas = ExtResource("3_y61of")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcggt"]
+atlas = ExtResource("3_y61of")
+region = Rect2(224, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7tr3"]
+atlas = ExtResource("3_y61of")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06nv6"]
+atlas = ExtResource("3_y61of")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4eg02"]
+atlas = ExtResource("3_y61of")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lgof"]
+atlas = ExtResource("3_y61of")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ui2tw"]
+atlas = ExtResource("3_y61of")
+region = Rect2(192, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7fhr"]
+atlas = ExtResource("4_yfigq")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1f0ye"]
+atlas = ExtResource("4_yfigq")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jn7j8"]
+atlas = ExtResource("4_yfigq")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8ir7"]
+atlas = ExtResource("4_yfigq")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3iao1"]
+atlas = ExtResource("3_y61of")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o81sx"]
+atlas = ExtResource("3_y61of")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yeiox"]
+atlas = ExtResource("3_y61of")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wo8mc"]
+atlas = ExtResource("3_y61of")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ay4j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0axsw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkh1j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbj8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcggt")
+}],
+"loop": 0,
+"name": &"attack",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7tr3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06nv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4eg02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lgof")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ui2tw")
+}],
+"loop": 0,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7fhr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1f0ye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jn7j8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8ir7")
+}],
+"loop": 0,
+"name": &"raise",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3iao1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o81sx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yeiox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wo8mc")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5bom"]
+size = Vector2(16.000011, 24.66667)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7lgof"]
+size = Vector2(10.666664, 25)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_y61of"]
+light_mode = 1
+
+[sub_resource type="Animation" id="Animation_yfigq"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-5.3333335, -29.999998)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.61904764, 0.6190476)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PointLight2D:energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+
+[sub_resource type="Animation" id="Animation_y61of"]
+resource_name = "altcast"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.8666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.8666667, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-5.35, -24.666662), Vector2(-5.35, -30), Vector2(-5.35, -30)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.43333334, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.6, 0.6), Vector2(-0.6, 0.6), Vector2(0.6, 0.6)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PointLight2D:energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yfigq"]
+_data = {
+&"RESET": SubResource("Animation_yfigq"),
+&"altcast": SubResource("Animation_y61of")
+}
+
+[sub_resource type="Curve" id="Curve_yfigq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7702703, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_yfigq"]
+curve = SubResource("Curve_yfigq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y61of"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 40.0
+emission_ring_inner_radius = 20.0
+emission_ring_cone_angle = 90.0
+radial_velocity_min = -12.000022
+radial_velocity_max = -5.0000224
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.2351742e-06
+radial_accel_max = -2.2351742e-06
+scale_min = 0.5
+scale_max = 0.79999995
+scale_curve = SubResource("CurveTexture_yfigq")
+color = Color(0.7479999, 0.64, 1, 1)
+hue_variation_min = -0.050000023
+hue_variation_max = 0.049999975
+
+[sub_resource type="Gradient" id="Gradient_yfigq"]
+offsets = PackedFloat32Array(0, 0.30722892, 0.73493975)
+colors = PackedColorArray(0.4880029, 0.3726314, 1.361529, 1, 0.7810578, 0.27482244, 1.0156544, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_77f61"]
+gradient = SubResource("Gradient_yfigq")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yfigq"]
+light_mode = 1
+
+[sub_resource type="Curve" id="Curve_77f61"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7702703, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5sv4a"]
+curve = SubResource("Curve_77f61")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lnkyn"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+spread = 180.0
+initial_velocity_min = 70.0
+initial_velocity_max = 80.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.2351742e-06
+radial_accel_max = -2.2351742e-06
+scale_min = 0.7
+scale_curve = SubResource("CurveTexture_5sv4a")
+color = Color(0.7479999, 0.64, 1, 1)
+hue_variation_min = -0.050000023
+hue_variation_max = 0.049999975
+
+[node name="Player" type="CharacterBody2D" unique_id=1363555957]
+scale = Vector2(1.5, 1.5)
+collision_layer = 0
+script = ExtResource("1_d5aap")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=9100949]
+scale = Vector2(2.4583335, 2.4583335)
+energy = 1.3
+texture = SubResource("GradientTexture2D_ev10k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=675615496]
+texture_repeat = 1
+material = SubResource("ShaderMaterial_wo8mc")
+position = Vector2(-4.666669, 0)
+sprite_frames = SubResource("SpriteFrames_1ay4j")
+animation = &"raise"
+frame = 3
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=971070978]
+position = Vector2(-4.666664, 3.666669)
+shape = SubResource("RectangleShape2D_o5bom")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=923360835]
+offset = Vector2(0, -80)
+zoom = Vector2(2.25, 2.25)
+limit_left = -220
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+
+[node name="RightCast" type="Node2D" parent="." unique_id=1021430981]
+position = Vector2(13, 0)
+
+[node name="LeftCast" type="Node2D" parent="." unique_id=2045459802]
+position = Vector2(-13, 0)
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=205449982]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=21341154]
+position = Vector2(-4, 3.500001)
+shape = SubResource("RectangleShape2D_7lgof")
+debug_color = Color(0.7, 0, 0.3733333, 0.41960785)
+
+[node name="Tome" type="Sprite2D" parent="." unique_id=1625172089]
+visible = false
+modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_y61of")
+position = Vector2(-5.3333335, -29.999998)
+scale = Vector2(0.61904764, 0.6190476)
+texture = ExtResource("5_y61of")
+
+[node name="Engraving" type="Sprite2D" parent="Tome" unique_id=513319399]
+use_parent_material = true
+texture = ExtResource("6_yfigq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Tome" unique_id=1523724979]
+libraries/ = SubResource("AnimationLibrary_yfigq")
+
+[node name="Charging" type="GPUParticles2D" parent="Tome" unique_id=943061867]
+amount = 30
+texture = ExtResource("7_yfigq")
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_y61of")
+
+[node name="PointLight2D" type="PointLight2D" parent="Tome" unique_id=1788020097]
+scale = Vector2(3.2300346, 3.2300344)
+energy = 2.0
+texture = SubResource("GradientTexture2D_77f61")
+
+[node name="AltCastPosition" type="Node2D" parent="." unique_id=1105304113]
+
+[node name="AltRelease" type="GPUParticles2D" parent="AltCastPosition" unique_id=131455093]
+material = SubResource("CanvasItemMaterial_yfigq")
+position = Vector2(-5.3333335, -30.000006)
+emitting = false
+amount = 50
+texture = ExtResource("7_yfigq")
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_lnkyn")

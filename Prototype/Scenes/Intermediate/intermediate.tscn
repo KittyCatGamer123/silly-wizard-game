@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cjn57spuyyui5" path="res://Prototype/Sprites/Tome.png" id="3_1lwt8"]
 [ext_resource type="Texture2D" uid="uid://c4mjt6ndwrlky" path="res://Prototype/Sprites/DisplaySlots_0.png" id="4_k7jbg"]
 [ext_resource type="Texture2D" uid="uid://bbow7q8vh1vad" path="res://Prototype/Sprites/Cursor_5.png" id="5_k7jbg"]
-[ext_resource type="Script" uid="uid://yrliv4kqpqdq" path="res://Player.gd" id="5_mp5ad"]
+[ext_resource type="Script" uid="uid://yrliv4kqpqdq" path="res://VerticalSlice/Scenes/Player/Player.gd" id="5_mp5ad"]
 [ext_resource type="Texture2D" uid="uid://fl5wp5hr6jme" path="res://Prototype/Sprites/NPC_108.png" id="6_cp5xm"]
 [ext_resource type="Texture2D" uid="uid://ce0s8pf6cqaxq" path="res://Prototype/Sprites/Item_345.png" id="8_1lwt8"]
 

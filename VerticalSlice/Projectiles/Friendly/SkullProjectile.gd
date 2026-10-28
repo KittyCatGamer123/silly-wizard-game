@@ -3,7 +3,7 @@ extends Area2D
 var game_player: Player = null
 
 @export var projectile_damage: float = 15.0
-@export var projectile_knockback: float = 300.0
+@export var projectile_knockback: float = 500.0
 @export var projectile_speed: float = 250.0
 @export var projectile_lifetime: float = 1.0
 
@@ -11,16 +11,19 @@ var game_player: Player = null
 @onready var projectile_lighting: PointLight2D = $PointLight2D
 @onready var surrounding_particles: GPUParticles2D = $Surrounding
 
+@onready var seeking_area: Area2D = $HoningRange
+var seeking_strength: float = 6.0
+
 var direction := Vector2.ZERO
 var alive: bool = true
 var time_alive = 0.0
 
-func start_projectile() -> void:
-	var mouse_pos: Vector2 = get_global_mouse_position()
-	direction = -(position - mouse_pos).normalized()
-	projectile_sprite.look_at(mouse_pos)
+func start_projectile(shoot_point: Vector2) -> void:
+	projectile_sprite.material = projectile_sprite.material.duplicate()
+	direction = -(position - shoot_point).normalized()
+	projectile_sprite.look_at(shoot_point)
 	
-	var facing_left = (mouse_pos.x - global_position.x <= 0)
+	var facing_left = (shoot_point.x - global_position.x <= 0)
 	projectile_sprite.flip_h = facing_left
 	if facing_left:
 		projectile_sprite.rotation_degrees -= 180
@@ -28,6 +31,19 @@ func start_projectile() -> void:
 	alive = true
 
 func _physics_process(delta: float) -> void:
+	var overlapping_areas = seeking_area.get_overlapping_areas()
+	var enemies_in_range = []
+	for n in overlapping_areas:
+		if (n.get_parent() is Enemy):
+			enemies_in_range.append(n)
+	
+	if len(enemies_in_range) != 0:
+		var enemy_target = enemies_in_range[0]
+		var to_target = (enemy_target.global_position - global_position).normalized()
+		direction = direction.lerp(to_target, seeking_strength * delta).normalized()
+		projectile_sprite.rotation = direction.angle()
+		projectile_sprite.flip_h = (direction.x < 0)
+	
 	global_position += direction * projectile_speed * delta
 	
 	time_alive += delta
@@ -44,7 +60,6 @@ func end_projectile() -> void:
 		return
 	
 	alive = false
-	projectile_sprite.material = projectile_sprite.material.duplicate(true)
 	create_tween().tween_method(func(v: float): 
 		projectile_sprite.material.set_shader_parameter("progress", v), 0.2, 1.0, 0.5)
 	

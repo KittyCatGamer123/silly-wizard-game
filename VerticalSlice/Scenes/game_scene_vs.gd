@@ -18,11 +18,12 @@ var enemy_cd_max = 5.0
 @onready var level_start_animat: AnimationPlayer = $Doorway/AnimationPlayer
 @onready var level_title_animat: AnimationPlayer = $CanvasLayer/FloorDetails/AnimationPlayer
 
-@onready var hp_bar: ProgressBar = $CanvasLayer/StatusUi/HBoxContainer/HpBar
-@onready var mp_bar: ProgressBar = $CanvasLayer/StatusUi/HBoxContainer2/MpBar
+@onready var hp_bar: ProgressBar = $CanvasLayer/StatusUi/HBoxContainer/NinePatchRect/HpBar
+@onready var mp_bar: ProgressBar = $CanvasLayer/StatusUi/HBoxContainer2/NinePatchRect/MpBar
+@onready var alt_charge_mp: ProgressBar = $CanvasLayer/SlotsUi/AltAttack/NinePatchRect/AltCharge
 @onready var essence_label: Label = $CanvasLayer/StatusUi/HBoxContainer3/Label
 
-@onready var weapon_slot: Panel = $CanvasLayer/SlotsUi/WeaponSlot
+@onready var weapon_slot: TextureRect = $CanvasLayer/SlotsUi/WeaponSlot
 @onready var weapon_icon: TextureRect = $CanvasLayer/SlotsUi/WeaponSlot/WeaponIcon
 @onready var engrave_icon: TextureRect = $CanvasLayer/SlotsUi/WeaponSlot/WeaponIcon/EngravingIcon
 @onready var weapon_title: Label = $CanvasLayer/WeaponName
@@ -65,6 +66,8 @@ func _process(_delta: float) -> void:
 	if game_active:
 		var prog = (game_player.position.x / level_length) * 100
 		level_progbar.value = prog
+		
+		alt_charge_mp.value = (game_player.alt_charge_time / game_player.alt_charge_limit)
 
 func player_values_changed() -> void:
 	hp_bar.value = game_player.HP
@@ -75,15 +78,15 @@ func major_player_values_changed() -> void:
 	hp_bar.max_value = game_player.hp_max
 	mp_bar.max_value = game_player.mp_max
 	
-	var primary = GlobalGame.Weapon["Primary"]["Id"]
-	var engrave = GlobalGame.Weapon["Engraving"]["Id"]
-	weapon_icon.self_modulate = GlobalGame.WeaponPrimaryData[primary]["Color"]
+	#var primary = GlobalGame.Weapon["Primary"]["Id"]
+	#var engrave = GlobalGame.Weapon["Engraving"]["Id"]
+	#weapon_icon.self_modulate = GlobalGame.WeaponPrimaryData[primary]["Color"]
 	
-	if engrave == "None":
-		engrave_icon.visible = false
-	else:
-		engrave_icon.self_modulate = GlobalGame.WeaponEngravingData[engrave]["Color"]
-		engrave_icon.visible = true
+	#if engrave == "None":
+		#engrave_icon.visible = false
+	#else:
+		#engrave_icon.self_modulate = GlobalGame.WeaponEngravingData[engrave]["Color"]
+		#engrave_icon.visible = true
 	
 	#weapon_title.text = "{0} {1} Tome".format([engrave.replace("None",""), primary.replace("None","Basic")]).lstrip(" ")
 
