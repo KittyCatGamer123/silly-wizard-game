@@ -1,4 +1,5 @@
 extends Area2D
+class_name SpawnTrigger
 
 @export var spawn_list: Array[Enemy] = []
 

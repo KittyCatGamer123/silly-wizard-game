@@ -4,6 +4,8 @@ class_name MainGame
 var level_length = -1
 var game_active = false
 
+var cheats_nospawn: bool = false
+
 var enemy_count = 0
 var enemy_cd_min = 2.0
 var enemy_cd_max = 5.0
@@ -17,6 +19,7 @@ var enemy_cd_max = 5.0
 @onready var level_display_start: Label = $CanvasLayer/FloorDetails/TextBg/FloorTitle
 @onready var level_start_animat: AnimationPlayer = $Doorway/AnimationPlayer
 @onready var level_title_animat: AnimationPlayer = $CanvasLayer/FloorDetails/AnimationPlayer
+@onready var level_trans_overlay: ColorRect = $CanvasLayer/LevelTransitionOverlay
 
 @onready var hp_bar: ProgressBar = $CanvasLayer/StatusUi/HBoxContainer/NinePatchRect/HpBar
 @onready var mp_bar: ProgressBar = $CanvasLayer/StatusUi/HBoxContainer2/NinePatchRect/MpBar
@@ -28,7 +31,7 @@ var enemy_cd_max = 5.0
 @onready var engrave_icon: TextureRect = $CanvasLayer/SlotsUi/WeaponSlot/WeaponIcon/EngravingIcon
 @onready var weapon_title: Label = $CanvasLayer/WeaponName
 
-var enemy_scene = load("res://Prototype/Scenes/Enemies/enemy.tscn")
+@onready var entry_door: Sprite2D = $Doorway
 
 func _ready() -> void:
 	setup_level()
@@ -38,15 +41,27 @@ func _ready() -> void:
 
 func setup_level() -> void:
 	$CanvasLayer.visible = true
-	game_player.global_position = $Doorway.global_position + Vector2(4,0)
+	level_trans_overlay.material.set_shader_parameter("progress", 0.0)
+	level_trans_overlay.visible = true
+	
+	game_player.global_position = entry_door.global_position + Vector2(4,0)
 	game_player.Active = false
 	level_start_animat.play("reset")
 	level_title_animat.play("reset")
 	
 	level_display.text = "Floor " + GlobalGame.value_to_roman_numeral(GlobalGame.LEVEL)
 	level_display_start.text = "Floor " + GlobalGame.value_to_roman_numeral(GlobalGame.LEVEL)
+	
+	if cheats_nospawn:
+		for n in get_children():
+			if n is SpawnTrigger:
+				n.set_deferred("monitoring", false)
 
 func start_level_animation() -> void:
+	await get_tree().create_tween().tween_method(func(v: float): 
+		level_trans_overlay.material.set_shader_parameter("progress", v), 0.0, 1.0, 1.5).finished
+	level_trans_overlay.visible = false
+	
 	level_start_animat.play("intro")
 	await level_start_animat.animation_finished
 	game_player.Active = true
@@ -61,6 +76,17 @@ func start_level_animation() -> void:
 
 func start_level() -> void:
 	game_active = true
+
+func end_level() -> void:
+	level_trans_overlay.material.set_shader_parameter("progress", 1.0)
+	level_trans_overlay.visible = true
+	await get_tree().create_tween().tween_method(func(v: float): 
+		level_trans_overlay.material.set_shader_parameter("progress", v), 1.0, 0, 1.5).finished
+
+# For Vertical Slice demo purposes
+func restart_level() -> void:
+	await end_level()
+	get_tree().call_deferred("reload_current_scene")
 
 func _process(_delta: float) -> void:
 	if game_active:

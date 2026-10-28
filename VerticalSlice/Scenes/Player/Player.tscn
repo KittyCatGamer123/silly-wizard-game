@@ -32,6 +32,7 @@ shader_parameter/burnMult = 13.215
 shader_parameter/pixel_size = 0.001
 shader_parameter/blend_steps = 4.0
 shader_parameter/noiseTexture = SubResource("NoiseTexture2D_uw3m0")
+shader_parameter/rectColor = Color(1, 1, 1, 1)
 shader_parameter/burnColor = Color(1, 0.4, 0.05, 1)
 shader_parameter/charColor = Color(1, 0.050980393, 0.050980393, 1)
 

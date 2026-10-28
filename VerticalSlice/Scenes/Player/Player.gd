@@ -239,10 +239,15 @@ func player_death() -> void:
 		return
 	alive = false
 	$DamageArea.set_deferred("monitoring", false)
+	$DamageArea.set_deferred("monitorable", false)
 	
 	animsprite.material = animsprite.material.duplicate(true)
 	await get_tree().create_tween().tween_method(func(v: float): 
 		animsprite.material.set_shader_parameter("progress", v), 0.2, 1.0, 0.8).finished
+	
+	# For Vertical Slice demo purposes
+	await get_tree().create_timer(2).timeout
+	GameRef.restart_level()
 
 func move_camera_offset(offset_direction: int):
 	if player_camera == null:
