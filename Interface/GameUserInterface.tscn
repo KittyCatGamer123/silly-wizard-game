@@ -1,0 +1,761 @@
+[gd_scene format=3 uid="uid://cqeuvma5kcfki"]
+
+[ext_resource type="FontFile" uid="uid://bcrta3hfgkhp2" path="res://Resources/YoungSerif-Regular.ttf" id="1_0v5g6"]
+[ext_resource type="Script" uid="uid://f1r4ujivtrly" path="res://Interface/GameUI.gd" id="1_7pfls"]
+[ext_resource type="Texture2D" uid="uid://cklmiqagxxja7" path="res://Interface/InterfaceAssets/progressbar.png" id="2_7pfls"]
+[ext_resource type="Texture2D" uid="uid://dowhc44jeanta" path="res://Entities/Essence/Essence.png" id="3_wg08c"]
+[ext_resource type="Shader" uid="uid://ddmgwm5h2f5pg" path="res://Resources/gradient_overlay.gdshader" id="4_jg086"]
+[ext_resource type="Texture2D" uid="uid://bmuwkbpd5jm3l" path="res://Interface/InterfaceAssets/panel_ui.png" id="5_e75oj"]
+[ext_resource type="Texture2D" uid="uid://b4seh4020c248" path="res://Weapons/Charges/charge_starspread.png" id="6_eg6o4"]
+[ext_resource type="Texture2D" uid="uid://ckaj667aib3sd" path="res://Weapons/Tomes/tome_drowned.png" id="7_l4lje"]
+[ext_resource type="Texture2D" uid="uid://cvo45swx86f6x" path="res://Weapons/Engravings/engrav_foresight.png" id="8_xk1xd"]
+[ext_resource type="Texture2D" uid="uid://cw33j61b4iw0m" path="res://Weapons/Accessories/acc_none.png" id="9_63o1w"]
+[ext_resource type="Shader" uid="uid://do6hhl31g8ohl" path="res://Resources/text_glint.gdshader" id="10_nq6uu"]
+[ext_resource type="Shader" uid="uid://cradsv22svkdj" path="res://Resources/death_fire.gdshader" id="11_ajgvb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0axsw"]
+font = ExtResource("1_0v5g6")
+font_size = 23
+font_color = Color(1, 0.8425, 0.37, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vkh1j"]
+font = ExtResource("1_0v5g6")
+font_size = 20
+font_color = Color(1, 0, 0.34117648, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.6627451)
+shadow_offset = Vector2(1, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbj8u"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.2892788, 0, 0.07451814, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rcggt"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.7076372, 0, 0.23140582, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_ml8y5"]
+font = ExtResource("1_0v5g6")
+font_size = 20
+font_color = Color(0.7366669, 0.20999998, 1, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.6627451)
+shadow_offset = Vector2(1, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uw3m0"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.20983714, 0.00025891938, 0.30340794, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fixgh"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.65554506, 0.1131, 0.87, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_m7fhr"]
+font = ExtResource("1_0v5g6")
+font_size = 18
+font_color = Color(0.37, 0.643, 1, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_wg08c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:offset_transform_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7pfls"]
+resource_name = "bounce"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:offset_transform_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.23333333, 0.33333334, 0.43333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.3, 1.3), Vector2(1, 1), Vector2(1.15, 1.15), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wg08c"]
+_data = {
+&"RESET": SubResource("Animation_wg08c"),
+&"bounce": SubResource("Animation_7pfls")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rcggt"]
+shader = ExtResource("4_jg086")
+shader_parameter/first_color = Color(0, 0.8, 1, 0.5294118)
+shader_parameter/second_color = Color(0.5, 0, 1, 0.5294118)
+shader_parameter/position = 0.0
+shader_parameter/size = 1.5000000475
+shader_parameter/angle = 329.3410156436975
+
+[sub_resource type="LabelSettings" id="LabelSettings_rcggt"]
+font = ExtResource("1_0v5g6")
+font_size = 8
+shadow_color = Color(0, 0, 0, 0.6)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jn7j8"]
+font = ExtResource("1_0v5g6")
+font_size = 11
+shadow_color = Color(0, 0, 0, 0.6)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fpnu5"]
+font = ExtResource("1_0v5g6")
+font_size = 17
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_vkh1j"]
+offsets = PackedFloat32Array(0, 0.15, 0.85, 1)
+colors = PackedColorArray(0.02745098, 0.02745098, 0.02745098, 0, 0.02617565, 0.026175594, 0.02617562, 1, 0.02745098, 0.02745098, 0.02745098, 1, 0.02745098, 0.02745098, 0.02745098, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_am13a"]
+gradient = SubResource("Gradient_vkh1j")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7lgof"]
+shader = ExtResource("10_nq6uu")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/shine_progress = 0.0
+shader_parameter/shine_size = 0.499999988824
+shader_parameter/shine_angle = 15.000000223518
+shader_parameter/text_size = Vector2(100, 100)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7lgof"]
+font = ExtResource("1_0v5g6")
+font_size = 65
+font_color = Color(1, 0.7975, 0.19, 1)
+shadow_size = 3
+shadow_color = Color(0.1, 0, 0, 1)
+shadow_offset = Vector2(4, 3)
+
+[sub_resource type="Animation" id="Animation_tbj8u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.5882353)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextBg/FloorTitle:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextBg:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_vkh1j"]
+resource_name = "play"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.5882353)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextBg/FloorTitle:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextBg:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_rcggt"]
+resource_name = "reset"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextBg/FloorTitle:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextBg:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tbj8u"]
+_data = {
+&"RESET": SubResource("Animation_tbj8u"),
+&"play": SubResource("Animation_vkh1j"),
+&"reset": SubResource("Animation_rcggt")
+}
+
+[sub_resource type="Gradient" id="Gradient_rcggt"]
+offsets = PackedFloat32Array(0.6987952, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 0, 0, 0.078431375)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b6usf"]
+gradient = SubResource("Gradient_rcggt")
+width = 1200
+height = 750
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.073913045, 0.07652174)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_iwrvf"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ngwt3"]
+noise = SubResource("FastNoiseLite_iwrvf")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fpnu5"]
+shader = ExtResource("11_ajgvb")
+shader_parameter/progress = 0.0
+shader_parameter/sprite_size = Vector2(1200, 750)
+shader_parameter/origin = Vector2(600, 375)
+shader_parameter/borderWidth = 47.36
+shader_parameter/burnMult = 125.0
+shader_parameter/pixel_size = 1.0
+shader_parameter/blend_steps = 15.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_ngwt3")
+shader_parameter/rectColor = Color(0, 0, 0, 1)
+shader_parameter/burnColor = Color(1, 0.4, 0.05, 1)
+shader_parameter/charColor = Color(1, 0.050980393, 0.050980393, 1)
+
+[node name="GameUI" type="CanvasLayer" unique_id=620931114]
+script = ExtResource("1_7pfls")
+
+[node name="StatusUi" type="VBoxContainer" parent="." unique_id=998357609]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 496.0
+offset_bottom = 163.0
+
+[node name="FloorNumber" type="Label" parent="StatusUi" unique_id=725110433]
+layout_mode = 2
+text = "Floor I"
+label_settings = SubResource("LabelSettings_0axsw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatusUi" unique_id=804047816]
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_constants/separation = 10
+
+[node name="Control" type="Control" parent="StatusUi/HBoxContainer" unique_id=2120785247]
+custom_minimum_size = Vector2(38, 0)
+layout_mode = 2
+
+[node name="Hp" type="Label" parent="StatusUi/HBoxContainer/Control" unique_id=8091402]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "HP"
+label_settings = SubResource("LabelSettings_vkh1j")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="StatusUi/HBoxContainer" unique_id=168050925]
+custom_minimum_size = Vector2(440, 30)
+layout_mode = 2
+texture = ExtResource("2_7pfls")
+region_rect = Rect2(0, 0, 105, 22)
+patch_margin_left = 35
+patch_margin_top = 10
+patch_margin_right = 25
+patch_margin_bottom = 9
+
+[node name="HpBar" type="ProgressBar" parent="StatusUi/HBoxContainer/NinePatchRect" unique_id=153087123]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 6.0
+offset_top = 3.0
+offset_right = 439.0
+offset_bottom = 25.0
+theme_override_styles/background = SubResource("StyleBoxFlat_tbj8u")
+theme_override_styles/fill = SubResource("StyleBoxFlat_rcggt")
+max_value = 150.0
+value = 125.0
+show_percentage = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="StatusUi" unique_id=651677372]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Control" type="Control" parent="StatusUi/HBoxContainer2" unique_id=1713628120]
+custom_minimum_size = Vector2(38, 0)
+layout_mode = 2
+
+[node name="Mp" type="Label" parent="StatusUi/HBoxContainer2/Control" unique_id=1748845216]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "MP"
+label_settings = SubResource("LabelSettings_ml8y5")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="StatusUi/HBoxContainer2" unique_id=245870436]
+custom_minimum_size = Vector2(440, 30)
+layout_mode = 2
+texture = ExtResource("2_7pfls")
+region_rect = Rect2(0, 0, 105, 22)
+patch_margin_left = 35
+patch_margin_top = 10
+patch_margin_right = 25
+patch_margin_bottom = 9
+
+[node name="MpBar" type="ProgressBar" parent="StatusUi/HBoxContainer2/NinePatchRect" unique_id=447716460]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 6.0
+offset_top = 3.0
+offset_right = 439.0
+offset_bottom = 26.0
+theme_override_styles/background = SubResource("StyleBoxFlat_uw3m0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fixgh")
+max_value = 250.0
+value = 200.0
+show_percentage = false
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="StatusUi" unique_id=1501413745]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Icon" type="TextureRect" parent="StatusUi/HBoxContainer3" unique_id=534695983]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("3_wg08c")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="StatusUi/HBoxContainer3" unique_id=602791399]
+layout_mode = 2
+text = "0 Essence"
+label_settings = SubResource("LabelSettings_m7fhr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="StatusUi/HBoxContainer3" unique_id=513350254]
+libraries/ = SubResource("AnimationLibrary_wg08c")
+
+[node name="SlotsUi" type="HBoxContainer" parent="." unique_id=1221367945]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -595.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 88.0
+grow_horizontal = 0
+alignment = 2
+
+[node name="AltAttack" type="Control" parent="SlotsUi" unique_id=2124104647]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="AltPanel" type="TextureRect" parent="SlotsUi/AltAttack" unique_id=805660901]
+self_modulate = Color(1, 1, 0.8117647, 1)
+material = SubResource("ShaderMaterial_rcggt")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 2.0
+offset_right = -10.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("5_e75oj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AltIcon" type="TextureRect" parent="SlotsUi/AltAttack/AltPanel" unique_id=14009861]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_eg6o4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ButtonToPress" type="Label" parent="SlotsUi/AltAttack/AltPanel" unique_id=1378954845]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -43.0
+offset_top = -24.0
+offset_right = -3.0
+offset_bottom = -1.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "RMB"
+label_settings = SubResource("LabelSettings_rcggt")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="SlotsUi/AltAttack" unique_id=216156466]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 63.0
+offset_right = 70.0
+offset_bottom = 82.0
+texture = ExtResource("2_7pfls")
+region_rect = Rect2(0, 0, 105, 22)
+patch_margin_left = 35
+patch_margin_top = 10
+patch_margin_right = 25
+patch_margin_bottom = 9
+
+[node name="AltCharge" type="ProgressBar" parent="SlotsUi/AltAttack/NinePatchRect" unique_id=2137558441]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = -1.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_uw3m0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fixgh")
+max_value = 1.0
+show_percentage = false
+
+[node name="WeaponSlot" type="TextureRect" parent="SlotsUi" unique_id=385945740]
+material = SubResource("ShaderMaterial_rcggt")
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+mouse_filter = 0
+texture = ExtResource("5_e75oj")
+
+[node name="WeaponIcon" type="TextureRect" parent="SlotsUi/WeaponSlot" unique_id=2082490214]
+self_modulate = Color(1, 1, 0.7137255, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_l4lje")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="EngravingIcon" type="TextureRect" parent="SlotsUi/WeaponSlot/WeaponIcon" unique_id=1186507882]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_xk1xd")
+stretch_mode = 5
+
+[node name="ButtonToPress" type="Label" parent="SlotsUi/WeaponSlot" unique_id=1816269932]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -44.0
+offset_top = -24.0
+offset_right = -4.0
+offset_bottom = -1.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "LMB"
+label_settings = SubResource("LabelSettings_jn7j8")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Label" type="Label" parent="SlotsUi" unique_id=1537665872]
+layout_mode = 2
+text = "|"
+
+[node name="AccSlot" type="TextureRect" parent="SlotsUi" unique_id=1564382579]
+self_modulate = Color(0.18, 0.18, 0.18, 1)
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+mouse_filter = 0
+texture = ExtResource("5_e75oj")
+expand_mode = 1
+
+[node name="Icon" type="TextureRect" parent="SlotsUi/AccSlot" unique_id=1093423582]
+self_modulate = Color(0.43, 0.43, 0.43, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 19.0
+offset_right = -19.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_63o1w")
+stretch_mode = 5
+
+[node name="AccSlot2" type="TextureRect" parent="SlotsUi" unique_id=2130666734]
+self_modulate = Color(0.18, 0.18, 0.18, 1)
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+mouse_filter = 0
+texture = ExtResource("5_e75oj")
+expand_mode = 1
+
+[node name="Icon" type="TextureRect" parent="SlotsUi/AccSlot2" unique_id=1507195972]
+self_modulate = Color(0.43, 0.43, 0.43, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 19.0
+offset_right = -19.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_63o1w")
+stretch_mode = 5
+
+[node name="AccSlot3" type="TextureRect" parent="SlotsUi" unique_id=1019004520]
+self_modulate = Color(0.18, 0.18, 0.18, 1)
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+mouse_filter = 0
+texture = ExtResource("5_e75oj")
+expand_mode = 1
+
+[node name="Icon" type="TextureRect" parent="SlotsUi/AccSlot3" unique_id=522020385]
+self_modulate = Color(0.43, 0.43, 0.43, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 19.0
+offset_right = -19.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_63o1w")
+stretch_mode = 5
+
+[node name="WeaponName" type="Label" parent="." unique_id=850199383]
+modulate = Color(0.80049086, 0.80049074, 0.80049074, 1)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -352.0
+offset_top = 96.0
+offset_right = -8.0
+offset_bottom = 119.0
+grow_horizontal = 0
+text = "Seeking Drowned Tome"
+label_settings = SubResource("LabelSettings_fpnu5")
+vertical_alignment = 1
+
+[node name="FloorDetails" type="ColorRect" parent="." unique_id=629792491]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="TextBg" type="TextureRect" parent="FloorDetails" unique_id=1310952045]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 229.0
+offset_bottom = -357.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_am13a")
+
+[node name="FloorTitle" type="Label" parent="FloorDetails/TextBg" unique_id=267580034]
+material = SubResource("ShaderMaterial_7lgof")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Floor I"
+label_settings = SubResource("LabelSettings_7lgof")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FloorDetails" unique_id=1471473647]
+libraries/ = SubResource("AnimationLibrary_tbj8u")
+
+[node name="HurtOverlay" type="TextureRect" parent="." unique_id=1659104279]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_b6usf")
+
+[node name="LevelTransitionOverlay" type="ColorRect" parent="." unique_id=661213477]
+visible = false
+material = SubResource("ShaderMaterial_fpnu5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
