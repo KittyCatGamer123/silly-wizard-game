@@ -47,6 +47,10 @@ func teleport() -> void:
 		query.collision_mask = 1
 		query.exclude = [get_rid()]
 		
+		var world_2d: World2D = get_world_2d()
+		if world_2d == null:
+			return
+		
 		var space_state = get_world_2d().direct_space_state
 		var overlaps = space_state.intersect_shape(query)
 		

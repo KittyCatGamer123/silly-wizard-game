@@ -21,6 +21,7 @@ shader_parameter/burnMult = 13.215
 shader_parameter/pixel_size = 0.001
 shader_parameter/blend_steps = 4.0
 shader_parameter/noiseTexture = SubResource("NoiseTexture2D_1v711")
+shader_parameter/rectColor = Color(1, 1, 1, 1)
 shader_parameter/burnColor = Color(1, 0.4, 0.05, 1)
 shader_parameter/charColor = Color(1, 0.050980393, 0.050980393, 1)
 
@@ -215,6 +216,7 @@ size = Vector2(12.66666, 30.666668)
 scale = Vector2(1.5, 1.5)
 collision_layer = 0
 script = ExtResource("1_7h88y")
+contact_damage = 9
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1678778122]
 texture_repeat = 1

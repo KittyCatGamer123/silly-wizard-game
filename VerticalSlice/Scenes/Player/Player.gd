@@ -11,9 +11,9 @@ var MP: float = 150
 var mp_max: float = 150
 var alive: bool = true
 
-var max_speed = 150
+var max_speed = 165
 var accel_speed = 500
-var jump_power = 350
+var jump_power = 400
 
 var previous_direction: int = 0
 

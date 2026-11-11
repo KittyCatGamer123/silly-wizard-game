@@ -30,6 +30,7 @@ shader_parameter/burnMult = 12.0
 shader_parameter/pixel_size = 0.001
 shader_parameter/blend_steps = 4.0
 shader_parameter/noiseTexture = SubResource("NoiseTexture2D_cbc88")
+shader_parameter/rectColor = Color(1, 1, 1, 1)
 shader_parameter/burnColor = Color(1, 0.4, 0.05, 1)
 shader_parameter/charColor = Color(1, 0.050980393, 0.050980393, 1)
 
@@ -70,6 +71,7 @@ radius = 41.33871
 scale = Vector2(1.5, 1.5)
 collision_layer = 2
 script = ExtResource("1_3rtmb")
+projectile_damage = 17.0
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1528541655]
 scale = Vector2(1.09375, 1.09375)
