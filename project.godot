@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="silly-wizard-game"
+config/name="Spell Tomes: Temple of Chaos"
 run/main_scene="uid://dpic5mn8gtkor"
 config/features=PackedStringArray("4.7", "Forward Plus")
-config/icon="res://GameData/icon.svg"
+config/icon="uid://cxe6caowi056h"
 
 [autoload]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gaccjlh0sssk"
-path="res://.godot/imported/staircase_sprite.png-d33f8f0c2a0458347417de540c88058c.ctex"
+uid="uid://cxe6caowi056h"
+path="res://.godot/imported/icon.png-4e7d6e2bef6a6091c2d0effd12450bf8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Levels/Tiles/staircase_sprite.png"
-dest_files=["res://.godot/imported/staircase_sprite.png-d33f8f0c2a0458347417de540c88058c.ctex"]
+source_file="res://GameData/icon.png"
+dest_files=["res://.godot/imported/icon.png-4e7d6e2bef6a6091c2d0effd12450bf8.ctex"]
 
 [params]
 

@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bpsdox1frmxgg"]
 
-[ext_resource type="Texture2D" uid="uid://gaccjlh0sssk" path="res://Levels/Tiles/staircase_sprite.png" id="1_pjggu"]
-[ext_resource type="Texture2D" path="res://Levels/Components/Staircase.png" id="2_18ode"]
+[ext_resource type="Texture2D" uid="uid://gaccjlh0sssk" path="res://Levels/Components/staircase_sprite.png" id="2_18ode"]
 [ext_resource type="Script" uid="uid://bg03jrbct3i27" path="res://Levels/Components/EntryDoor.gd" id="2_fjpqo"]
 [ext_resource type="Texture2D" uid="uid://bnnpqguywg1ev" path="res://Entities/Player/WizardOldSpritesheet.png" id="3_fjpqo"]
 [ext_resource type="Texture2D" uid="uid://r6i4yykhi7wr" path="res://Entities/Player/WizardSpritesheet.png" id="4_xc1hm"]
+[ext_resource type="Texture2D" uid="uid://bo66t8xtjonm6" path="res://Levels/Components/EntryDoorSprite.png" id="5_18ode"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ml8y5"]
 atlas = ExtResource("2_18ode")
@@ -103,7 +103,7 @@ region = Rect2(160, 0, 32, 32)
 atlas = ExtResource("3_fjpqo")
 region = Rect2(224, 0, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_1ay4j"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_fjpqo"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -162,7 +162,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"raise",
-"speed": 10.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -190,6 +190,35 @@ colors = PackedColorArray(0.39959997, 0.43931338, 0.74, 1, 0, 0, 0, 1)
 gradient = SubResource("Gradient_r8ir7")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xc1hm"]
+atlas = ExtResource("5_18ode")
+region = Rect2(0, 0, 44, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eim30"]
+atlas = ExtResource("5_18ode")
+region = Rect2(44, 0, 44, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pryyb"]
+atlas = ExtResource("5_18ode")
+region = Rect2(88, 0, 44, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hgr57"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xc1hm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eim30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pryyb")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_ui2tw"]
 length = 0.001
@@ -367,8 +396,8 @@ _data = {
 }
 
 [node name="EntryDoor" type="Sprite2D" unique_id=1944414553]
-clip_children = 1
-texture = ExtResource("1_pjggu")
+clip_children = 2
+texture = ExtResource("2_18ode")
 script = ExtResource("2_fjpqo")
 
 [node name="Bg" type="AnimatedSprite2D" parent="." unique_id=1867804647]
@@ -382,7 +411,7 @@ frame = 2
 [node name="Wizard" type="AnimatedSprite2D" parent="." unique_id=769681939]
 position = Vector2(-27.999996, 8)
 scale = Vector2(1.5, 1.5)
-sprite_frames = SubResource("SpriteFrames_1ay4j")
+sprite_frames = SubResource("SpriteFrames_fjpqo")
 animation = &"walk"
 
 [node name="PointLight2D" type="PointLight2D" parent="Wizard" unique_id=799422606]
@@ -391,7 +420,7 @@ energy = 0.5
 texture = SubResource("GradientTexture2D_ev10k")
 
 [node name="Front" type="AnimatedSprite2D" parent="." unique_id=800842404]
-sprite_frames = SubResource("SpriteFrames_0qf0p")
+sprite_frames = SubResource("SpriteFrames_hgr57")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=317148362]
 libraries/ = SubResource("AnimationLibrary_ui2tw")
