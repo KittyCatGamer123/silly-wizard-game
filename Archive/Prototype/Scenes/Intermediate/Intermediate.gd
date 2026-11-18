@@ -29,7 +29,7 @@ func _input(event: InputEvent) -> void:
 func player_values_changed() -> void:
 	hp_bar.value = game_player.HP
 	mp_bar.value = game_player.MP
-	essence_label.text = GlobalGame.value_commas(GlobalGame.Essence) + " Essence"
+	essence_label.text = GameTools.value_commas(GameData.Essence) + " Essence"
 
 func major_player_values_changed() -> void:
 	hp_bar.max_value = game_player.hp_max

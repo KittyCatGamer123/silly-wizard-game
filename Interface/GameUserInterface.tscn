@@ -742,7 +742,6 @@ vertical_alignment = 1
 libraries/ = SubResource("AnimationLibrary_tbj8u")
 
 [node name="HurtOverlay" type="TextureRect" parent="." unique_id=1659104279]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

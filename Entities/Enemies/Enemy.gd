@@ -20,7 +20,6 @@ var is_dead = false
 
 func _ready() -> void:
 	attack_area.connect("area_entered", attack_area_area_entered)
-	anin_sprite.material = anin_sprite.material.duplicate(true)
 
 func recieve_damage(dmg: float, incoming_knockback: float, src_position: Vector2) -> void:
 	health -= dmg
@@ -45,6 +44,7 @@ func enemy_death():
 	es.position = global_position
 	get_tree().create_tween().tween_property(es, "position", Vector2(global_position.x, global_position.y - 15), 0.5)
 	
+	anin_sprite.material = anin_sprite.material.duplicate()
 	await get_tree().create_tween().tween_method(func(v: float): anin_sprite.material.set_shader_parameter("progress", v), 0.2, 1.0, 0.5).finished
 	
 	queue_free()

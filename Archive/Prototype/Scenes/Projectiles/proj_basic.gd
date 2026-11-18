@@ -20,16 +20,16 @@ var time_alive = 0.0
 func start_projectile() -> void:
 	direction = -(position - get_global_mouse_position()).normalized()
 	
-	proj_type = GlobalGame.Weapon["Primary"]["Id"]
-	proj_engrave = GlobalGame.Weapon["Engraving"]["Id"]
+	proj_type = GameData.Weapon["Primary"]["Id"]
+	proj_engrave = GameData.Weapon["Engraving"]["Id"]
 	
 	active_particle = particle_nodes.get_node(proj_type)
 	active_particle.emitting = true
 	
-	proj_damage = GlobalGame.Weapon["Damage"]
-	proj_knockback = GlobalGame.Weapon["Knockback"]
-	proj_speed = GlobalGame.Weapon["Speed"]
-	proj_lifetime = GlobalGame.Weapon["Lifetime"]
+	proj_damage = GameData.Weapon["Damage"]
+	proj_knockback = GameData.Weapon["Knockback"]
+	proj_speed = GameData.Weapon["Speed"]
+	proj_lifetime = GameData.Weapon["Lifetime"]
 	
 	if proj_engrave == "Overcharged":
 		proj_damage *= 2
@@ -42,7 +42,7 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 
 func _on_area_entered(area: Area2D) -> void:
-	if (area.get_parent() is BasicEnemy) and (not area.get_parent().health <= 0):
+	if (area.get_parent() is Enemy) and (not area.get_parent().health <= 0):
 		area.get_parent().recieve_damage(proj_damage, proj_knockback, global_position)
 		
 		if proj_type == "Shock":
@@ -75,11 +75,11 @@ func reflect_projectile() -> void:
 func shock_nearest_enemy(area: Area2D) -> void:
 	var enemies = []
 	for n in get_tree().current_scene.get_children():
-		if n is BasicEnemy:
+		if n is Enemy:
 			enemies.append(n)
 	enemies.erase(area.get_parent())
 	
-	var split_enemy: BasicEnemy = enemies.pick_random()
+	var split_enemy: Enemy = enemies.pick_random()
 	if split_enemy != null:
 		split_enemy.recieve_damage(proj_damage, proj_knockback, global_position)
 

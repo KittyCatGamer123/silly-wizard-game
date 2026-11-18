@@ -27,6 +27,7 @@ size = Vector2(20, 172)
 
 [node name="Level-6" type="Node2D" unique_id=1014558566 node_paths=PackedStringArray("game_player", "game_interface", "entry_door")]
 script = ExtResource("1_rsi58")
+LEVEL_ID = 6
 game_player = NodePath("Player")
 game_interface = NodePath("GameUI")
 entry_door = NodePath("EntryDoor")

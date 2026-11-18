@@ -1,6 +1,7 @@
 extends Node2D
 class_name MainGame
 
+@export var LEVEL_ID: int = 1
 var game_active = false
 var cheats_nospawn: bool = false
 

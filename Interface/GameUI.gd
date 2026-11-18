@@ -40,7 +40,7 @@ func reset_interface() -> void:
 	hurt_overlay.self_modulate = Color("FFF0")
 	hurt_overlay.visible = true
 	
-	var level_title: String = "Floor " + GameTools.value_to_roman_numeral(GameData.LEVEL)
+	var level_title: String = "Floor " + GameTools.value_to_roman_numeral(game_reference.LEVEL_ID)
 	level_number.text = level_title
 	level_display_start.text = level_title
 	
@@ -71,7 +71,7 @@ func overlay_hurt_effect() -> void:
 	
 	hurt_overlay.self_modulate = Color("FFFF")
 	hurt_overlay_tween = create_tween()
-	hurt_overlay.tween_property(hurt_overlay, "self_modulate", Color("FFF0"), 2)
+	hurt_overlay_tween.tween_property(hurt_overlay, "self_modulate", Color("FFF0"), 2)
 
 func level_title_animation() -> void:
 	level_title_animat.play("play")
@@ -114,7 +114,7 @@ func _process(_delta: float) -> void:
 	if game_reference and player_reference:
 		alt_charge_mp.value = (player_reference.alt_charge_time / player_reference.alt_charge_limit)
 		
-		if player_reference.HP <= (player_reference.hp_max * 0.15):
+		if player_reference.HP <= (player_reference.hp_max * 0.15) and player_reference.HP != 0:
 			hp_container.offset_transform_position = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0))
 
 func _debug_missing_references():

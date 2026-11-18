@@ -64,16 +64,20 @@ func teleport() -> void:
 			break
 	
 	await get_tree().create_timer(randf_range(0, 0.5)).timeout
+	velocity = Vector2.ZERO
 	visible = true
 
-func spawn_anim(backwards: bool = true) -> void:
+func spawn_anim(disappearing: bool = true) -> void:
+	# Appearing: Not Monitor -> Animation -> Monitor
+	# Disappearing: Monitor -> Animation -> Not Monitor
+	
 	if health >= 0:
 		attack_area.set_deferred("monitorable", false)
 		attack_area.set_deferred("monitoring", false)
 	
 	light.energy = 2.5
 	create_tween().tween_property(light, "energy", 1.2, 1)
-	if backwards:
+	if disappearing:
 		anin_sprite.play_backwards("respawn")
 	else:
 		anin_sprite.play("respawn")
@@ -82,8 +86,8 @@ func spawn_anim(backwards: bool = true) -> void:
 	await anin_sprite.animation_finished
 	
 	if health >= 0:
-		attack_area.set_deferred("monitorable", backwards)
-		attack_area.set_deferred("monitoring", backwards)
+		attack_area.set_deferred("monitorable", disappearing)
+		attack_area.set_deferred("monitoring", disappearing)
 	
 	await get_tree().create_timer(0.5).timeout
 	return

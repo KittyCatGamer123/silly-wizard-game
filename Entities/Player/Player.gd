@@ -216,6 +216,7 @@ func recieve_damage(dmg: float, knockback_force: float, src_position: Vector2) -
 		alt_charge_time = 0
 	
 	interface_reference.player_values_changed()
+	interface_reference.overlay_hurt_effect()
 	
 	var knockback_direction = (global_position - src_position)
 	velocity.x = sign(knockback_direction.x) * knockback_force

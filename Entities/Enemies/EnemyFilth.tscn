@@ -20,12 +20,11 @@ shader_parameter/burnMult = 13.215
 shader_parameter/pixel_size = 0.001
 shader_parameter/blend_steps = 4.0
 shader_parameter/noiseTexture = SubResource("NoiseTexture2D_1v711")
-shader_parameter/rectColor = Color(1, 1, 1, 1)
+shader_parameter/rectColor = Color(0.7581918, 0.7581918, 0.7581917, 1)
 shader_parameter/burnColor = Color(1, 0.4, 0.05, 1)
 shader_parameter/charColor = Color(1, 0.050980393, 0.050980393, 1)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3gpqr"]
-load_path = "res://.godot/imported/filth_spritesheet.png-6fdef38d7d01e48782398fbf5adf587e.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r348k"]
 atlas = SubResource("CompressedTexture2D_3gpqr")
@@ -61,49 +60,45 @@ region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fqpfd"]
 atlas = ExtResource("4_008hl")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_li8rl"]
-atlas = ExtResource("4_008hl")
-region = Rect2(160, 0, 32, 32)
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vaw4a"]
 atlas = ExtResource("4_008hl")
-region = Rect2(96, 0, 32, 32)
+region = Rect2(160, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xskww"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_li8rl"]
 atlas = ExtResource("4_008hl")
 region = Rect2(224, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vqip0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xskww"]
 atlas = ExtResource("4_008hl")
 region = Rect2(288, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ah8c1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqip0"]
 atlas = ExtResource("4_008hl")
 region = Rect2(352, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mas6r"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ah8c1"]
 atlas = ExtResource("4_008hl")
 region = Rect2(416, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8qgmb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mas6r"]
 atlas = ExtResource("4_008hl")
 region = Rect2(480, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qnw5t"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qgmb"]
 atlas = ExtResource("4_008hl")
 region = Rect2(32, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tnlcq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnw5t"]
 atlas = ExtResource("4_008hl")
 region = Rect2(96, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6dklb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnlcq"]
 atlas = ExtResource("4_008hl")
 region = Rect2(160, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qip15"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6dklb"]
 atlas = ExtResource("4_008hl")
 region = Rect2(224, 32, 32, 32)
 
@@ -153,10 +148,10 @@ animations = [{
 "texture": SubResource("AtlasTexture_fqpfd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_li8rl")
+"texture": SubResource("AtlasTexture_vaw4a")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vaw4a")
+"texture": SubResource("AtlasTexture_li8rl")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xskww")
@@ -169,15 +164,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mas6r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8qgmb")
 }],
 "loop": 0,
 "name": &"spawn",
 "speed": 8.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qgmb")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qnw5t")
 }, {
@@ -186,9 +181,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6dklb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qip15")
 }],
 "loop": 1,
 "name": &"walk",
@@ -243,7 +235,9 @@ texture_repeat = 1
 material = SubResource("ShaderMaterial_wo8mc")
 position = Vector2(-1.2397766e-05, 0)
 sprite_frames = SubResource("SpriteFrames_0axsw")
-animation = &"idle"
+animation = &"walk"
+frame = 1
+frame_progress = 0.871655
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1415834329]
 position = Vector2(1.0000916, 14.500003)
