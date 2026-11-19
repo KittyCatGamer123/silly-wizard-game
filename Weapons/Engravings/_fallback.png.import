@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1gafjq1l8g4"
-path="res://.godot/imported/skull_projectile.png-3d9ab788394876fc63c4a62945e18b0c.ctex"
+uid="uid://bbow7q8vh1vad"
+path="res://.godot/imported/_fallback.png-3d49f49029b83ebfc6d56c83a6b7813a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Weapons/Projectiles/Friendly/SkullProjectile/skull_projectile.png"
-dest_files=["res://.godot/imported/skull_projectile.png-3d9ab788394876fc63c4a62945e18b0c.ctex"]
+source_file="res://Weapons/Engravings/_fallback.png"
+dest_files=["res://.godot/imported/_fallback.png-3d49f49029b83ebfc6d56c83a6b7813a.ctex"]
 
 [params]
 

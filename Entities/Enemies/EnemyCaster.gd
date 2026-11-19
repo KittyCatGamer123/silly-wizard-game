@@ -103,7 +103,7 @@ func charge_and_fire() -> void:
 	var face_right: bool = target.position.x > global_position.x
 	var pos_name = "RightCast" if face_right else "LeftCast"
 	
-	var fireball = fire_projectile.instantiate()
+	var fireball: EnemyProjectile = fire_projectile.instantiate()
 	get_tree().current_scene.add_child(fireball)
 	fireball.position = get_node(pos_name).global_position
 	fireball.start_projectile(target.global_position)

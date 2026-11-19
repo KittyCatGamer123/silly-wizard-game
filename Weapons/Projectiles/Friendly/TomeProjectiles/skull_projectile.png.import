@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvo45swx86f6x"
-path="res://.godot/imported/engrav_foresight.png-6982c1c81b0dd28a7756e919469a3271.ctex"
+uid="uid://b1gafjq1l8g4"
+path="res://.godot/imported/skull_projectile.png-3ff9ee39c46ee5525b3eb4f62def20bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Weapons/Engravings/engrav_foresight.png"
-dest_files=["res://.godot/imported/engrav_foresight.png-6982c1c81b0dd28a7756e919469a3271.ctex"]
+source_file="res://Weapons/Projectiles/Friendly/TomeProjectiles/skull_projectile.png"
+dest_files=["res://.godot/imported/skull_projectile.png-3ff9ee39c46ee5525b3eb4f62def20bd.ctex"]
 
 [params]
 

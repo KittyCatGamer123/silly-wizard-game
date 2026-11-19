@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bmuwkbpd5jm3l" path="res://Interface/InterfaceAssets/panel_ui.png" id="5_e75oj"]
 [ext_resource type="Texture2D" uid="uid://b4seh4020c248" path="res://Weapons/Charges/charge_starspread.png" id="6_eg6o4"]
 [ext_resource type="Texture2D" uid="uid://dbmhwutjmhlnj" path="res://Weapons/Tomes/drowned.png" id="8_7pfls"]
-[ext_resource type="Texture2D" uid="uid://cvo45swx86f6x" path="res://Weapons/Engravings/engrav_foresight.png" id="8_xk1xd"]
+[ext_resource type="Texture2D" uid="uid://cvo45swx86f6x" path="res://Weapons/Engravings/homing.png" id="8_xk1xd"]
 [ext_resource type="Texture2D" uid="uid://cw33j61b4iw0m" path="res://Weapons/Accessories/acc_none.png" id="9_63o1w"]
 [ext_resource type="Shader" uid="uid://do6hhl31g8ohl" path="res://Resources/text_glint.gdshader" id="10_nq6uu"]
 [ext_resource type="Shader" uid="uid://cradsv22svkdj" path="res://Resources/death_fire.gdshader" id="11_ajgvb"]
@@ -139,36 +139,6 @@ shader_parameter/angle = 329.3410156436975
 font = ExtResource("1_0v5g6")
 font_size = 8
 shadow_color = Color(0, 0, 0, 0.6)
-
-[sub_resource type="Shader" id="Shader_7pfls"]
-code = "shader_type canvas_item;
-
-uniform vec4 first_color : source_color = vec4(1.0);
-uniform vec4 second_color : source_color = vec4(0.0, 0.0, 0.0, 1.0);
-
-uniform float position : hint_range(-0.5, 0.5) = 0.0;
-uniform float size : hint_range(0.5, 2) = 0.5;
-uniform float angle : hint_range(0.0, 360.0) = 0.0;
-
-void fragment() {
-	vec4 original = texture(TEXTURE, UV) * COLOR;
-	float pivot = position + 0.5;
-	vec2 uv = UV - pivot;
-	
-	float rotated = uv.x * cos(radians(angle)) - uv.y * sin(radians(angle));
-	float pos = smoothstep((1.0 - size) + position, size + 0.0001 + position, rotated + pivot);
-	vec4 gradient = mix(first_color, second_color, pos);
-	
-	COLOR = vec4(mix(original.rgb, gradient.rgb, gradient.a), original.a);
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wg08c"]
-shader = SubResource("Shader_7pfls")
-shader_parameter/first_color = Color(0, 0.8, 1, 0.5294118)
-shader_parameter/second_color = Color(0.5, 0, 1, 0.5294118)
-shader_parameter/position = 0.0
-shader_parameter/size = 1.5000000475
-shader_parameter/angle = 329.3410156436975
 
 [sub_resource type="LabelSettings" id="LabelSettings_jn7j8"]
 font = ExtResource("1_0v5g6")
@@ -599,7 +569,7 @@ max_value = 1.0
 show_percentage = false
 
 [node name="WeaponSlot" type="TextureRect" parent="SlotsUi" unique_id=385945740]
-material = SubResource("ShaderMaterial_wg08c")
+material = SubResource("ShaderMaterial_rcggt")
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 mouse_filter = 0

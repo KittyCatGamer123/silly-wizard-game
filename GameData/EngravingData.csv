@@ -1,0 +1,2 @@
+Name,Id,LevelValues,Desc,UpgradeDesc
+Seeking,homing,6;7;8;9;10,Engraving that causes projectiles curve towards nearby enemies,Strength of the pull gets increased

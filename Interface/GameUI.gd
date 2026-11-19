@@ -98,7 +98,8 @@ func major_player_values_changed() -> void:
 	# TODO: Implement Engraving data
 	
 	var current_tome: Dictionary = GameData.CurrentPlayerLoadout["Weapon"]
-	weapon_icon.texture = GameData.get_weapon_sprite(current_tome["Id"])
+	var tome_sprite: Texture2D = GameData.get_weapon_sprite(current_tome["Id"])
+	weapon_icon.texture = tome_sprite
 	
 	var tome_col_1: Color = current_tome["Colour1"]
 	var tome_col_2: Color = current_tome["Colour2"]
@@ -107,6 +108,13 @@ func major_player_values_changed() -> void:
 	
 	var current_tome_engrave: Dictionary = current_tome["Engraving"]
 	engrave_icon.visible = (!current_tome_engrave.is_empty())
+	
+	if player_reference:
+		if player_reference.is_node_ready():
+			player_reference.update_loadout(GameData.CurrentPlayerLoadout)
+			
+			player_reference.altcast_tome.texture = tome_sprite
+			player_reference.altcast_engraving.visible = (!current_tome_engrave.is_empty())
 	
 	weapon_title.text = GameData.get_weapon_title(current_tome)
 

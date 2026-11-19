@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbow7q8vh1vad"
-path="res://.godot/imported/Cursor_5.png-40ca764fe8aa2de999a7104258c34edd.ctex"
+uid="uid://cvo45swx86f6x"
+path="res://.godot/imported/homing.png-b467e55a60c505e1f1448ff1c22d1301.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Archive/Prototype/Sprites/Cursor_5.png"
-dest_files=["res://.godot/imported/Cursor_5.png-40ca764fe8aa2de999a7104258c34edd.ctex"]
+source_file="res://Weapons/Engravings/homing.png"
+dest_files=["res://.godot/imported/homing.png-b467e55a60c505e1f1448ff1c22d1301.ctex"]
 
 [params]
 

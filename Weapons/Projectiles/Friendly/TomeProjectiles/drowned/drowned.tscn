@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://bnhavuv2hggim"]
 
-[ext_resource type="Script" uid="uid://ctc5rqitl6u30" path="res://Weapons/Projectiles/Friendly/SkullProjectile/SkullProjectile.gd" id="1_3rtmb"]
-[ext_resource type="Texture2D" uid="uid://b1gafjq1l8g4" path="res://Weapons/Projectiles/Friendly/SkullProjectile/skull_projectile.png" id="1_lub0m"]
-[ext_resource type="Shader" uid="uid://cradsv22svkdj" path="res://Resources/death_fire.gdshader" id="2_6udl5"]
-[ext_resource type="Texture2D" uid="uid://bb4pxdmcc20jf" path="res://Entities/particle.png" id="2_gaxej"]
+[ext_resource type="Script" uid="uid://ctc5rqitl6u30" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/drowned/drowned.gd" id="1_befky"]
+[ext_resource type="Shader" uid="uid://cradsv22svkdj" path="res://Resources/death_fire.gdshader" id="2_37ckq"]
+[ext_resource type="Texture2D" uid="uid://b1gafjq1l8g4" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/skull_projectile.png" id="3_lbn20"]
+[ext_resource type="Texture2D" uid="uid://bb4pxdmcc20jf" path="res://Entities/particle.png" id="4_8a616"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ay4j"]
+radius = 15.0
 
 [sub_resource type="Gradient" id="Gradient_l5x6l"]
 offsets = PackedFloat32Array(0, 0.33734939, 0.67469877)
@@ -21,7 +24,7 @@ fill_to = Vector2(0, 1)
 noise = SubResource("FastNoiseLite_1apd0")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s2w2f"]
-shader = ExtResource("2_6udl5")
+shader = ExtResource("2_37ckq")
 shader_parameter/progress = 0.0
 shader_parameter/sprite_size = Vector2(20, 20)
 shader_parameter/origin = Vector2(0.5, 0.5)
@@ -33,8 +36,6 @@ shader_parameter/noiseTexture = SubResource("NoiseTexture2D_cbc88")
 shader_parameter/rectColor = Color(1, 1, 1, 1)
 shader_parameter/burnColor = Color(1, 0.4, 0.05, 1)
 shader_parameter/charColor = Color(1, 0.050980393, 0.050980393, 1)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_1ay4j"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tbj8u"]
 light_mode = 1
@@ -51,50 +52,48 @@ particle_flag_disable_z = true
 emission_shape = 6
 emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 1.0
-emission_ring_radius = 19.0
-emission_ring_inner_radius = 10.0
+emission_ring_radius = 30.0
+emission_ring_inner_radius = 15.0
 emission_ring_cone_angle = 90.0
 direction = Vector3(0, 0, 0)
 gravity = Vector3(0, 0, 0)
 tangential_accel_min = -50.0
 tangential_accel_max = 49.999996
-scale_min = 0.19999999
-scale_max = 0.7
+scale_min = 0.29999998
 alpha_curve = SubResource("CurveTexture_6u7ti")
 hue_variation_min = -0.050000023
 hue_variation_max = 0.049999975
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0qf0p"]
-radius = 41.33871
+[node name="DrownedProjectile" type="Node2D" unique_id=1624839188 node_paths=PackedStringArray("projectile_area2d", "projectile_sprite", "projectile_lighting", "surrounding_particles")]
+script = ExtResource("1_befky")
+projectile_area2d = NodePath("Area2D")
+projectile_sprite = NodePath("Skull")
+projectile_lighting = NodePath("PointLight2D")
+surrounding_particles = NodePath("Surrounding")
 
-[node name="DrownedProjectile" type="Area2D" unique_id=1805361654]
+[node name="Area2D" type="Area2D" parent="." unique_id=1805361654]
 scale = Vector2(1.5, 1.5)
 collision_layer = 2
-script = ExtResource("1_3rtmb")
-projectile_damage = 17.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=859376323]
+shape = SubResource("CircleShape2D_1ay4j")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1528541655]
-scale = Vector2(1.09375, 1.09375)
+scale = Vector2(1.640625, 1.640625)
 energy = 1.5
 texture = SubResource("GradientTexture2D_lub0m")
 
 [node name="Skull" type="Sprite2D" parent="." unique_id=1476525823]
 material = SubResource("ShaderMaterial_s2w2f")
-texture = ExtResource("1_lub0m")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=859376323]
-shape = SubResource("CircleShape2D_1ay4j")
+scale = Vector2(2, 2.0000002)
+texture = ExtResource("3_lbn20")
 
 [node name="Surrounding" type="GPUParticles2D" parent="." unique_id=1174731280]
 self_modulate = Color(0.8144998, 0.47000003, 1, 1)
 material = SubResource("CanvasItemMaterial_tbj8u")
+scale = Vector2(1.5, 1.5)
 amount = 30
-texture = ExtResource("2_gaxej")
+texture = ExtResource("4_8a616")
 process_material = SubResource("ParticleProcessMaterial_6udl5")
 
-[node name="HoningRange" type="Area2D" parent="." unique_id=1774791315]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HoningRange" unique_id=777770839]
-shape = SubResource("CircleShape2D_0qf0p")
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]

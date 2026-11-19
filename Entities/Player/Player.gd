@@ -33,7 +33,9 @@ var alt_charge_limit: float = 1.75
 @onready var damage_area: Area2D = $DamageArea
 const camera_offset: Vector2 = Vector2(70, -75)
 
-var weapon_projectile = load("res://Weapons/Projectiles/Friendly/SkullProjectile/SkullProjectile.tscn")
+var loadout_data: Dictionary = {}
+var loadout_projectile = null
+
 var weapon_use_timer: float = 0.0
 var weapon_is_using: bool = false
 
@@ -85,15 +87,17 @@ func _input(event: InputEvent) -> void:
 			alt_effect.emitting = event.pressed
 		
 		elif event.button_index == MOUSE_BUTTON_LEFT and event.pressed and (not AltCharging):
-			if MP >= GameData.Weapon["ManaUsage"]:
+			if MP >= loadout_data["Weapon"]["Mana"]:
 				use_weapon()
 
 func use_weapon() -> void:
 	if weapon_is_using:
 		return
 	
+	var weapon_data: Dictionary = loadout_data["Weapon"]
+	
 	weapon_is_using = true
-	weapon_use_timer = GameData.Weapon["UseTime"]
+	weapon_use_timer = weapon_data["UseTime"]
 	animsprite.play("attack")
 	
 	var mouse_position := get_global_mouse_position()
@@ -102,13 +106,13 @@ func use_weapon() -> void:
 	previous_direction = sign((global_position.x - mouse_position.x) * -1)
 	
 	var pos_name = "RightCast" if face_right else "LeftCast"
-	var proj = weapon_projectile.instantiate()
+	var proj = loadout_projectile.instantiate()
 	get_tree().current_scene.add_child(proj)
-	proj.game_player = self
+	proj.player_reference = self
 	proj.position = get_node(pos_name).global_position
 	proj.start_projectile(get_global_mouse_position())
 	
-	MP -= GameData.Weapon["ManaUsage"]
+	MP -= weapon_data["Mana"]
 	interface_reference.player_values_changed()
 
 func use_weapon_alt_cast() -> void:
@@ -127,12 +131,10 @@ func use_weapon_alt_cast() -> void:
 	]
 	
 	for pnt in projectile_directions:
-		var proj = weapon_projectile.instantiate()
+		var proj = loadout_projectile.instantiate()
 		get_tree().current_scene.add_child(proj)
-		proj.game_player = self
+		proj.player_reference = self
 		proj.global_position = alt_cast_position.global_position
-		proj.projectile_damage *= 2
-		proj.projectile_lifetime *= 2
 		proj.start_projectile(pnt)
 	
 	MP = 0
@@ -252,3 +254,9 @@ func move_camera_offset(offset_direction: int):
 	
 	if player_camera.offset.x != offset_direction:
 		create_tween().tween_property(player_camera, "offset", fixed_offset, 0.5)
+
+func update_loadout(data: Dictionary) -> void:
+	var projectile_path = "res://Weapons/Projectiles/Friendly/TomeProjectiles/{0}/{0}.tscn".replace("{0}", data["Weapon"]["Id"])
+	
+	loadout_data = data
+	loadout_projectile = load(projectile_path)

@@ -15,6 +15,7 @@ func _ready() -> void:
 	
 	setup_level()
 	start_level_animation()
+	print(GameData.CurrentPlayerLoadout)
 
 func setup_level() -> void:
 	game_player.global_position = entry_door.global_position + Vector2(4,0)

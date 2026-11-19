@@ -34,6 +34,7 @@ var Essence = 0
 
 func _ready() -> void:
 	WeaponData = _get_weapon_data()
+	EngravingData = _get_engraving_data()
 	reset_player_data()
 
 func reset_player_data() -> void:
@@ -41,6 +42,7 @@ func reset_player_data() -> void:
 	
 	#var base_tome = get_base_weapon_itemtype("basic")
 	var base_tome = get_base_weapon_itemtype("drowned")
+	base_tome["Engraving"] = get_base_engrave_itemtype("homing")
 	
 	PlayerInventory = {
 		"Weapons": [base_tome],
@@ -59,12 +61,16 @@ func get_weapon_title(weapon_data: Dictionary) -> String:
 	var weapon_name: String = weapon_data["Name"] + " Tome"
 	var current_tome_engrave: Dictionary = weapon_data["Engraving"]
 	if current_tome_engrave != {}:
-		weapon_name = "{0} {1}".format(current_tome_engrave["Name"], weapon_name)
+		weapon_name = "{0} {1}".format([current_tome_engrave["Name"], weapon_name])
 	return weapon_name
 
 func get_weapon_sprite(weapon_id: String) -> Texture2D:
 	const TomePath = "res://Weapons/Tomes/"
 	return _get_item_sprite(TomePath, weapon_id)
+
+func get_engraving_sprite(engraving_id) -> Texture2D:
+	const EngravPath = "res://Weapons/Engravings/"
+	return _get_item_sprite(EngravPath, engraving_id)
 
 func _get_item_sprite(parent_folder: String, item_id: String) -> Texture2D:
 	var complete_filepath = parent_folder + item_id + ".png"
@@ -99,8 +105,9 @@ func get_merged_tomes(tome1: Dictionary, tome2: Dictionary) -> Dictionary:
 func set_weapon_level(weapon_data: Dictionary, level: int) -> void:
 	pass
 
-func _get_weapon_data() -> Array[Dictionary]:
-	return get_csv_data("res://GameData/WeaponData.csv")
+# TODO: Implement with Level Multipliers
+func set_engraving_level(weapon_data: Dictionary, level: int) -> void:
+	pass
 
 ## Returns a Dictionary of a Weapon specialised for inventory and loadout usage.
 ## Will use the base values only.
@@ -111,14 +118,37 @@ func get_base_weapon_itemtype(weapon_id: String) -> Dictionary:
 		return {}
 	
 	var itemtype = {
+		"Damage": reference_item["BaseDamage"],
 		"Level": 1,
 		"Engraving": {}
 	}
 	
-	var values_to_copy = "Name,Id,BaseDamage,Knockback,UseTime,Mana,Lifetime,ProjSpeed,Colour1,Colour2,Desc".split(",")
+	var values_to_copy = "Name,Id,Knockback,UseTime,Mana,Lifetime,ProjSpeed,Colour1,Colour2,Desc".split(",")
 	for k in values_to_copy:
 		itemtype[k] = reference_item[k]
 	return itemtype
+
+func get_base_engrave_itemtype(engrave_id: String) -> Dictionary:
+	var reference_item = GameTools.get_dict_by_keyval(EngravingData, "Id", engrave_id)
+	if reference_item == {}:
+		print("EngraveId: ", engrave_id, " cannot be found!")
+		return {}
+	
+	var itemtype = {
+		"Level": 1,
+		"Value": float(reference_item["LevelValues"].split(";")[0])
+	}
+	
+	var values_to_copy = "Name,Id".split(",")
+	for k in values_to_copy:
+		itemtype[k] = reference_item[k]
+	return itemtype
+
+func _get_weapon_data() -> Array[Dictionary]:
+	return get_csv_data("res://GameData/WeaponData.csv")
+
+func _get_engraving_data() -> Array[Dictionary]:
+	return get_csv_data("res://GameData/EngravingData.csv")
 
 func get_file_text(path: String) -> String:
 	return FileAccess.open(path, FileAccess.READ).get_as_text()
