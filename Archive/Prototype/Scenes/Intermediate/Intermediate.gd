@@ -35,71 +35,71 @@ func major_player_values_changed() -> void:
 	hp_bar.max_value = game_player.hp_max
 	mp_bar.max_value = game_player.mp_max
 	
-	var primary = GlobalGame.Weapon["Primary"]["Id"]
-	var engrave = GlobalGame.Weapon["Engraving"]["Id"]
-	weapon_icon.self_modulate = GlobalGame.WeaponPrimaryData[primary]["Color"]
+	var primary = GameData.Weapon["Primary"]["Id"]
+	var engrave = GameData.Weapon["Engraving"]["Id"]
+	weapon_icon.self_modulate = GameData.WeaponPrimaryData[primary]["Color"]
 	
 	if engrave == "None":
 		engrave_icon.visible = false
 	else:
-		engrave_icon.self_modulate = GlobalGame.WeaponEngravingData[engrave]["Color"]
+		engrave_icon.self_modulate = GameData.WeaponEngravingData[engrave]["Color"]
 		engrave_icon.visible = true
 	
 	weapon_title.text = "{0} {1} Tome".format([engrave.replace("None",""), primary.replace("None","Basic")]).lstrip(" ")
 
 func select_buy_menu_options() -> void:
-	var spell_option = GlobalGame.WeaponPrimaryData.keys().slice(1).pick_random()
+	var spell_option = GameData.WeaponPrimaryData.keys().slice(1).pick_random()
 	spell_id = spell_option
-	spell_selection = GlobalGame.WeaponPrimaryData[spell_option]
+	spell_selection = GameData.WeaponPrimaryData[spell_option]
 	
 	var spell_button: Button = selection_container.get_children()[0]
 	spell_button.get_node("Title").text = spell_option + " Tome"
 	spell_button.get_node("Desc").text = spell_selection["Description"]
 	spell_button.get_node("Icon").self_modulate = spell_selection["Color"]
-	spell_button.get_node("HBoxContainer/Cost").text = GlobalGame.value_commas(spell_selection["Cost"])
+	spell_button.get_node("HBoxContainer/Cost").text = GameTools.value_commas(spell_selection["Cost"])
 	
-	var engrave_option = GlobalGame.WeaponEngravingData.keys().pick_random()
+	var engrave_option = GameData.WeaponEngravingData.keys().pick_random()
 	engrave_id = engrave_option
-	engrave_selection = GlobalGame.WeaponEngravingData[engrave_option]
+	engrave_selection = GameData.WeaponEngravingData[engrave_option]
 	
 	var engrave_button: Button = selection_container.get_children()[1]
 	engrave_button.get_node("Title").text = engrave_option + " Engraving"
 	engrave_button.get_node("Desc").text = engrave_selection["Description"]
 	engrave_button.get_node("Icon").self_modulate = engrave_selection["Color"]
-	engrave_button.get_node("HBoxContainer/Cost").text = GlobalGame.value_commas(engrave_selection["Cost"])
+	engrave_button.get_node("HBoxContainer/Cost").text = GameTools.value_commas(engrave_selection["Cost"])
 	
 	var accessory_button: Button = selection_container.get_children()[2]
 	accessory_button.get_node("Title").text = "Starbound Charm"
 	accessory_button.get_node("Desc").text = "+25 Max MP\nAccessories are not available currently."
 	accessory_button.get_node("Icon").self_modulate = Color("bc36ff")
-	accessory_button.get_node("HBoxContainer/Cost").text = GlobalGame.value_commas(35)
+	accessory_button.get_node("HBoxContainer/Cost").text = GameTools.value_commas(35)
 
 func spell_buy() -> void:
-	if GlobalGame.Essence < spell_selection["Cost"]:
+	if GameData.Essence < spell_selection["Cost"]:
 		return
 	
 	$CanvasLayer/BuyMenu/VBoxContainer/Button1.disabled = true
-	if GlobalGame.Weapon["Primary"]["Id"] == "None":
-		GlobalGame.Weapon["Primary"]["Id"] = spell_id
+	if GameData.Weapon["Primary"]["Id"] == "None":
+		GameData.Weapon["Primary"]["Id"] = spell_id
 		
 		match spell_id:
-			"Shock": GlobalGame.Weapon["Damage"] = 2.5
-			"Venom": GlobalGame.Weapon["ManaUsage"] = 30.0
-			"Abyss": GlobalGame.Weapon["Speed"] = 150.0
+			"Shock": GameData.Weapon["Damage"] = 2.5
+			"Venom": GameData.Weapon["ManaUsage"] = 30.0
+			"Abyss": GameData.Weapon["Speed"] = 150.0
 	
-	GlobalGame.Essence -= GlobalGame.WeaponEngravingData[engrave_id]["Cost"]
+	GameData.Essence -= GameData.WeaponEngravingData[engrave_id]["Cost"]
 	player_values_changed()
 	major_player_values_changed()
 
 func engrave_buy() -> void:
-	if GlobalGame.Essence < engrave_selection["Cost"]:
+	if GameData.Essence < engrave_selection["Cost"]:
 		return
 	
 	$CanvasLayer/BuyMenu/VBoxContainer/Button2.disabled = true
-	if GlobalGame.Weapon["Engraving"]["Id"] == "None":
-		GlobalGame.Weapon["Engraving"]["Id"] = engrave_id
+	if GameData.Weapon["Engraving"]["Id"] == "None":
+		GameData.Weapon["Engraving"]["Id"] = engrave_id
 	
-	GlobalGame.Essence -= GlobalGame.WeaponEngravingData[engrave_id]["Cost"]
+	GameData.Essence -= GameData.WeaponEngravingData[engrave_id]["Cost"]
 	player_values_changed()
 	major_player_values_changed()
 
@@ -108,5 +108,5 @@ func menu_close() -> void:
 
 func end_trigger(area: Area2D) -> void:
 	if area.get_parent() is Player:
-		GlobalGame.LEVEL += 1
+		GameData.LEVEL += 1
 		get_tree().change_scene_to_file("res://Prototype/Scenes/GameScene/game_scene.tscn")

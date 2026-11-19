@@ -95,17 +95,20 @@ func major_player_values_changed() -> void:
 		hp_bar.max_value = player_reference.hp_max
 		mp_bar.max_value = player_reference.mp_max
 	
-	#var primary = GlobalGame.Weapon["Primary"]["Id"]
-	#var engrave = GlobalGame.Weapon["Engraving"]["Id"]
-	#weapon_icon.self_modulate = GlobalGame.WeaponPrimaryData[primary]["Color"]
+	# TODO: Implement Engraving data
 	
-	#if engrave == "None":
-		#engrave_icon.visible = false
-	#else:
-		#engrave_icon.self_modulate = GlobalGame.WeaponEngravingData[engrave]["Color"]
-		#engrave_icon.visible = true
+	var current_tome: Dictionary = GameData.CurrentPlayerLoadout["Weapon"]
+	weapon_icon.texture = GameData.get_weapon_sprite(current_tome["Id"])
 	
-	#weapon_title.text = "{0} {1} Tome".format([engrave.replace("None",""), primary.replace("None","Basic")]).lstrip(" ")
+	var tome_col_1: Color = current_tome["Colour1"]
+	var tome_col_2: Color = current_tome["Colour2"]
+	(weapon_slot.material as ShaderMaterial).set_shader_parameter("first_color", tome_col_1)
+	(weapon_slot.material as ShaderMaterial).set_shader_parameter("second_color", tome_col_2)
+	
+	var current_tome_engrave: Dictionary = current_tome["Engraving"]
+	engrave_icon.visible = (!current_tome_engrave.is_empty())
+	
+	weapon_title.text = GameData.get_weapon_title(current_tome)
 
 func _text_glint_init() -> void:
 	(level_display_start.material as ShaderMaterial).set_shader_parameter("text_size", level_display_start.size)

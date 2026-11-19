@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckaj667aib3sd"
-path="res://.godot/imported/tome_drowned.png-a98c33e40cf705f1ebf9b1d299296830.ctex"
+uid="uid://cnedhinb44l0c"
+path="res://.godot/imported/vicarious.png-a14fe80a430c943301f010d78e2597b4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Weapons/Tomes/tome_drowned.png"
-dest_files=["res://.godot/imported/tome_drowned.png-a98c33e40cf705f1ebf9b1d299296830.ctex"]
+source_file="res://Weapons/Tomes/vicarious.png"
+dest_files=["res://.godot/imported/vicarious.png-a14fe80a430c943301f010d78e2597b4.ctex"]
 
 [params]
 

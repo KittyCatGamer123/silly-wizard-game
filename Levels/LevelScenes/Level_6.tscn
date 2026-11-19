@@ -258,6 +258,9 @@ floor_constant_speed = true
 game_reference = NodePath("..")
 interface_reference = NodePath("../GameUI")
 
+[node name="Tome" parent="Player" index="7" unique_id=1625172089]
+texture = null
+
 [node name="FilthNPC" parent="." unique_id=1051274036 instance=ExtResource("9_ljlg4")]
 position = Vector2(579, -24)
 health = 25.0

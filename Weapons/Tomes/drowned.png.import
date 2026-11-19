@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjn57spuyyui5"
-path="res://.godot/imported/Tome.png-933c030dd7a42abe7f9fa9cc79795912.ctex"
+uid="uid://dbmhwutjmhlnj"
+path="res://.godot/imported/drowned.png-9c4a6f99454360403243217eb730d458.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Archive/Prototype/Sprites/Tome.png"
-dest_files=["res://.godot/imported/Tome.png-933c030dd7a42abe7f9fa9cc79795912.ctex"]
+source_file="res://Weapons/Tomes/drowned.png"
+dest_files=["res://.godot/imported/drowned.png-9c4a6f99454360403243217eb730d458.ctex"]
 
 [params]
 

@@ -28,3 +28,10 @@ func value_to_roman_numeral(value: int) -> String:
 			result += key
 			value -= RomanNumerals[key]
 	return result
+
+func get_dict_by_keyval(iterable: Array[Dictionary], key: String, val: Variant) -> Dictionary:
+	for it in iterable:
+		if key in it.keys():
+			if it[key] == val:
+				return it
+	return {}
