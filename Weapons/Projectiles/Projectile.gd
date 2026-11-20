@@ -12,6 +12,7 @@ var projectile_lifetime: float = 1
 @export var projectile_sprite: Sprite2D
 @export var projectile_lighting: PointLight2D
 @export var surrounding_particles: GPUParticles2D
+@export var projectile_rigidbody: RigidBody2D
 
 var direction := Vector2.ZERO
 var alive: bool = true
@@ -68,6 +69,9 @@ func end_projectile() -> void:
 	
 	if surrounding_particles:
 		surrounding_particles.emitting = false
+	
+	if projectile_rigidbody:
+		projectile_rigidbody.set_deferred("freeze", true)
 	
 	projectile_speed = 0
 	

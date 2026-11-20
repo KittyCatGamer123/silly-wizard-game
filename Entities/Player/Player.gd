@@ -90,7 +90,9 @@ func _input(event: InputEvent) -> void:
 				use_weapon()
 		
 	elif event is InputEventMouseMotion:
-		move_camera_offset(sign(event.position.x - 600))
+		# Silly system please ignore :3
+		var section = floor(event.position.x / (1200 / 3)) - 1
+		move_camera_offset(section)
 
 func use_weapon() -> void:
 	if weapon_is_using:

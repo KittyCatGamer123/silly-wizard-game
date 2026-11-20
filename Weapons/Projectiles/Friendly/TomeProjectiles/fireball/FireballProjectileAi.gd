@@ -5,8 +5,16 @@ var bounce_times: int = 3
 func _ready() -> void:
 	projectile_area2d.connect("body_entered", _body_entered)
 
+	var weapon_data: Dictionary = GameData.CurrentPlayerLoadout["Weapon"]
+	
+	projectile_damage = weapon_data["Damage"]
+	projectile_knockback = weapon_data["Knockback"]
+	projectile_speed = weapon_data["ProjSpeed"]
+	projectile_lifetime = weapon_data["Lifetime"]
+
 func projectile_post_start(shoot_point: Vector2) -> void:
-	look_at(shoot_point)
+	var shoot_direction = (shoot_point - global_position).normalized()
+	projectile_rigidbody.apply_central_impulse(shoot_direction * 400)
 
 func _body_entered(body) -> void:
 	if body is TileMapLayer:
