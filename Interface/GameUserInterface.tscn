@@ -7,7 +7,7 @@
 [ext_resource type="Shader" uid="uid://ddmgwm5h2f5pg" path="res://Resources/gradient_overlay.gdshader" id="4_jg086"]
 [ext_resource type="Texture2D" uid="uid://bmuwkbpd5jm3l" path="res://Interface/InterfaceAssets/panel_ui.png" id="5_e75oj"]
 [ext_resource type="Texture2D" uid="uid://b4seh4020c248" path="res://Weapons/Charges/charge_starspread.png" id="6_eg6o4"]
-[ext_resource type="Texture2D" uid="uid://dbmhwutjmhlnj" path="res://Weapons/Tomes/drowned.png" id="8_7pfls"]
+[ext_resource type="Texture2D" uid="uid://bnekufayehta" path="res://Weapons/Tomes/fireball.png" id="8_7pfls"]
 [ext_resource type="Texture2D" uid="uid://cvo45swx86f6x" path="res://Weapons/Engravings/homing.png" id="8_xk1xd"]
 [ext_resource type="Texture2D" uid="uid://cw33j61b4iw0m" path="res://Weapons/Accessories/acc_none.png" id="9_63o1w"]
 [ext_resource type="Shader" uid="uid://do6hhl31g8ohl" path="res://Resources/text_glint.gdshader" id="10_nq6uu"]
@@ -129,8 +129,8 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rcggt"]
 shader = ExtResource("4_jg086")
-shader_parameter/first_color = Color(0, 0.8, 1, 0.5294118)
-shader_parameter/second_color = Color(0.5, 0, 1, 0.5294118)
+shader_parameter/first_color = Color(0.3666668, 0, 1, 0.4627451)
+shader_parameter/second_color = Color(1, 0.100000024, 0.69999987, 0.27058825)
 shader_parameter/position = 0.0
 shader_parameter/size = 1.5000000475
 shader_parameter/angle = 329.3410156436975
@@ -326,7 +326,7 @@ _data = {
 
 [sub_resource type="Gradient" id="Gradient_rcggt"]
 offsets = PackedFloat32Array(0.6987952, 1)
-colors = PackedColorArray(0, 0, 0, 0, 1, 0, 0, 0.078431375)
+colors = PackedColorArray(0, 0, 0, 0, 1, 0, 0, 0.1764706)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_b6usf"]
 gradient = SubResource("Gradient_rcggt")
@@ -595,6 +595,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_xk1xd")
@@ -741,6 +745,7 @@ vertical_alignment = 1
 libraries/ = SubResource("AnimationLibrary_tbj8u")
 
 [node name="HurtOverlay" type="TextureRect" parent="." unique_id=1659104279]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

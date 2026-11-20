@@ -27,6 +27,9 @@ func _process(delta: float) -> void:
 @abstract
 func _on_area_entered(area: Area2D) -> void
 
+func projectile_post_start(shoot_point: Vector2) -> void:
+	pass
+
 @abstract
 func projectile_update(delta: float) -> void
 
@@ -47,6 +50,7 @@ func start_projectile(shoot_point: Vector2) -> void:
 			projectile_sprite.rotation_degrees -= 180
 	
 	alive = true
+	projectile_post_start(shoot_point)
 
 func end_projectile() -> void:
 	if not alive:

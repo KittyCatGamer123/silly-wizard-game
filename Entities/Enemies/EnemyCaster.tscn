@@ -203,7 +203,7 @@ color_ramp = SubResource("GradientTexture1D_vkh1j")
 hue_variation_min = -2.2351742e-08
 hue_variation_max = -2.2351742e-08
 
-[node name="EnemyCaster" type="CharacterBody2D" unique_id=310718420]
+[node name="EnemyCaster" type="CharacterBody2D" unique_id=310718420 groups=["Enemy"]]
 scale = Vector2(1.5, 1.5)
 collision_layer = 0
 script = ExtResource("1_y7lv6")

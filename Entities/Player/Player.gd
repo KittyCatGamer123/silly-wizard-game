@@ -74,7 +74,6 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	update_animation(direction)
-	move_camera_offset(previous_direction)
 	mana_regeneration(direction)
 
 func _input(event: InputEvent) -> void:
@@ -89,6 +88,9 @@ func _input(event: InputEvent) -> void:
 		elif event.button_index == MOUSE_BUTTON_LEFT and event.pressed and (not AltCharging):
 			if MP >= loadout_data["Weapon"]["Mana"]:
 				use_weapon()
+		
+	elif event is InputEventMouseMotion:
+		move_camera_offset(sign(event.position.x - 600))
 
 func use_weapon() -> void:
 	if weapon_is_using:
@@ -228,10 +230,13 @@ func recieve_damage(dmg: float, knockback_force: float, src_position: Vector2) -
 		player_death()
 	else:
 		damage_area.set_deferred("monitoring", false)
-		animsprite.self_modulate = Color("ffffff87")
+		_set_modulate(Color("ffffff87"))
 		await get_tree().create_timer(1.5).timeout
-		animsprite.self_modulate = Color("ffffffff")
+		_set_modulate(Color("ffffffff"))
 		damage_area.set_deferred("monitoring", true)
+
+func _set_modulate(col: Color) -> void:
+	animsprite.material.set_shader_parameter("rectColor", col)
 
 func player_death() -> void:
 	if not alive: 

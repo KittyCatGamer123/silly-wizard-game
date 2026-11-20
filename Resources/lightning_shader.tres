@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://yu3awod8slse"]
+
+[ext_resource type="Shader" uid="uid://cr2021040etlc" path="res://Resources/lightning.gdshader" id="1_x4nva"]
+
+[sub_resource type="Gradient" id="Gradient_1esrv"]
+colors = PackedColorArray(1, 0, 0.7666664, 1, 1, 0, 0.7666664, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wgnve"]
+gradient = SubResource("Gradient_1esrv")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ljtuj"]
+
+[resource]
+shader = ExtResource("1_x4nva")
+shader_parameter/color_gradient = SubResource("GradientTexture1D_wgnve")
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_ljtuj")
+shader_parameter/speed = 5.0
+shader_parameter/variation = 1.0
+shader_parameter/width = 1.0

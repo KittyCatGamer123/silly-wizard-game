@@ -27,6 +27,10 @@ window/size/viewport_height=750
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[global_group]
+
+Enemy=""
+
 [input]
 
 left_movement={

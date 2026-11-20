@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://d1y4dr3aqmw5c"]
+
+[ext_resource type="Script" uid="uid://btm602g4vygue" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/fireball/FireballProjectileAi.gd" id="1_3lkrh"]
+[ext_resource type="Shader" uid="uid://cradsv22svkdj" path="res://Resources/death_fire.gdshader" id="1_ocx6f"]
+[ext_resource type="Texture2D" uid="uid://o0n0eymvl08w" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/fireball/fireball.png" id="2_ocx6f"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3lkrh"]
+bounce = 0.9
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5dmus"]
+radius = 10.022198
+
+[sub_resource type="Gradient" id="Gradient_vkh1j"]
+offsets = PackedFloat32Array(0, 0.5180723, 0.71686745)
+colors = PackedColorArray(1.8247963, 0.9160796, 0.22117865, 1, 0.0744, 0.10251999, 0.12, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ocx6f"]
+gradient = SubResource("Gradient_vkh1j")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2l87s"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fgak3"]
+noise = SubResource("FastNoiseLite_2l87s")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1a8x3"]
+shader = ExtResource("1_ocx6f")
+shader_parameter/progress = 0.0
+shader_parameter/sprite_size = Vector2(20, 20)
+shader_parameter/origin = Vector2(0.5, 0.5)
+shader_parameter/borderWidth = 2.0
+shader_parameter/burnMult = 12.0
+shader_parameter/pixel_size = 0.001
+shader_parameter/blend_steps = 4.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_fgak3")
+shader_parameter/rectColor = Color(1, 1, 1, 1)
+shader_parameter/burnColor = Color(1, 0.4, 0.05, 1)
+shader_parameter/charColor = Color(1, 0.050980393, 0.050980393, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3lkrh"]
+radius = 14.0
+
+[node name="FireballProjectile" type="RigidBody2D" unique_id=1361933211 node_paths=PackedStringArray("projectile_area2d", "projectile_sprite", "projectile_lighting", "surrounding_particles")]
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_3lkrh")
+script = ExtResource("1_3lkrh")
+projectile_area2d = NodePath("HitBox")
+projectile_sprite = NodePath("Sprite")
+projectile_lighting = NodePath("PointLight2D2")
+surrounding_particles = NodePath("GPUParticles2D")
+
+[node name="HitBox" type="Area2D" parent="." unique_id=1654334790]
+scale = Vector2(1.5, 1.5)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1343255756]
+shape = SubResource("CircleShape2D_5dmus")
+
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=340530960]
+scale = Vector2(0.74999994, 0.74999994)
+energy = 1.5
+texture = SubResource("GradientTexture2D_ocx6f")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1051782397]
+material = SubResource("ShaderMaterial_1a8x3")
+scale = Vector2(0.7567567, 0.7567568)
+texture = ExtResource("2_ocx6f")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1965159769]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1939929871]
+shape = SubResource("CircleShape2D_3lkrh")

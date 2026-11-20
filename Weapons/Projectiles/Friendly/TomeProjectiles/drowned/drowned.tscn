@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bnhavuv2hggim"]
 
-[ext_resource type="Script" uid="uid://ctc5rqitl6u30" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/drowned/drowned.gd" id="1_befky"]
+[ext_resource type="Script" uid="uid://b68tsavldm526" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/LineProjectileAi.gd" id="1_awtgk"]
 [ext_resource type="Shader" uid="uid://cradsv22svkdj" path="res://Resources/death_fire.gdshader" id="2_37ckq"]
-[ext_resource type="Texture2D" uid="uid://b1gafjq1l8g4" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/skull_projectile.png" id="3_lbn20"]
+[ext_resource type="Texture2D" uid="uid://b1gafjq1l8g4" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/skullbreak/skullbreak.png" id="3_lbn20"]
 [ext_resource type="Texture2D" uid="uid://bb4pxdmcc20jf" path="res://Entities/particle.png" id="4_8a616"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1ay4j"]
@@ -65,7 +65,7 @@ hue_variation_min = -0.050000023
 hue_variation_max = 0.049999975
 
 [node name="DrownedProjectile" type="Node2D" unique_id=1624839188 node_paths=PackedStringArray("projectile_area2d", "projectile_sprite", "projectile_lighting", "surrounding_particles")]
-script = ExtResource("1_befky")
+script = ExtResource("1_awtgk")
 projectile_area2d = NodePath("Area2D")
 projectile_sprite = NodePath("Skull")
 projectile_lighting = NodePath("PointLight2D")
@@ -95,5 +95,3 @@ scale = Vector2(1.5, 1.5)
 amount = 30
 texture = ExtResource("4_8a616")
 process_material = SubResource("ParticleProcessMaterial_6udl5")
-
-[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]

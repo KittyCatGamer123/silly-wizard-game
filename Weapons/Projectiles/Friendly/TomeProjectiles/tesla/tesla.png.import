@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1gafjq1l8g4"
-path="res://.godot/imported/skull_projectile.png-3ff9ee39c46ee5525b3eb4f62def20bd.ctex"
+uid="uid://b4xxklamjg5ca"
+path="res://.godot/imported/tesla.png-6d3f9f93da47fe6a16912d979234ebd9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Weapons/Projectiles/Friendly/TomeProjectiles/skull_projectile.png"
-dest_files=["res://.godot/imported/skull_projectile.png-3ff9ee39c46ee5525b3eb4f62def20bd.ctex"]
+source_file="res://Weapons/Projectiles/Friendly/TomeProjectiles/tesla/tesla.png"
+dest_files=["res://.godot/imported/tesla.png-6d3f9f93da47fe6a16912d979234ebd9.ctex"]
 
 [params]
 

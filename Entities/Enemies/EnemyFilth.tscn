@@ -224,7 +224,7 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbj8u"]
 size = Vector2(12.66666, 30.666668)
 
-[node name="FilthNPC" type="CharacterBody2D" unique_id=1051274036]
+[node name="FilthNPC" type="CharacterBody2D" unique_id=1051274036 groups=["Enemy"]]
 scale = Vector2(1.5, 1.5)
 collision_layer = 0
 script = ExtResource("1_7h88y")

@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://d2qfjkedv0oh8"]
+
+[ext_resource type="Script" uid="uid://dvbie1w214o4" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/tesla/TeslaProjectileAi.gd" id="1_6svju"]
+[ext_resource type="Shader" uid="uid://cradsv22svkdj" path="res://Resources/death_fire.gdshader" id="2_yqdx3"]
+[ext_resource type="Texture2D" uid="uid://b4xxklamjg5ca" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/tesla/tesla.png" id="3_yqdx3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1esrv"]
+size = Vector2(8.666666, 2.6666667)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yqdx3"]
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_yqdx3"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1esrv"]
+gradient = SubResource("Gradient_yqdx3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yqdx3"]
+particle_flag_disable_z = true
+angle_min = 1.0728835e-05
+angle_max = 720.0
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = -1.6093254e-05
+gravity = Vector3(0, 0, 0)
+scale_min = 0.099999994
+scale_max = 0.5
+color = Color(1, 0.27999997, 0.89199996, 0.7058824)
+color_ramp = SubResource("GradientTexture1D_1esrv")
+hue_variation_min = -0.050000023
+hue_variation_max = -2.2351742e-08
+turbulence_enabled = true
+turbulence_noise_speed = Vector3(10, 10, 0)
+turbulence_noise_speed_random = 4.0
+turbulence_influence_min = 1.0
+turbulence_influence_max = 1.0
+turbulence_initial_displacement_min = 1.0000015
+turbulence_initial_displacement_max = 100.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yqdx3"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1esrv"]
+noise = SubResource("FastNoiseLite_yqdx3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ljtuj"]
+shader = ExtResource("2_yqdx3")
+shader_parameter/progress = 0.0
+shader_parameter/sprite_size = Vector2(20, 20)
+shader_parameter/origin = Vector2(0.5, 0.5)
+shader_parameter/borderWidth = 2.0
+shader_parameter/burnMult = 12.0
+shader_parameter/pixel_size = 0.001
+shader_parameter/blend_steps = 4.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_1esrv")
+shader_parameter/rectColor = Color(1, 1, 1, 1)
+shader_parameter/burnColor = Color(1, 0.4, 0.05, 1)
+shader_parameter/charColor = Color(1, 0.050980393, 0.050980393, 1)
+
+[sub_resource type="Gradient" id="Gradient_l5x6l"]
+offsets = PackedFloat32Array(0, 0.5180723, 0.67469877)
+colors = PackedColorArray(1, 0.42000002, 0.76800025, 1, 0.8, 0, 0.48000032, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yqdx3"]
+gradient = SubResource("Gradient_l5x6l")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 1)
+
+[node name="TeslaProjectile" type="Node2D" unique_id=1810479558 node_paths=PackedStringArray("projectile_area2d", "projectile_sprite", "projectile_lighting", "surrounding_particles")]
+script = ExtResource("1_6svju")
+projectile_area2d = NodePath("Hitbox")
+projectile_sprite = NodePath("Sprite")
+projectile_lighting = NodePath("PointLight2D")
+surrounding_particles = NodePath("GPUParticles2D")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1518178106]
+scale = Vector2(1.5, 1.5)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1744543667]
+position = Vector2(-4.333333, 0)
+shape = SubResource("RectangleShape2D_1esrv")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=822857339]
+material = SubResource("CanvasItemMaterial_yqdx3")
+amount = 100
+texture = ExtResource("3_yqdx3")
+process_material = SubResource("ParticleProcessMaterial_yqdx3")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1434217697]
+material = SubResource("ShaderMaterial_ljtuj")
+position = Vector2(-5.5, 0)
+scale = Vector2(0.2857143, 0.2857143)
+texture = ExtResource("3_yqdx3")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=173748976]
+position = Vector2(-3.9999995, 0)
+scale = Vector2(1.125, 0.86929417)
+energy = 3.0
+texture = SubResource("GradientTexture2D_yqdx3")

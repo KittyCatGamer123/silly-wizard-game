@@ -1,9 +1,8 @@
 extends FriendlyProjectile
+class_name LineProjectileAi
 
 var engraving_data: Dictionary = {}
 var engraving_reference = null
-#@onready var seeking_area: Area2D = $HoningRange
-#var seeking_strength: float = 6.0
 
 func _ready() -> void:
 	var weapon_data: Dictionary = GameData.CurrentPlayerLoadout["Weapon"]
@@ -15,12 +14,13 @@ func _ready() -> void:
 	
 	engraving_data = weapon_data["Engraving"]
 	
-	if engraving_data["Id"] == "homing":
-		var e_inst = load(EngravingPath + "homing.tscn")
-		engraving_reference = e_inst.instantiate()
-	
-	if engraving_reference != null:
-		add_child(engraving_reference)
+	if !engraving_data.is_empty():
+		if engraving_data["Id"] == "homing":
+			var e_inst = load(EngravingPath + "homing.tscn")
+			engraving_reference = e_inst.instantiate()
+		
+		if engraving_reference != null:
+			add_child(engraving_reference)
 
 func projectile_update(delta: float) -> void:
 	engraving_check(delta)
@@ -46,5 +46,7 @@ func engraving_homing(delta: float) -> void:
 		var enemy_target = enemies_in_range[0]
 		var to_target = (enemy_target.global_position - global_position).normalized()
 		direction = direction.lerp(to_target, engraving_data["Value"] * delta).normalized()
-		projectile_sprite.rotation = direction.angle()
-		projectile_sprite.flip_h = (direction.x < 0)
+		
+		if projectile_sprite:
+			projectile_sprite.rotation = direction.angle()
+			projectile_sprite.flip_h = (direction.x < 0)

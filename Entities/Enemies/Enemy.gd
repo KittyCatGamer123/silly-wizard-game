@@ -23,7 +23,7 @@ func _ready() -> void:
 
 func recieve_damage(dmg: float, incoming_knockback: float, src_position: Vector2) -> void:
 	health -= dmg
-	incoming_knockback = maxf(0.0, incoming_knockback - knockback_resist)
+	incoming_knockback = maxf(15.0, incoming_knockback - knockback_resist)
 	
 	var knockback_direction = global_position - src_position
 	knockback_velocity = sign(knockback_direction.x) * incoming_knockback
