@@ -31,7 +31,7 @@ var alt_charge_limit: float = 1.75
 @onready var animsprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var player_camera: Camera2D = $Camera2D
 @onready var damage_area: Area2D = $DamageArea
-const camera_offset: Vector2 = Vector2(70, -75)
+const camera_offset: Vector2 = Vector2(70, -25)
 
 var loadout_data: Dictionary = {}
 var loadout_projectile = null
@@ -91,8 +91,9 @@ func _input(event: InputEvent) -> void:
 		
 	elif event is InputEventMouseMotion:
 		# Silly system please ignore :3
-		var section = floor(event.position.x / (1200 / 3)) - 1
-		move_camera_offset(section)
+		var horizontal_section = floor(event.position.x / (1200.0 / 3.0)) - 1
+		var vertical_section = floor(event.position.y / (750.0 / 4.0)) - 1
+		move_camera_offset(horizontal_section, -vertical_section)
 
 func use_weapon() -> void:
 	if weapon_is_using:
@@ -252,15 +253,17 @@ func player_death() -> void:
 	await get_tree().create_tween().tween_method(func(v: float): 
 		animsprite.material.set_shader_parameter("progress", v), 0.2, 1.0, 0.8).finished
 
-func move_camera_offset(offset_direction: int):
+func move_camera_offset(horizontal_dir: int, vertical_dir: int):
 	if player_camera == null:
 		return
 	
 	var fixed_offset = camera_offset
-	fixed_offset.x *= offset_direction
+	fixed_offset.x *= horizontal_dir
+	fixed_offset.y *= vertical_dir
+	fixed_offset.y -= 75
 	
-	if player_camera.offset.x != offset_direction:
-		create_tween().tween_property(player_camera, "offset", fixed_offset, 0.5)
+	if player_camera.offset != fixed_offset:
+		create_tween().tween_property(player_camera, "offset", fixed_offset, 0.5).set_ease(Tween.EASE_OUT)
 
 func update_loadout(data: Dictionary) -> void:
 	var projectile_path = "res://Weapons/Projectiles/Friendly/TomeProjectiles/{0}/{0}.tscn".replace("{0}", data["Weapon"]["Id"])

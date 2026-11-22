@@ -68,6 +68,7 @@ func end_projectile() -> void:
 		projectile_area2d.set_deferred("monitorable", false)
 	
 	if surrounding_particles:
+		create_tween().tween_property(projectile_lighting, "color", Color("#0000"), 0.75)
 		surrounding_particles.emitting = false
 	
 	if projectile_rigidbody:
