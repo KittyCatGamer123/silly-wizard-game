@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://g6lsrrirycsc"]
+
+[ext_resource type="Shader" uid="uid://cradsv22svkdj" path="res://Resources/death_fire.gdshader" id="1_paqrr"]
+[ext_resource type="Script" uid="uid://dw4rw2xg2s7nj" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/vicarious/VicariousProjectileAi.gd" id="1_rrhsh"]
+[ext_resource type="Texture2D" uid="uid://b1gafjq1l8g4" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/skullbreak/skullbreak.png" id="2_rrhsh"]
+[ext_resource type="Texture2D" uid="uid://bb4pxdmcc20jf" path="res://Entities/particle.png" id="3_sj70t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n1eua"]
+radius = 7.363574
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8ipod"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fgak3"]
+noise = SubResource("FastNoiseLite_8ipod")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_krt5l"]
+shader = ExtResource("1_paqrr")
+shader_parameter/progress = 0.0
+shader_parameter/sprite_size = Vector2(20, 20)
+shader_parameter/origin = Vector2(0.5, 0.5)
+shader_parameter/borderWidth = 2.0
+shader_parameter/burnMult = 12.0
+shader_parameter/pixel_size = 0.001
+shader_parameter/blend_steps = 4.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_fgak3")
+shader_parameter/rectColor = Color(1, 0.56, 0.5673332, 1)
+shader_parameter/burnColor = Color(1, 0.4, 0.05, 1)
+shader_parameter/charColor = Color(1, 0.050980393, 0.050980393, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_35wy0"]
+light_mode = 1
+
+[sub_resource type="Curve" id="Curve_w2q22"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.08108109, 1), 0.0, 0.0, 0, 0, Vector2(0.8513514, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_6u7ti"]
+curve = SubResource("Curve_w2q22")
+
+[sub_resource type="Gradient" id="Gradient_yqdx3"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1esrv"]
+gradient = SubResource("Gradient_yqdx3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_22n46"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 13.0
+angle_min = -99.99999
+angle_max = 100.000015
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+tangential_accel_min = -50.0
+tangential_accel_max = 49.999996
+scale_min = 0.19999999
+scale_max = 0.7
+color = Color(1, 1, 1, 0.7058824)
+color_ramp = SubResource("GradientTexture1D_1esrv")
+alpha_curve = SubResource("CurveTexture_6u7ti")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = 0.09999997
+turbulence_enabled = true
+turbulence_noise_speed_random = 4.0
+turbulence_influence_min = 1.0
+turbulence_influence_max = 1.0
+turbulence_initial_displacement_min = 1.0000015
+turbulence_initial_displacement_max = 100.0
+
+[sub_resource type="Gradient" id="Gradient_l5x6l"]
+offsets = PackedFloat32Array(0, 0.21084337, 0.67469877)
+colors = PackedColorArray(1, 0.42000002, 0.76800025, 1, 0.8, 0, 0.48000032, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rrhsh"]
+gradient = SubResource("Gradient_l5x6l")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 1)
+
+[node name="VicariousProjectile" type="Node2D" unique_id=1226514019 node_paths=PackedStringArray("projectile_area2d", "projectile_sprite", "projectile_lighting", "surrounding_particles")]
+script = ExtResource("1_rrhsh")
+projectile_area2d = NodePath("Area2D")
+projectile_sprite = NodePath("Skull")
+projectile_lighting = NodePath("PointLight2D")
+surrounding_particles = NodePath("Surrounding")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=916743362]
+scale = Vector2(1.5, 1.5)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1008622704]
+shape = SubResource("CircleShape2D_n1eua")
+
+[node name="Skull" type="Sprite2D" parent="." unique_id=773908110]
+material = SubResource("ShaderMaterial_krt5l")
+scale = Vector2(0.84210527, 0.8421053)
+texture = ExtResource("2_rrhsh")
+
+[node name="Surrounding" type="GPUParticles2D" parent="." unique_id=725654686]
+self_modulate = Color(0.60133314, 0, 0.82, 1)
+material = SubResource("CanvasItemMaterial_35wy0")
+scale = Vector2(1.5, 1.5)
+amount = 100
+texture = ExtResource("3_sj70t")
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_22n46")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1635256134]
+position = Vector2(-3.9999995, 0)
+scale = Vector2(1.125, 0.86929417)
+energy = 3.0
+texture = SubResource("GradientTexture2D_rrhsh")

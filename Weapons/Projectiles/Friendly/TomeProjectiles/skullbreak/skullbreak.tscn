@@ -8,19 +8,19 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_om7il"]
 radius = 9.333334
 
-[sub_resource type="Gradient" id="Gradient_e8gug"]
+[sub_resource type="Gradient" id="Gradient_fgak3"]
 offsets = PackedFloat32Array(0, 0.33734939, 0.67469877)
 colors = PackedColorArray(0.60333335, 0.3, 1, 1, 1, 0.42000002, 0.76800025, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_j8015"]
-gradient = SubResource("Gradient_e8gug")
+gradient = SubResource("Gradient_fgak3")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_govgw"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fgak3"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uqh4t"]
 noise = SubResource("FastNoiseLite_govgw")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fks4d"]
@@ -32,7 +32,7 @@ shader_parameter/borderWidth = 2.0
 shader_parameter/burnMult = 12.0
 shader_parameter/pixel_size = 0.001
 shader_parameter/blend_steps = 4.0
-shader_parameter/noiseTexture = SubResource("NoiseTexture2D_fgak3")
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_uqh4t")
 shader_parameter/rectColor = Color(1, 1, 1, 1)
 shader_parameter/burnColor = Color(1, 0.4, 0.05, 1)
 shader_parameter/charColor = Color(1, 0.050980393, 0.050980393, 1)
@@ -44,7 +44,7 @@ light_mode = 1
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.08108109, 1), 0.0, 0.0, 0, 0, Vector2(0.8513514, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_6u7ti"]
+[sub_resource type="CurveTexture" id="CurveTexture_j8015"]
 curve = SubResource("Curve_s2saj")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nw871"]
@@ -61,7 +61,7 @@ tangential_accel_min = -50.0
 tangential_accel_max = 49.999996
 scale_min = 0.19999999
 scale_max = 0.5
-alpha_curve = SubResource("CurveTexture_6u7ti")
+alpha_curve = SubResource("CurveTexture_j8015")
 hue_variation_min = -2.2351742e-08
 hue_variation_max = 0.09999997
 

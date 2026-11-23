@@ -7,6 +7,7 @@ var projectile_damage: float = 1
 var projectile_knockback: float = 1
 var projectile_speed: float = 1
 var projectile_lifetime: float = 1
+var projectile_colours: Array[Color] = []
 
 @export var projectile_area2d: Area2D
 @export var projectile_sprite: Sprite2D

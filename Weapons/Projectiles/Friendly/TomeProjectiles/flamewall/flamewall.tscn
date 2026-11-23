@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://sd2ix8ype1gh"]
+
+[ext_resource type="Shader" uid="uid://cradsv22svkdj" path="res://Resources/death_fire.gdshader" id="1_k0bmf"]
+[ext_resource type="Script" uid="uid://dia2p3bempdf" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/flamewall/FlamewallProjectileAi.gd" id="1_qe7jy"]
+[ext_resource type="Texture2D" uid="uid://o0n0eymvl08w" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/fireball/fireball.png" id="2_qe7jy"]
+[ext_resource type="Texture2D" uid="uid://bb4pxdmcc20jf" path="res://Entities/particle.png" id="3_3j878"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jl073"]
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e1uc4"]
+radius = 9.333334
+
+[sub_resource type="Gradient" id="Gradient_vkh1j"]
+offsets = PackedFloat32Array(0, 0.5180723, 0.71686745)
+colors = PackedColorArray(0.22117865, 1.8247963, 1.0497143, 1, 0.0744, 0.10251999, 0.12, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cujnj"]
+gradient = SubResource("Gradient_vkh1j")
+width = 67
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_i0srs"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fgak3"]
+noise = SubResource("FastNoiseLite_i0srs")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qm7q1"]
+shader = ExtResource("1_k0bmf")
+shader_parameter/progress = 0.0
+shader_parameter/sprite_size = Vector2(20, 20)
+shader_parameter/origin = Vector2(0.5, 0.5)
+shader_parameter/borderWidth = 2.0
+shader_parameter/burnMult = 12.0
+shader_parameter/pixel_size = 0.001
+shader_parameter/blend_steps = 4.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_fgak3")
+shader_parameter/rectColor = Color(0, 0.7666669, 1, 1)
+shader_parameter/burnColor = Color(1, 0.4, 0.05, 1)
+shader_parameter/charColor = Color(1, 0.050980393, 0.050980393, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2sq0t"]
+radius = 13.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_h0tp3"]
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_lofms"]
+offsets = PackedFloat32Array(0, 0.08196721, 0.7704918, 1)
+colors = PackedColorArray(0.71, 0.71, 0.71, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8s3cg"]
+gradient = SubResource("Gradient_lofms")
+
+[sub_resource type="Curve" id="Curve_3bmxl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.24324325, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_2r1d7"]
+curve = SubResource("Curve_3bmxl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qqodl"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 15.0
+angle_min = -360.0
+angle_max = 360.00003
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = -1.6093254e-05
+gravity = Vector3(0, -1, 0)
+scale_min = 0.29999998
+scale_curve = SubResource("CurveTexture_2r1d7")
+color = Color(0, 1, 0.88333344, 0.84313726)
+color_ramp = SubResource("GradientTexture1D_8s3cg")
+hue_variation_min = -0.100000024
+hue_variation_max = 0.09999997
+
+[node name="FlamewallProjectile" type="Node2D" unique_id=1542132928 node_paths=PackedStringArray("projectile_area2d", "projectile_sprite", "projectile_lighting", "surrounding_particles", "projectile_rigidbody")]
+script = ExtResource("1_qe7jy")
+projectile_area2d = NodePath("ProjectileBody/HitBox")
+projectile_sprite = NodePath("ProjectileBody/Sprite")
+projectile_lighting = NodePath("ProjectileBody/PointLight2D2")
+surrounding_particles = NodePath("ProjectileBody/GPUParticles2D")
+projectile_rigidbody = NodePath("ProjectileBody")
+
+[node name="ProjectileBody" type="RigidBody2D" parent="." unique_id=980492064]
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_jl073")
+
+[node name="HitBox" type="Area2D" parent="ProjectileBody" unique_id=340657165]
+scale = Vector2(1.5, 1.5)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileBody/HitBox" unique_id=819994715]
+visible = false
+shape = SubResource("CircleShape2D_e1uc4")
+
+[node name="PointLight2D2" type="PointLight2D" parent="ProjectileBody" unique_id=1709137001]
+scale = Vector2(2.2812498, 2.28125)
+energy = 1.5
+texture = SubResource("GradientTexture2D_cujnj")
+
+[node name="Sprite" type="Sprite2D" parent="ProjectileBody" unique_id=1860552993]
+material = SubResource("ShaderMaterial_qm7q1")
+scale = Vector2(0.70270276, 0.70270276)
+texture = ExtResource("2_qe7jy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileBody" unique_id=84881558]
+visible = false
+shape = SubResource("CircleShape2D_2sq0t")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ProjectileBody" unique_id=1375982728]
+material = SubResource("CanvasItemMaterial_h0tp3")
+scale = Vector2(1.5, 1.5)
+amount = 65
+texture = ExtResource("3_3j878")
+lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_qqodl")

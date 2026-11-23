@@ -11,6 +11,7 @@ func _ready() -> void:
 	projectile_knockback = weapon_data["Knockback"]
 	projectile_speed = weapon_data["ProjSpeed"]
 	projectile_lifetime = weapon_data["Lifetime"]
+	projectile_colours = [weapon_data["Colour1"],weapon_data["Colour2"]]
 
 func projectile_post_start(shoot_point: Vector2) -> void:
 	var shoot_direction = (shoot_point - global_position).normalized()

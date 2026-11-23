@@ -3,7 +3,7 @@ class_name MainGame
 
 @export var LEVEL_ID: int = 1
 var game_active = false
-var cheats_nospawn: bool = true
+var cheats_nospawn: bool = false
 
 @export var game_player: Player
 @export var game_interface: GameUI

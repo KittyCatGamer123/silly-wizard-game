@@ -11,6 +11,7 @@ func _ready() -> void:
 	projectile_knockback = weapon_data["Knockback"]
 	projectile_speed = weapon_data["ProjSpeed"]
 	projectile_lifetime = weapon_data["Lifetime"]
+	projectile_colours = [weapon_data["Colour1"],weapon_data["Colour2"]]
 	
 	engraving_data = weapon_data["Engraving"]
 	

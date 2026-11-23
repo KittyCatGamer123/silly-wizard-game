@@ -15,8 +15,8 @@ func onEnemyHit(enemy_entity: Enemy) -> void:
 		return global_position.distance_to(x.global_position) < global_position.distance_to(y.global_position)
 	)
 	
-	# Send bolt to nearest 3 enemies
-	var nearest_enemies = enemy_list.slice(0, 3)
+	# Send bolt to nearest 2 enemies
+	var nearest_enemies = enemy_list.slice(0, 2)
 	for idx in range(0,len(nearest_enemies)):
 		var target = nearest_enemies[idx]
 		
@@ -31,7 +31,7 @@ func onEnemyHit(enemy_entity: Enemy) -> void:
 		# Drawing electricity jump
 		var elec_line = Line2D.new()
 		elec_line.width = 4.0
-		elec_line.default_color = Color.HOT_PINK
+		elec_line.default_color = projectile_colours[0]
 		elec_line.material = surrounding_particles.material
 		
 		var from_point: Vector2

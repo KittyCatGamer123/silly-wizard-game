@@ -41,7 +41,7 @@ func reset_player_data() -> void:
 	LEVEL = 1
 	
 	#var base_tome = get_base_weapon_itemtype("basic")
-	var base_tome = get_base_weapon_itemtype("tesla")
+	var base_tome = get_base_weapon_itemtype(WeaponData.pick_random()["Id"])
 	base_tome["Engraving"] = get_base_engrave_itemtype("homing")
 	
 	PlayerInventory = {
