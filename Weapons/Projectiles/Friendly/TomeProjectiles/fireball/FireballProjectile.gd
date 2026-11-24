@@ -1,4 +1,5 @@
-class_name FireballProjectileAi extends FriendlyProjectile
+extends FriendlyProjectile
+class_name FireballProjectile
 
 var bounce_times: int = 3
 
@@ -27,3 +28,7 @@ func _body_entered(body) -> void:
 
 func projectile_update(delta: float) -> void:
 	pass
+
+func onEnemyHit(enemy_entity: Enemy) -> void:
+	enemy_entity.recieve_debuff(GameData.Debuffs.OnFire, 1)
+	end_projectile()

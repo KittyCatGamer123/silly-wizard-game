@@ -1,4 +1,5 @@
-extends TeslaProjectileAi
+extends TeslaProjectile
 class_name VicariousProjectileAi
 
-# TODO: Give enemies Weakened once debuffs are added to the game
+func onEnemyHit(enemy_entity: Enemy) -> void:
+	enemy_entity.recieve_debuff(GameData.Debuffs.Weakened, 3)

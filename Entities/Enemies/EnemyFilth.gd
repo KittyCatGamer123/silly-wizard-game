@@ -9,7 +9,7 @@ var spawned: bool = false
 var jump_chance = 150
 var jump_force = 300
 
-func _ready() -> void:
+func init_enemy() -> void:
 	digging_particles.emitting = false
 	digging_light.visible = false
 	

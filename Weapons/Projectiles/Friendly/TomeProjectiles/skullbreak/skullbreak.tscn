@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://wgdjmebu7m2i"]
 
-[ext_resource type="Script" uid="uid://b68tsavldm526" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/LineProjectileAi.gd" id="1_om7il"]
+[ext_resource type="Script" uid="uid://cfsitgpwn7do8" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/skullbreak/SkullbreakProjectile.gd" id="1_e8gug"]
 [ext_resource type="Shader" uid="uid://cradsv22svkdj" path="res://Resources/death_fire.gdshader" id="2_e8gug"]
 [ext_resource type="Texture2D" uid="uid://b1gafjq1l8g4" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/skullbreak/skullbreak.png" id="3_fgak3"]
 [ext_resource type="Texture2D" uid="uid://bb4pxdmcc20jf" path="res://Entities/particle.png" id="4_uqh4t"]
@@ -66,7 +66,7 @@ hue_variation_min = -2.2351742e-08
 hue_variation_max = 0.09999997
 
 [node name="SkullbreakProjectile" type="Node2D" unique_id=1725761069 node_paths=PackedStringArray("projectile_area2d", "projectile_sprite", "projectile_lighting", "surrounding_particles")]
-script = ExtResource("1_om7il")
+script = ExtResource("1_e8gug")
 projectile_area2d = NodePath("Area2D")
 projectile_sprite = NodePath("Skull")
 projectile_lighting = NodePath("PointLight2D")

@@ -29,6 +29,8 @@ var PlayerInventory: Dictionary = {
 	"Accessories": []
 }
 
+enum Debuffs { Weakened, OnFire  }
+
 const EssenceScene = preload("res://Entities/Essence/Essence.tscn")
 var Essence = 0
 
@@ -41,7 +43,7 @@ func reset_player_data() -> void:
 	LEVEL = 1
 	
 	#var base_tome = get_base_weapon_itemtype("basic")
-	var base_tome = get_base_weapon_itemtype(WeaponData.pick_random()["Id"])
+	var base_tome = get_base_weapon_itemtype("fireball")
 	base_tome["Engraving"] = get_base_engrave_itemtype("homing")
 	
 	PlayerInventory = {

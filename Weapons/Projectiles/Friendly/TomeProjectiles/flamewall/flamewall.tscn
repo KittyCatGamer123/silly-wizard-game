@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://sd2ix8ype1gh"]
 
 [ext_resource type="Shader" uid="uid://cradsv22svkdj" path="res://Resources/death_fire.gdshader" id="1_k0bmf"]
-[ext_resource type="Script" uid="uid://dia2p3bempdf" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/flamewall/FlamewallProjectileAi.gd" id="1_qe7jy"]
+[ext_resource type="Script" uid="uid://dia2p3bempdf" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/flamewall/FlamewallProjectile.gd" id="1_qe7jy"]
 [ext_resource type="Texture2D" uid="uid://o0n0eymvl08w" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/fireball/fireball.png" id="2_qe7jy"]
 [ext_resource type="Texture2D" uid="uid://bb4pxdmcc20jf" path="res://Entities/particle.png" id="3_3j878"]
 

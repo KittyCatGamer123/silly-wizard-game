@@ -18,20 +18,45 @@ var is_dead = false
 @export var accel_speed = 500
 @export var max_speed = 80
 
+var debuffs_stack = []
+var weakened_debuff_effect: GPUParticles2D = null
+
 func _ready() -> void:
-	attack_area.connect("area_entered", attack_area_area_entered)
+	init_debuff_scenes()
+	init_enemy()
+
+func init_debuff_scenes() -> void:
+	weakened_debuff_effect = load("res://Entities/weakened_debuff.tscn").instantiate()
+	add_child(weakened_debuff_effect)
+	weakened_debuff_effect.emitting = false
+
+@abstract
+func init_enemy() -> void
 
 func recieve_damage(dmg: float, incoming_knockback: float, src_position: Vector2) -> void:
-	health -= dmg
-	incoming_knockback = maxf(60.0, incoming_knockback - knockback_resist)
-	print(incoming_knockback)
+	var incoming_damage: float = dmg
+	health -= incoming_damage
 	
 	var knockback_direction = global_position - src_position
+	incoming_knockback = maxf(60.0, incoming_knockback - knockback_resist)
 	knockback_velocity = sign(knockback_direction.x) * incoming_knockback
 	velocity.y = -incoming_knockback * 0.5
 	
 	if health <= 0:
 		enemy_death()
+
+func recieve_debuff(debuff: GameData.Debuffs, duration: float) -> void:
+	var db_tween: SceneTreeTimer = get_tree().create_timer(duration)
+	db_tween.timeout.connect(remove_debuff.bind(debuff))
+	debuffs_stack.append(debuff)
+	check_debuffs()
+
+func remove_debuff(debuff: GameData.Debuffs) -> void:
+	debuffs_stack.erase(debuff)
+	check_debuffs()
+
+func check_debuffs() -> void:
+	weakened_debuff_effect.emitting = debuffs_stack.has(GameData.Debuffs.Weakened)
 
 func enemy_death():
 	if is_dead: 
@@ -89,4 +114,9 @@ func update_animation(direction: float) -> void:
 
 func attack_area_area_entered(area: Area2D) -> void:
 	if area.get_parent() is Player:
-		area.get_parent().recieve_damage(contact_damage, knockback_force, global_position)
+		var incoming_damage: float = contact_damage
+		
+		if debuffs_stack.has(GameData.Debuffs.Weakened):
+			incoming_damage /= 2.0
+		
+		area.get_parent().recieve_damage(incoming_damage, knockback_force, global_position)

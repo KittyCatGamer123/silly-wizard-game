@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://28ojpbkraku8"]
+
+[ext_resource type="Texture2D" uid="uid://bb4pxdmcc20jf" path="res://Entities/particle.png" id="1_irov1"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_g1hf7"]
+light_mode = 1
+
+[sub_resource type="Curve" id="Curve_grkn8"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.08108109, 1), 0.0, 0.0, 0, 0, Vector2(0.8513514, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_mhaqt"]
+curve = SubResource("Curve_grkn8")
+
+[sub_resource type="Gradient" id="Gradient_asqef"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kbeov"]
+gradient = SubResource("Gradient_asqef")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q4884"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(8, 7, 1)
+angle_min = -99.99999
+angle_max = 100.000015
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 20, 0)
+scale_min = 0.5
+color_ramp = SubResource("GradientTexture1D_kbeov")
+alpha_curve = SubResource("CurveTexture_mhaqt")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = 0.09999997
+turbulence_noise_speed_random = 4.0
+turbulence_influence_min = 1.0
+turbulence_influence_max = 1.0
+turbulence_initial_displacement_min = 1.0000015
+turbulence_initial_displacement_max = 100.0
+
+[node name="WeakenedProjectile" type="GPUParticles2D" unique_id=284615022]
+self_modulate = Color(0.60133314, 0, 0.82, 1)
+material = SubResource("CanvasItemMaterial_g1hf7")
+scale = Vector2(1.5, 1.5)
+amount = 30
+texture = ExtResource("1_irov1")
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_q4884")

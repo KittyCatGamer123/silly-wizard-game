@@ -6,7 +6,7 @@ extends Enemy
 
 var fire_projectile = load("res://Weapons/Projectiles/Enemy/CasterFireball/CasterFireball.tscn")
 
-func _ready() -> void:
+func init_enemy() -> void:
 	attack_area.set_deferred("monitorable", false)
 	attack_area.set_deferred("monitoring", false)
 	

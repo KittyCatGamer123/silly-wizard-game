@@ -1,5 +1,5 @@
-extends FireballProjectileAi
-class_name PlasmaProjectileAi
+extends FireballProjectile
+class_name PlasmaProjectile
 
 func onEnemyHit(enemy_entity: Enemy) -> void:
 	if projectile_area2d:
@@ -25,6 +25,7 @@ func onEnemyHit(enemy_entity: Enemy) -> void:
 			continue
 		
 		target.recieve_damage(projectile_damage / 3, projectile_knockback, player_reference.global_position)
+		target.recieve_debuff(GameData.Debuffs.OnFire, 0.5)
 		
 		if (!target) or target.health <= 0:
 			continue

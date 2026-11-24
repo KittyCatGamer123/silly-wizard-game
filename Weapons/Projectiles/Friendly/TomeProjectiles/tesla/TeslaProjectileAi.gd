@@ -1,4 +1,5 @@
-class_name TeslaProjectileAi extends LineProjectileAi
+extends LineProjectileAi
+class_name TeslaProjectile
 
 func onEnemyHit(enemy_entity: Enemy) -> void:
 	if projectile_area2d:

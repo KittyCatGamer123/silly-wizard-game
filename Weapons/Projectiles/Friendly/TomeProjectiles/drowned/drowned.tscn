@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bnhavuv2hggim"]
 
-[ext_resource type="Script" uid="uid://b68tsavldm526" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/LineProjectileAi.gd" id="1_awtgk"]
+[ext_resource type="Script" uid="uid://cqbgd54b01rtc" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/drowned/DrownedProjectile.gd" id="1_awtgk"]
 [ext_resource type="Shader" uid="uid://cradsv22svkdj" path="res://Resources/death_fire.gdshader" id="2_37ckq"]
 [ext_resource type="Texture2D" uid="uid://b1gafjq1l8g4" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/skullbreak/skullbreak.png" id="3_lbn20"]
 [ext_resource type="Texture2D" uid="uid://bb4pxdmcc20jf" path="res://Entities/particle.png" id="4_8a616"]

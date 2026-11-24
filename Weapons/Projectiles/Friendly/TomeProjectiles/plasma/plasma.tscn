@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dmkkkvyegjtw"]
 
-[ext_resource type="Script" uid="uid://chh77ql7got4l" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/plasma/PlasmaProjectileAi.gd" id="1_wmcfb"]
+[ext_resource type="Script" uid="uid://chh77ql7got4l" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/plasma/PlasmaProjectile.gd" id="1_wmcfb"]
 [ext_resource type="Shader" uid="uid://cradsv22svkdj" path="res://Resources/death_fire.gdshader" id="2_o3v36"]
 [ext_resource type="Texture2D" uid="uid://o0n0eymvl08w" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/fireball/fireball.png" id="3_xo4f8"]
 [ext_resource type="Texture2D" uid="uid://bb4pxdmcc20jf" path="res://Entities/particle.png" id="4_tnkep"]
