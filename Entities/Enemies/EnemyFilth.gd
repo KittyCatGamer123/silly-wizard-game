@@ -47,6 +47,8 @@ func movement_handling(delta: float):
 		velocity.y = -jump_force
 	
 	update_animation(direction)
+	
+	$Label.text = str(GameTools.round_to_dec(health, 2))
 
 func should_jump() -> bool:
 	if get_node("JumpCasts/RightJump").is_colliding(): return true

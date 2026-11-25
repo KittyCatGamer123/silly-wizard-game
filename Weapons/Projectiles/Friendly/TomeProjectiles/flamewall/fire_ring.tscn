@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cebwf8o25x6pj"]
+
+[ext_resource type="Texture2D" uid="uid://c103e4t1wv1bm" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/flamewall/inferno.png" id="1_ei1cj"]
+[ext_resource type="Script" uid="uid://b5m7jv4hjvkvk" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/flamewall/fire_ring.gd" id="1_ueb71"]
+
+[sub_resource type="Gradient" id="Gradient_5dmus"]
+offsets = PackedFloat32Array(0, 0.5180723, 0.71686745)
+colors = PackedColorArray(1.8247963, 0.9160796, 0.22117865, 1, 0.0744, 0.10251999, 0.12, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3j878"]
+gradient = SubResource("Gradient_5dmus")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_am13a"]
+radius = 52.086468
+
+[node name="FireRing" type="Area2D" unique_id=175874748]
+script = ExtResource("1_ueb71")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=142110536]
+scale = Vector2(0.53571427, 0.53571427)
+texture = ExtResource("1_ei1cj")
+
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=756596690]
+scale = Vector2(4.15625, 4.15625)
+energy = 3.0
+texture = SubResource("GradientTexture2D_3j878")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1200240760]
+shape = SubResource("CircleShape2D_am13a")

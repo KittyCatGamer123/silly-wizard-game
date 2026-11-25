@@ -2,18 +2,36 @@
 
 [ext_resource type="Shader" uid="uid://cr2021040etlc" path="res://Resources/lightning.gdshader" id="1_x4nva"]
 
-[sub_resource type="Gradient" id="Gradient_1esrv"]
-colors = PackedColorArray(1, 0, 0.7666664, 1, 1, 0, 0.7666664, 1)
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kxjg0"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kxjg0"]
+noise = SubResource("FastNoiseLite_kxjg0")
+
+[sub_resource type="Gradient" id="Gradient_1rd0c"]
+offsets = PackedFloat32Array(0.34455958, 0.5, 0.66580313)
+colors = PackedColorArray(0.25882354, 0, 1, 1, 0.5647059, 0, 0.69803923, 1, 0.4862745, 0, 0.19215687, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_wgnve"]
-gradient = SubResource("Gradient_1esrv")
+gradient = SubResource("Gradient_1rd0c")
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ljtuj"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_x4nva"]
+noise_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_x4nva"]
+noise = SubResource("FastNoiseLite_x4nva")
 
 [resource]
+resource_local_to_scene = true
 shader = ExtResource("1_x4nva")
+shader_parameter/lightning_noise = SubResource("NoiseTexture2D_x4nva")
+shader_parameter/background_noise = SubResource("NoiseTexture2D_kxjg0")
 shader_parameter/color_gradient = SubResource("GradientTexture1D_wgnve")
-shader_parameter/noiseTexture = SubResource("NoiseTexture2D_ljtuj")
+shader_parameter/use_color_gradient = true
+shader_parameter/color_effect_mod = 0.10000000149012
+shader_parameter/alpha = 1.0
+shader_parameter/intensive = 0.5000000074506
+shader_parameter/lightning_thin = 3.0
+shader_parameter/number_lightning = 8
 shader_parameter/speed = 5.0
-shader_parameter/variation = 1.0
-shader_parameter/width = 1.0
+shader_parameter/position = 0.5

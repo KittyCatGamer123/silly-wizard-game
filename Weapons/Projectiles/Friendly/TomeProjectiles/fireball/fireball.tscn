@@ -94,7 +94,6 @@ scale = Vector2(1.5, 1.5)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileBody/HitBox" unique_id=1343255756]
-visible = false
 shape = SubResource("CircleShape2D_5dmus")
 
 [node name="PointLight2D2" type="PointLight2D" parent="ProjectileBody" unique_id=340530960]
@@ -108,7 +107,6 @@ scale = Vector2(0.70270276, 0.70270276)
 texture = ExtResource("2_ocx6f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileBody" unique_id=1939929871]
-visible = false
 shape = SubResource("CircleShape2D_3lkrh")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="ProjectileBody" unique_id=892930163]

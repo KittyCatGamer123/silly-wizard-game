@@ -35,3 +35,6 @@ func get_dict_by_keyval(iterable: Array[Dictionary], key: String, val: Variant) 
 			if it[key] == val:
 				return it
 	return {}
+
+func round_to_dec(num, digit):
+	return round(num * pow(10.0, digit)) / pow(10.0, digit)

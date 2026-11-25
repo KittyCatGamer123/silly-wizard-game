@@ -11,6 +11,7 @@
 noise = SubResource("FastNoiseLite_yeiox")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wo8mc"]
+resource_local_to_scene = true
 shader = ExtResource("2_kwqgo")
 shader_parameter/progress = 0.0
 shader_parameter/sprite_size = Vector2(24, 24)
@@ -228,7 +229,13 @@ size = Vector2(12.66666, 30.666668)
 scale = Vector2(1.5, 1.5)
 collision_layer = 0
 script = ExtResource("1_7h88y")
+health = null
 contact_damage = 9
+knockback_force = null
+knockback_resist = null
+knockback_friction = null
+accel_speed = null
+max_speed = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1678778122]
 texture_repeat = 1
@@ -275,5 +282,12 @@ texture = SubResource("GradientTexture2D_t72mb")
 position = Vector2(0.3333435, 0.66666603)
 shape = SubResource("RectangleShape2D_tbj8u")
 debug_color = Color(0.7, 0, 0.3733333, 0.41960785)
+
+[node name="Label" type="Label" parent="." unique_id=1625198347]
+offset_left = -19.333334
+offset_top = -42.666664
+offset_right = 20.666666
+offset_bottom = -19.666664
+horizontal_alignment = 1
 
 [connection signal="area_entered" from="AttackArea" to="." method="attack_area_area_entered"]

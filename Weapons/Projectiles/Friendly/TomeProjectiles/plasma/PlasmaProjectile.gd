@@ -1,10 +1,14 @@
 extends FireballProjectile
 class_name PlasmaProjectile
 
+var lightning_material: ShaderMaterial = load("res://Resources/lightning_shader.tres")
+
 func onEnemyHit(enemy_entity: Enemy) -> void:
 	if projectile_area2d:
 		projectile_area2d.set_deferred("monitoring", false)
 		projectile_area2d.set_deferred("monitorable", false)
+	
+	enemy_entity.recieve_debuff(GameData.Debuffs.OnFire, 1)
 	
 	# Find all enemies in scene and sort by nearest
 	var enemy_list: Array[Enemy] = []
@@ -25,26 +29,30 @@ func onEnemyHit(enemy_entity: Enemy) -> void:
 			continue
 		
 		target.recieve_damage(projectile_damage / 3, projectile_knockback, player_reference.global_position)
-		target.recieve_debuff(GameData.Debuffs.OnFire, 0.5)
+		target.recieve_debuff(GameData.Debuffs.OnFire, 1)
 		
 		if (!target) or target.health <= 0:
 			continue
 		
 		# Drawing electricity jump
-		var elec_line = Line2D.new()
-		elec_line.width = 4.0
-		elec_line.default_color = projectile_colours[0]
-		elec_line.material = surrounding_particles.material
+		var elec_line: Line2D = Line2D.new()
+		elec_line.width = 10.0
+		elec_line.material = (lightning_material as ShaderMaterial)
+		elec_line.texture_mode = Line2D.LINE_TEXTURE_TILE
 		
 		var from_point: Vector2
 		if idx == 0: from_point = enemy_entity.global_position
 		else: from_point = nearest_enemies[idx-1].global_position
+		
+		var to_point: Vector2 = target.global_position
 		elec_line.add_point(from_point)
-		elec_line.add_point(target.global_position)
+		elec_line.add_point(to_point)
 		
 		get_tree().current_scene.add_child(elec_line)
 		
 		var tw = create_tween()
-		tw.tween_property(elec_line, "self_modulate", Color("FFF0"), 1)
+		tw.tween_method(func(v: float): 
+			elec_line.material.set_shader_parameter("alpha", v), 1.0, 0.0, 0.5)
+		tw.tween_callback(func(): elec_line.queue_free())
 	
 	end_projectile()

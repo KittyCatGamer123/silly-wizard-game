@@ -20,15 +20,26 @@ var is_dead = false
 
 var debuffs_stack = []
 var weakened_debuff_effect: GPUParticles2D = null
+var onfire_debuff_effect: GPUParticles2D = null
+
+const onfire_damage_rate = 1 # per second
 
 func _ready() -> void:
 	init_debuff_scenes()
+	init_enemy_data()
 	init_enemy()
 
 func init_debuff_scenes() -> void:
 	weakened_debuff_effect = load("res://Entities/weakened_debuff.tscn").instantiate()
 	add_child(weakened_debuff_effect)
 	weakened_debuff_effect.emitting = false
+	
+	onfire_debuff_effect = load("res://Entities/onfire_debuff.tscn").instantiate()
+	add_child(onfire_debuff_effect)
+	onfire_debuff_effect.emitting = false
+
+func init_enemy_data() -> void:
+	pass
 
 @abstract
 func init_enemy() -> void
@@ -37,10 +48,11 @@ func recieve_damage(dmg: float, incoming_knockback: float, src_position: Vector2
 	var incoming_damage: float = dmg
 	health -= incoming_damage
 	
-	var knockback_direction = global_position - src_position
-	incoming_knockback = maxf(60.0, incoming_knockback - knockback_resist)
-	knockback_velocity = sign(knockback_direction.x) * incoming_knockback
-	velocity.y = -incoming_knockback * 0.5
+	if incoming_knockback != -1:
+		var knockback_direction = global_position - src_position
+		incoming_knockback = maxf(60.0, incoming_knockback - knockback_resist)
+		knockback_velocity = sign(knockback_direction.x) * incoming_knockback
+		velocity.y = -incoming_knockback * 0.5
 	
 	if health <= 0:
 		enemy_death()
@@ -57,6 +69,12 @@ func remove_debuff(debuff: GameData.Debuffs) -> void:
 
 func check_debuffs() -> void:
 	weakened_debuff_effect.emitting = debuffs_stack.has(GameData.Debuffs.Weakened)
+	
+	onfire_debuff_effect.emitting = debuffs_stack.has(GameData.Debuffs.OnFire)
+	onfire_debuff_effect.get_node("PointLight2D").visible = debuffs_stack.has(GameData.Debuffs.OnFire)
+	
+	health = GameTools.round_to_dec(health, 2)
+	recieve_damage(0, -1, Vector2(0,0))
 
 func enemy_death():
 	if is_dead: 
@@ -70,7 +88,6 @@ func enemy_death():
 	es.position = global_position
 	get_tree().create_tween().tween_property(es, "position", Vector2(global_position.x, global_position.y - 15), 0.5)
 	
-	anin_sprite.material = anin_sprite.material.duplicate()
 	await get_tree().create_tween().tween_method(func(v: float): anin_sprite.material.set_shader_parameter("progress", v), 0.2, 1.0, 0.5).finished
 	
 	queue_free()
@@ -88,6 +105,10 @@ func _physics_process(delta: float) -> void:
 	if target == null and not is_dead:
 		locate_target()
 		return
+	
+	# OnFire debuff does passive damage every tick that adds up to Rate/sec overall 
+	if debuffs_stack.has(GameData.Debuffs.OnFire):
+		recieve_damage(onfire_damage_rate * delta, -1, Vector2.ZERO)
 	
 	movement_handling(delta)
 	

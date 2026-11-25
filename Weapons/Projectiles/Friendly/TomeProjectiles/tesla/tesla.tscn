@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dvbie1w214o4" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/tesla/TeslaProjectileAi.gd" id="1_6svju"]
 [ext_resource type="Shader" uid="uid://cradsv22svkdj" path="res://Resources/death_fire.gdshader" id="2_yqdx3"]
 [ext_resource type="Texture2D" uid="uid://b4xxklamjg5ca" path="res://Weapons/Projectiles/Friendly/TomeProjectiles/tesla/tesla.png" id="3_yqdx3"]
+[ext_resource type="Material" uid="uid://yu3awod8slse" path="res://Resources/lightning_shader.tres" id="4_1esrv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1esrv"]
 size = Vector2(8.666666, 2.6666667)
@@ -100,3 +101,9 @@ position = Vector2(-3.9999995, 0)
 scale = Vector2(1.125, 0.86929417)
 energy = 3.0
 texture = SubResource("GradientTexture2D_yqdx3")
+
+[node name="Line2D" type="Line2D" parent="." unique_id=1932924714]
+visible = false
+material = ExtResource("4_1esrv")
+points = PackedVector2Array(0, 0, 100, 0)
+texture_mode = 1

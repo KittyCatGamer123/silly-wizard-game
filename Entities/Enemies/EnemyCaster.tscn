@@ -11,6 +11,7 @@
 noise = SubResource("FastNoiseLite_rdsyl")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2nsy1"]
+resource_local_to_scene = true
 shader = ExtResource("2_l2ra7")
 shader_parameter/progress = 0.0
 shader_parameter/sprite_size = Vector2(24, 24)

@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://dxxunw4dmtmvi"]
+
+[ext_resource type="Texture2D" uid="uid://bb4pxdmcc20jf" path="res://Entities/particle.png" id="1_aquue"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_aquue"]
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_wrsol"]
+offsets = PackedFloat32Array(0, 0.08196721, 0.7704918, 1)
+colors = PackedColorArray(0.71, 0.71, 0.71, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q80gr"]
+gradient = SubResource("Gradient_wrsol")
+
+[sub_resource type="Curve" id="Curve_ee0in"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.24324325, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_m7lj6"]
+curve = SubResource("Curve_ee0in")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gqodo"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 20.0
+angle_min = -360.0
+angle_max = 360.00003
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, -1, 0)
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_m7lj6")
+color = Color(1, 0.56666666, 0, 0.84313726)
+color_ramp = SubResource("GradientTexture1D_q80gr")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = 0.09999997
+
+[sub_resource type="Gradient" id="Gradient_vkh1j"]
+offsets = PackedFloat32Array(0, 0.5180723, 0.71686745)
+colors = PackedColorArray(1.8247963, 0.9160796, 0.22117865, 1, 0.0744, 0.10251999, 0.12, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aljoo"]
+gradient = SubResource("Gradient_vkh1j")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="onfire_debuff" type="GPUParticles2D" unique_id=1481212117]
+material = SubResource("CanvasItemMaterial_aquue")
+amount = 40
+texture = ExtResource("1_aquue")
+lifetime = 2.0
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_gqodo")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1639051539]
+scale = Vector2(1.3125, 1.3125)
+texture = SubResource("GradientTexture2D_aljoo")

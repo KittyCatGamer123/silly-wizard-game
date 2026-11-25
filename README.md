@@ -9,6 +9,10 @@ Created with Godot Engine 4.x.
 
 [**Ratukatubatu**](https://ratkatbat.itch.io/) - Artist, Level Designer, Enviornmental Design
 
+[Re-Logic](https://re-logic.com/) - Prototype Sprites & Assets
+
+**Shaders**
+
 [**Claire Treise**](https://www.supitszaire.com) - Burn-away Shader
 
-[Re-Logic](https://re-logic.com/) - Prototype Sprites & Assets
+[**Lenrow**](https://godotshaders.com/shader/2d-lightning-beam/) - Lightning Beam Shader
