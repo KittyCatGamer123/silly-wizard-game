@@ -1,0 +1,6 @@
+Entity,Type,Health,Defense,Damage,Kb,KbResist,KbFriction,Essence
+Filth,Enemy,15,0,14,300,5,180,5
+Caster,Enemy,25,0,20,300,200,250,10
+Bat,Enemy,20,0,0,0,0,0,3
+Guardian,Enemy,50,0,0,0,0,0,10
+Golem,Boss,200,0,0,0,0,0,0

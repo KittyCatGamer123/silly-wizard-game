@@ -229,13 +229,6 @@ size = Vector2(12.66666, 30.666668)
 scale = Vector2(1.5, 1.5)
 collision_layer = 0
 script = ExtResource("1_7h88y")
-health = null
-contact_damage = 9
-knockback_force = null
-knockback_resist = null
-knockback_friction = null
-accel_speed = null
-max_speed = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1678778122]
 texture_repeat = 1

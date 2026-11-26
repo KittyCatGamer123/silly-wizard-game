@@ -12,6 +12,9 @@ var AccessoryData: Array[Dictionary] = []
 ## Collection of all the Charged Casts in the game with their base values.
 var ChargeCastData: Array[Dictionary] = []
 
+## Collection of all of the enemies' stats in the game.
+var EnemyData: Array[Dictionary] = []
+
 var LEVEL = 1
 
 ## The current Weapon, Engraving, and equipped Accessory data that the Player
@@ -38,12 +41,14 @@ func _ready() -> void:
 	WeaponData = _get_weapon_data()
 	EngravingData = _get_engraving_data()
 	reset_player_data()
+	
+	EnemyData = _get_enemy_data()
 
 func reset_player_data() -> void:
 	LEVEL = 1
 	
 	#var base_tome = get_base_weapon_itemtype("basic")
-	var base_tome = get_base_weapon_itemtype("flamewall")
+	var base_tome = get_base_weapon_itemtype("tesla")
 	base_tome["Engraving"] = get_base_engrave_itemtype("homing")
 	
 	PlayerInventory = {
@@ -147,10 +152,13 @@ func get_base_engrave_itemtype(engrave_id: String) -> Dictionary:
 	return itemtype
 
 func _get_weapon_data() -> Array[Dictionary]:
-	return get_csv_data("res://GameData/WeaponData.csv")
+	return get_csv_data("res://GameData/Datafiles/WeaponData.csv")
 
 func _get_engraving_data() -> Array[Dictionary]:
-	return get_csv_data("res://GameData/EngravingData.csv")
+	return get_csv_data("res://GameData/Datafiles/EngravingData.csv")
+
+func _get_enemy_data() -> Array[Dictionary]:
+	return get_csv_data("res://GameData/Datafiles/EnemyData.csv")
 
 func get_file_text(path: String) -> String:
 	return FileAccess.open(path, FileAccess.READ).get_as_text()

@@ -6,6 +6,16 @@ extends Enemy
 
 var fire_projectile = load("res://Weapons/Projectiles/Enemy/CasterFireball/CasterFireball.tscn")
 
+func init_enemy_data() -> void:
+	var enemy = GameTools.get_dict_by_keyval(GameData.EnemyData, "Entity", "Caster")
+	
+	health = enemy["Health"]
+	contact_damage = enemy["Damage"]
+	knockback_force = enemy["Kb"]
+	knockback_resist = enemy["KbResist"]
+	knockback_friction = enemy["KbFriction"]
+	essence_drop = enemy["Essence"]
+
 func init_enemy() -> void:
 	attack_area.set_deferred("monitorable", false)
 	attack_area.set_deferred("monitoring", false)

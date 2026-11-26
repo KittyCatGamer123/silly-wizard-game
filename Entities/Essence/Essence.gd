@@ -1,4 +1,5 @@
 extends Area2D
+class_name Essence
 
 @onready var light: PointLight2D = $PointLight2D
 

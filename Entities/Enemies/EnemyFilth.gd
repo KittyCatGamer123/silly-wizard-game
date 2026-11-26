@@ -9,6 +9,16 @@ var spawned: bool = false
 var jump_chance = 150
 var jump_force = 300
 
+func init_enemy_data() -> void:
+	var enemy = GameTools.get_dict_by_keyval(GameData.EnemyData, "Entity", "Filth")
+	
+	health = enemy["Health"]
+	contact_damage = enemy["Damage"]
+	knockback_force = enemy["Kb"]
+	knockback_resist = enemy["KbResist"]
+	knockback_friction = enemy["KbFriction"]
+	essence_drop = enemy["Essence"]
+
 func init_enemy() -> void:
 	digging_particles.emitting = false
 	digging_light.visible = false

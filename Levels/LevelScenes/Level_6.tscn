@@ -260,19 +260,43 @@ interface_reference = NodePath("../GameUI")
 
 [node name="FilthNPC" parent="." unique_id=1051274036 instance=ExtResource("9_ljlg4")]
 position = Vector2(579, -24)
-health = 25.0
+health = 15.0
+contact_damage = 14
+knockback_force = 300
+knockback_resist = 5
+knockback_friction = 180.0
+accel_speed = 500
+max_speed = 80
 
 [node name="FilthNPC2" parent="." unique_id=665269849 instance=ExtResource("9_ljlg4")]
 position = Vector2(331.00003, 8)
-health = 25.0
+health = 15.0
+contact_damage = 14
+knockback_force = 300
+knockback_resist = 5
+knockback_friction = 180.0
+accel_speed = 500
+max_speed = 80
 
 [node name="FilthNPC3" parent="." unique_id=762485690 instance=ExtResource("9_ljlg4")]
 position = Vector2(99.00003, 8)
-health = 25.0
+health = 15.0
+contact_damage = 14
+knockback_force = 300
+knockback_resist = 5
+knockback_friction = 180.0
+accel_speed = 500
+max_speed = 80
 
 [node name="FilthNPC4" parent="." unique_id=454602038 instance=ExtResource("9_ljlg4")]
 position = Vector2(699, -24)
-health = 25.0
+health = 15.0
+contact_damage = 14
+knockback_force = 300
+knockback_resist = 5
+knockback_friction = 180.0
+accel_speed = 500
+max_speed = 80
 
 [node name="SpawnArea" type="Area2D" parent="." unique_id=21210282 node_paths=PackedStringArray("spawn_list")]
 position = Vector2(248, -128)
@@ -294,27 +318,51 @@ shape = SubResource("RectangleShape2D_1ay4j")
 
 [node name="EnemyCaster" parent="." unique_id=310718420 instance=ExtResource("11_jmhcd")]
 position = Vector2(915, -28.000002)
-knockback_friction = 320.0
+health = 15.0
+contact_damage = 14
+knockback_resist = 5
+knockback_friction = 180.0
 
 [node name="EnemyCaster2" parent="." unique_id=248119422 instance=ExtResource("11_jmhcd")]
 position = Vector2(1045, -56.000004)
-knockback_friction = 320.0
+health = 15.0
+contact_damage = 14
+knockback_resist = 5
+knockback_friction = 180.0
 
 [node name="EnemyCaster3" parent="." unique_id=24672114 instance=ExtResource("11_jmhcd")]
 position = Vector2(1453, -185)
-knockback_friction = 320.0
+health = 15.0
+contact_damage = 14
+knockback_resist = 5
+knockback_friction = 180.0
 
 [node name="EnemyCaster4" parent="." unique_id=1245043005 instance=ExtResource("11_jmhcd")]
 position = Vector2(1741.0001, -216)
-knockback_friction = 320.0
+health = 15.0
+contact_damage = 14
+knockback_resist = 5
+knockback_friction = 180.0
 
 [node name="FilthNPC5" parent="." unique_id=1220305182 instance=ExtResource("9_ljlg4")]
 position = Vector2(1456, -56.000004)
-health = 25.0
+health = 15.0
+contact_damage = 14
+knockback_force = 300
+knockback_resist = 5
+knockback_friction = 180.0
+accel_speed = 500
+max_speed = 80
 
 [node name="FilthNPC6" parent="." unique_id=562776195 instance=ExtResource("9_ljlg4")]
 position = Vector2(1744, -56.000004)
-health = 25.0
+health = 15.0
+contact_damage = 14
+knockback_force = 300
+knockback_resist = 5
+knockback_friction = 180.0
+accel_speed = 500
+max_speed = 80
 
 [node name="SpawnArea3" type="Area2D" parent="." unique_id=979318990 node_paths=PackedStringArray("spawn_list")]
 position = Vector2(1528, -192)
@@ -327,15 +375,30 @@ shape = SubResource("RectangleShape2D_1ay4j")
 
 [node name="EnemyCaster5" parent="." unique_id=533667329 instance=ExtResource("11_jmhcd")]
 position = Vector2(2061, -248.00002)
-knockback_friction = 320.0
+health = 15.0
+contact_damage = 14
+knockback_resist = 5
+knockback_friction = 180.0
 
 [node name="FilthNPC7" parent="." unique_id=449184223 instance=ExtResource("9_ljlg4")]
 position = Vector2(2203, -24)
-health = 25.0
+health = 15.0
+contact_damage = 14
+knockback_force = 300
+knockback_resist = 5
+knockback_friction = 180.0
+accel_speed = 500
+max_speed = 80
 
 [node name="FilthNPC8" parent="." unique_id=590849553 instance=ExtResource("9_ljlg4")]
 position = Vector2(1963, -24)
-health = 25.0
+health = 15.0
+contact_damage = 14
+knockback_force = 300
+knockback_resist = 5
+knockback_friction = 180.0
+accel_speed = 500
+max_speed = 80
 
 [node name="SpawnArea4" type="Area2D" parent="." unique_id=756813893 node_paths=PackedStringArray("spawn_list")]
 position = Vector2(1864, -192)
@@ -357,19 +420,37 @@ shape = SubResource("RectangleShape2D_1ay4j")
 
 [node name="FilthNPC9" parent="." unique_id=490021264 instance=ExtResource("9_ljlg4")]
 position = Vector2(2443, -56.000004)
-health = 25.0
+health = 15.0
+contact_damage = 14
+knockback_force = 300
+knockback_resist = 5
+knockback_friction = 180.0
+accel_speed = 500
+max_speed = 80
 
 [node name="FilthNPC10" parent="." unique_id=1438785876 instance=ExtResource("9_ljlg4")]
 position = Vector2(2875, -24)
-health = 25.0
+health = 15.0
+contact_damage = 14
+knockback_force = 300
+knockback_resist = 5
+knockback_friction = 180.0
+accel_speed = 500
+max_speed = 80
 
 [node name="EnemyCaster6" parent="." unique_id=1000548810 instance=ExtResource("11_jmhcd")]
 position = Vector2(2517, -216.00002)
-knockback_friction = 320.0
+health = 15.0
+contact_damage = 14
+knockback_resist = 5
+knockback_friction = 180.0
 
 [node name="EnemyCaster7" parent="." unique_id=1747226549 instance=ExtResource("11_jmhcd")]
 position = Vector2(2797, -152)
-knockback_friction = 320.0
+health = 15.0
+contact_damage = 14
+knockback_resist = 5
+knockback_friction = 180.0
 
 [node name="SpawnArea6" type="Area2D" parent="." unique_id=456300781 node_paths=PackedStringArray("spawn_list")]
 position = Vector2(3072, -192)
@@ -382,23 +463,53 @@ shape = SubResource("RectangleShape2D_1ay4j")
 
 [node name="FilthNPC11" parent="." unique_id=251450252 instance=ExtResource("9_ljlg4")]
 position = Vector2(3203.0002, 104.00001)
-health = 25.0
+health = 15.0
+contact_damage = 14
+knockback_force = 300
+knockback_resist = 5
+knockback_friction = 180.0
+accel_speed = 500
+max_speed = 80
 
 [node name="FilthNPC12" parent="." unique_id=645990840 instance=ExtResource("9_ljlg4")]
 position = Vector2(3330, 264)
-health = 25.0
+health = 15.0
+contact_damage = 14
+knockback_force = 300
+knockback_resist = 5
+knockback_friction = 180.0
+accel_speed = 500
+max_speed = 80
 
 [node name="FilthNPC13" parent="." unique_id=520234377 instance=ExtResource("9_ljlg4")]
 position = Vector2(3138.0002, 360)
-health = 25.0
+health = 15.0
+contact_damage = 14
+knockback_force = 300
+knockback_resist = 5
+knockback_friction = 180.0
+accel_speed = 500
+max_speed = 80
 
 [node name="FilthNPC14" parent="." unique_id=783126769 instance=ExtResource("9_ljlg4")]
 position = Vector2(3226, 360)
-health = 25.0
+health = 15.0
+contact_damage = 14
+knockback_force = 300
+knockback_resist = 5
+knockback_friction = 180.0
+accel_speed = 500
+max_speed = 80
 
 [node name="FilthNPC15" parent="." unique_id=1765765859 instance=ExtResource("9_ljlg4")]
 position = Vector2(3002, 392)
-health = 25.0
+health = 15.0
+contact_damage = 14
+knockback_force = 300
+knockback_resist = 5
+knockback_friction = 180.0
+accel_speed = 500
+max_speed = 80
 
 [connection signal="area_entered" from="SpawnArea" to="SpawnArea" method="_on_area_entered"]
 [connection signal="area_entered" from="SpawnArea2" to="SpawnArea2" method="_on_area_entered"]

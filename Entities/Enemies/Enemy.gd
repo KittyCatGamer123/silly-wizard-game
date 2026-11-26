@@ -11,6 +11,7 @@ var target: Player = null
 @export var knockback_friction: float = 180.0
 var knockback_velocity: float = 0.0
 var is_dead = false
+var essence_drop: int = 5
 
 @onready var anin_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $AttackArea
@@ -38,8 +39,8 @@ func init_debuff_scenes() -> void:
 	add_child(onfire_debuff_effect)
 	onfire_debuff_effect.emitting = false
 
-func init_enemy_data() -> void:
-	pass
+@abstract
+func init_enemy_data() -> void
 
 @abstract
 func init_enemy() -> void
@@ -54,7 +55,7 @@ func recieve_damage(dmg: float, incoming_knockback: float, src_position: Vector2
 		knockback_velocity = sign(knockback_direction.x) * incoming_knockback
 		velocity.y = -incoming_knockback * 0.5
 	
-	if health <= 0:
+	if GameTools.round_to_dec(health, 2) <= 0.00:
 		enemy_death()
 
 func recieve_debuff(debuff: GameData.Debuffs, duration: float) -> void:
@@ -83,7 +84,8 @@ func enemy_death():
 	
 	attack_area.set_deferred("monitoring", false)
 	
-	var es = GameData.EssenceScene.instantiate()
+	var es: Essence = GameData.EssenceScene.instantiate()
+	es.essence_drop = essence_drop
 	get_tree().current_scene.call_deferred("add_child", es)
 	es.position = global_position
 	get_tree().create_tween().tween_property(es, "position", Vector2(global_position.x, global_position.y - 15), 0.5)
