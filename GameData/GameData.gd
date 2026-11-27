@@ -49,7 +49,7 @@ func reset_player_data() -> void:
 	
 	#var base_tome = get_base_weapon_itemtype("basic")
 	var base_tome = get_base_weapon_itemtype("tesla")
-	base_tome["Engraving"] = get_base_engrave_itemtype("homing")
+	base_tome["Engraving"] = get_base_engrave_itemtype("overcharged")
 	
 	PlayerInventory = {
 		"Weapons": [base_tome],

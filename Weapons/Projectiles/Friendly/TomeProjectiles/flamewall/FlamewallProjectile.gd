@@ -1,7 +1,6 @@
 extends FireballProjectile
 class_name FlamewallProjectile
 
-# TODO: Add fire ring system once debuffs are added to the game
 var firering_scene = preload("res://Weapons/Projectiles/Friendly/TomeProjectiles/flamewall/fire_ring.tscn")
 
 func onEnemyHit(enemy_entity: Enemy) -> void:

@@ -100,25 +100,50 @@ func use_weapon() -> void:
 		return
 	
 	var weapon_data: Dictionary = loadout_data["Weapon"]
-	
-	weapon_is_using = true
-	weapon_use_timer = weapon_data["UseTime"]
-	animsprite.play("attack")
+	var engrave_data: Dictionary = weapon_data["Engraving"]
+	var base_stat_modifiers: Dictionary = {}
 	
 	var mouse_position := get_global_mouse_position()
 	var face_right: bool = mouse_position.x > global_position.x
 	animsprite.flip_h = (not face_right)
 	previous_direction = sign((global_position.x - mouse_position.x) * -1)
 	
+	if !engrave_data.is_empty():
+		if engrave_data["Id"] == "overcharged":
+			MP -= weapon_data["Mana"]
+			base_stat_modifiers = {
+				"Damage": { "Op": OP_MULTIPLY, "Value": engrave_data["Value"] }
+			}
+	
 	var pos_name = "RightCast" if face_right else "LeftCast"
-	var proj = loadout_projectile.instantiate()
-	get_tree().current_scene.add_child(proj)
-	proj.player_reference = self
-	proj.position = get_node(pos_name).global_position
-	proj.start_projectile(get_global_mouse_position())
+	var start_pos = get_node(pos_name).global_position
+	create_weapon_projectile(start_pos, get_global_mouse_position(), base_stat_modifiers)
 	
 	MP -= weapon_data["Mana"]
 	interface_reference.player_values_changed()
+	
+	weapon_is_using = true
+	weapon_use_timer = weapon_data["UseTime"]
+	animsprite.play("attack")
+	
+	if !engrave_data.is_empty():
+		if engrave_data["Id"] == "echoing":
+			# Multiply second projectile damage by Engrave Value after a small time
+			await get_tree().create_timer(0.15).timeout
+			create_weapon_projectile(start_pos, get_global_mouse_position(), {
+				"Damage": { "Op": OP_MULTIPLY, "Value": engrave_data["Value"] }
+			})
+		
+		elif engrave_data["Id"] == "swift":
+			weapon_use_timer *= engrave_data["Value"]
+
+func create_weapon_projectile(spawn_point: Vector2, shoot_direction: Vector2, stat_mods: Dictionary = {}) -> void:
+	var proj = loadout_projectile.instantiate()
+	proj.stat_modifiers = stat_mods
+	get_tree().current_scene.add_child(proj)
+	proj.player_reference = self
+	proj.position = spawn_point
+	proj.start_projectile(shoot_direction)
 
 func use_weapon_alt_cast() -> void:
 	alt_activate_effect.emitting = true
@@ -136,11 +161,7 @@ func use_weapon_alt_cast() -> void:
 	]
 	
 	for pnt in projectile_directions:
-		var proj = loadout_projectile.instantiate()
-		get_tree().current_scene.add_child(proj)
-		proj.player_reference = self
-		proj.global_position = alt_cast_position.global_position
-		proj.start_projectile(pnt)
+		create_weapon_projectile(alt_cast_position.global_position, pnt)
 	
 	MP = 0
 	interface_reference.player_values_changed()

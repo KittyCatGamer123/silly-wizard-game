@@ -10,6 +10,7 @@ func _ready() -> void:
 	projectile_area2d.connect("body_entered", _body_entered)
 
 	var weapon_data: Dictionary = GameData.CurrentPlayerLoadout["Weapon"]
+	weapon_data = projectile_modifier_calculations(weapon_data, stat_modifiers)
 	
 	projectile_damage = weapon_data["Damage"]
 	projectile_knockback = weapon_data["Knockback"]

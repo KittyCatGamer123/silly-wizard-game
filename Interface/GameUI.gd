@@ -109,6 +109,10 @@ func major_player_values_changed() -> void:
 	var current_tome_engrave: Dictionary = current_tome["Engraving"]
 	engrave_icon.visible = (!current_tome_engrave.is_empty())
 	
+	if !current_tome_engrave.is_empty():
+		var engrave_sprite: Texture2D = GameData.get_engraving_sprite(current_tome_engrave["Id"])
+		engrave_icon.texture = engrave_sprite
+	
 	if player_reference:
 		if player_reference.is_node_ready():
 			player_reference.update_loadout(GameData.CurrentPlayerLoadout)

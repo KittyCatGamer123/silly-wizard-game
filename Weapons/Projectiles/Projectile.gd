@@ -9,6 +9,8 @@ var projectile_speed: float = 1
 var projectile_lifetime: float = 1
 var projectile_colours: Array[Color] = []
 
+var stat_modifiers: Dictionary = {}
+
 @export var projectile_area2d: Area2D
 @export var projectile_sprite: Sprite2D
 @export var projectile_lighting: PointLight2D
@@ -25,6 +27,18 @@ func _process(delta: float) -> void:
 	time_alive += delta
 	if time_alive >= projectile_lifetime:
 		end_projectile()
+
+func projectile_modifier_calculations(weapon_data: Dictionary, mods: Dictionary) -> Dictionary:
+	for mod_key in mods.keys():
+		var mod_dat = mods[mod_key]
+		
+		match mod_dat["Op"] as Variant.Operator:
+			OP_ADD: weapon_data[mod_key] += mod_dat["Value"]
+			OP_SUBTRACT: weapon_data[mod_key] -= mod_dat["Value"]
+			OP_MULTIPLY: weapon_data[mod_key] *= mod_dat["Value"]
+			OP_DIVIDE: weapon_data[mod_key] /= mod_dat["Value"]
+			OP_EQUAL: weapon_data[mod_key] = mod_dat["Value"]
+	return weapon_data
 
 @abstract
 func _on_area_entered(area: Area2D) -> void

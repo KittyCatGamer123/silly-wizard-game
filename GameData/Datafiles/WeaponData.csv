@@ -1,12 +1,12 @@
 Name,Id,BaseDamage,Knockback,UseTime,Mana,Lifetime,ProjSpeed,Colour1,Colour2,EssenceCost,CraftRequires,Desc
-Basic,basic,3,75,0.75,15,1.5,400,#ffffcf,#ffffcf,0,,A tome with a simple projectile. Designed to be evolved into other tomes.
-Riptide,riptide,7,600,0.75,35,3,200,#00dbc98a,#0080c4d7,50,basic,
-Skullbreak,skullbreak,6,150,0.65,25,1.5,300,#6100b0bd,#6100b0bd,50,basic,
-Tesla,tesla,5,200,0.6,20,1,600,#5e00ff76,#ff1ab245,50,basic,
-Fireball,fireball,6,300,0.8,20,2.5,300,#d936007c,#d936007c,50,basic,
-Drowned,drowned,10,600,0.75,35,1.5,200,#00ccff87,#8000ff87,350,riptide+skullbreak,
-Hydropower,hydropower,6,300,0.7,25,1.5,400,#00ccffaa,#ff1ab245,350,riptde+tesla,
-Flamewall,flamewall,7,300,0.8,30,2.5,250,#00ccffaa,#d936007c,350,riptide+fireball,
-Vicarious,vicarious,6,100,0.65,25,1,400,#6100b0bd,#ff1ab2aa,350,skullbreak+tesla,
-Darkflame,darkflame,8,300,0.8,25,2.5,300,#6100b0bd,#d936007c,350,skullbreak+fireball,
-Plasma,plasma,7,200,0.7,25,2.5,450,#d936007c,#ff1ab2aa,350,tesla+fireball,
+Basic,basic,3.0,75,0.75,15,1.5,400,#ffffcf,#ffffcf,0,,A tome with a simple projectile. Designed to be evolved into other tomes.
+Riptide,riptide,7.0,600,0.75,35,3,200,#00dbc98a,#0080c4d7,50,basic,
+Skullbreak,skullbreak,6.0,150,0.65,25,1.5,300,#6100b0bd,#6100b0bd,50,basic,
+Tesla,tesla,5.0,200,0.6,20,1,600,#5e00ff76,#ff1ab245,50,basic,
+Fireball,fireball,6.0,300,0.8,20,2.5,300,#d936007c,#d936007c,50,basic,
+Drowned,drowned,10.0,600,0.75,35,1.5,200,#00ccff87,#8000ff87,350,riptide+skullbreak,
+Hydropower,hydropower,6.0,300,0.7,25,1.5,400,#00ccffaa,#ff1ab245,350,riptde+tesla,
+Flamewall,flamewall,7.0,300,0.8,30,2.5,250,#00ccffaa,#d936007c,350,riptide+fireball,
+Vicarious,vicarious,6.0,100,0.65,25,1,400,#6100b0bd,#ff1ab2aa,350,skullbreak+tesla,
+Darkflame,darkflame,8.0,300,0.8,25,2.5,300,#6100b0bd,#d936007c,350,skullbreak+fireball,
+Plasma,plasma,7.0,200,0.7,25,2.5,450,#d936007c,#ff1ab2aa,350,tesla+fireball,
